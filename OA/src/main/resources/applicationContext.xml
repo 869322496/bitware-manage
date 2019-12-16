@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--1.扫描包 Spring扫描包-->
+    <context:component-scan base-package="com.qzy.*"/>
+
+    <!--2.加载jdbc.properties文件 加载属性配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--3.配置德鲁伊数据源-->
+    <bean id="ds" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--4.整合MyBatis，获取一个sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--引用数据源-->
+        <property name="dataSource" ref="ds"/>
+        <!--MyBatis配置文件的位置,Spring整合完MyBatis之后，mybatis-config.xml可以省略不需要，所有配置都在Spring中管理了-->
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+        <!--MyBatis的映射文件位置-->
+        <property name="mapperLocations" value="classpath:com/qzy/mapper/*.xml"/>
+        <!--给实体类取别名-->
+        <property name="typeAliasesPackage" value="com.qzy.bean"/>
+    </bean>
+
+    <!--5.配置MyBatis的Mapper接口层，自动让Spring框架Mapper层的接口生成对象 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.qzy.mapper"/>
+    </bean>
+
+
+
+</beans>

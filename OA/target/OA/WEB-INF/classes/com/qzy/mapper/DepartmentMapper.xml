@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qzy.mapper.DepartmentMapper">
+
+    <insert id="addDepartment" parameterType="Depart">
+        insert into t_depart (name, createtime, del) values (#{name},#{createtime},0)
+    </insert>
+    <update id="deleteDepartment">
+        update t_depart set del = 1 where id = #{id};
+    </update>
+    <update id="updateDepartment" parameterType="Depart">
+        update t_depart set name = #{name} , createtime = #{createtime} where id = #{id}
+    </update>
+
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        select count(id) from t_depart where del = 0;
+    </select>
+    <select id="getDepartment" resultType="com.qzy.bean.Depart">
+        select * from t_depart where del = 0 limit #{pageStart},#{pageSize}
+    </select>
+    <select id="selectDepartmentById" resultType="com.qzy.bean.Depart">
+        select * from t_depart where id = #{id}
+    </select>
+    <select id="findAllDepartment" resultType="com.qzy.bean.Depart">
+        select * from t_depart where del = 0
+    </select>
+</mapper>
