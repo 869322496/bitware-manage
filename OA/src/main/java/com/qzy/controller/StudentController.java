@@ -33,6 +33,7 @@ import java.util.Map;
  * @author qingzeyu
  */
 @Controller
+@Scope("prototype")
 public class StudentController {
     @Autowired
     StudentService service;
