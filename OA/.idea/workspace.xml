@@ -71,9 +71,6 @@
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
   <component name="JRebelWorkspace">
     <option name="jrebelEnabledAutocompile" value="true" />
   </component>
@@ -106,7 +103,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.zeroturnaround.javarebel.idea.plugin.settings.JRebelSettingsComponent" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -332,7 +329,7 @@
       <workItem from="1576139566486" duration="10182000" />
       <workItem from="1576151458943" duration="39122000" />
       <workItem from="1576291003165" duration="11654000" />
-      <workItem from="1576468865971" duration="4588000" />
+      <workItem from="1576468865971" duration="5952000" />
     </task>
     <servers />
   </component>

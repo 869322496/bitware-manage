@@ -12,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import java.util.Map;
  * @author qingzeyu
  */
 @Controller
+@Scope("prototype")
 public class StudentController {
     @Autowired
     StudentService service;
