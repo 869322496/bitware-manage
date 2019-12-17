@@ -71,6 +71,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="JRebelWorkspace">
     <option name="jrebelEnabledAutocompile" value="true" />
   </component>
