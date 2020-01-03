@@ -6,7 +6,180 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4279579d-8c58-4397-9809-a903c80880f9" name="Default Changelist" comment="" />
+    <list default="true" id="4279579d-8c58-4397-9809-a903c80880f9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/OA.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/Classes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/Depart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/Emp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/LoginLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/Major.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/MajorType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/bean/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/ClassController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/CommonController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/CourseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/DepartmentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/StudentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/UploadController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/ClassMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/ClassMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/DepartmentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/DepartmentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/EmpMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/EmpMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/LoginLogMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/LoginLogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/MajorMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/MajorMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/StudentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/StudentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/UsersMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/mapper/UsersMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/ClassService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/DepartmentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/EmpService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/LoginLogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/MajorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/StudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/UsersService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/ClassServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/DepartmentServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/EmpServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/LoginLogServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/MajorServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/StudentServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/service/impl/UsersServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/utils/ExcelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/utils/ExcelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/utils/LoginStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/utils/LoginStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/qzy/utils/PageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/utils/PageUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/java/MyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/courseadd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/courseadd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/departlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/departlist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/empupdate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/empupdate.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeadd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeadd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeupdate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gradeupdate.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentdetails.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/studentdetails.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/META-INF/OA.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/ClassMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/DepartmentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/EmpMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/LoginLogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/MajorMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/StudentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/com/qzy/mapper/UsersMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/classes/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/classes/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/classes/spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/courseadd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/courseadd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/departlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/departlist.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/empupdate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/empupdate.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/gradeadd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/gradeadd.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/gradeupdate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/gradeupdate.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/studentdetails.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/WEB-INF/jsp/studentdetails.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/tem/StudentsExcel.xls" beforeDir="false" afterPath="$PROJECT_DIR$/target/OA/media/tem/StudentsExcel.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/0f584a8a-23c5-48a4-9e0c-b6cc0610988c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/13bddf68-5476-4b1e-9a66-180537ec4875.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/16ef6763-7cbd-4c67-87db-717dcdc37f72.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/1a92c55f-d066-42d4-866b-b1c64642c252.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/1ad515d5-a0c6-4cef-a12c-42f97b942d11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/1cdc168c-3aa5-48f8-9857-b3e98147fd2f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/28d4393b-4f6d-4560-a26d-325966818126.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/2ce0f131-3621-4dd1-941f-90ae3ca7503a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/2e81c7ea-a41d-4acd-8a15-5834c179b29b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/30f91485-b231-4fa0-bf44-519a2569e168.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/32fca2fa-c499-450a-908c-2931c480935c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/38bf09e0-e227-4d61-8390-e3508d69b5f4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/3a293d8e-2f31-4b7a-ac8b-975cdee0a989.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/3a68d16d-1f4b-4ac6-bf19-fc1a3fe4f281..jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/40dd7c7f-68dd-432d-a8f8-318c24aac96c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/4227ac57-1340-4bf5-944c-730c7fcbfb56.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/4300a9ab-b0dc-4a58-9350-bf9d4a94c562.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/480395f8-1327-4574-86ba-5b68dc6711fe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/495758fa-bc1e-49b8-9388-21c8b84fac90.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/53ac8969-de0d-44db-b4f1-cfd2b6159c76.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/580255c0-edbf-477a-862b-02edc2f7378d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/59a0db54-ef20-4a4b-b497-7f805f7b8375.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/5a1ae5bb-d653-406d-938c-92dbbf7bdca4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/5ae28072-832a-4c05-9edb-3f8d3c4611ce.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/5ebfab86-e824-4153-bafb-67ad507fd0b8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/6b430e12-64a4-4a7b-bbf4-41b11aeb84d1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/6dcc9526-ca7b-47af-a85f-1a38693fb82d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/7048f065-bd0e-421f-ab4c-413e1ba9028d..jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/718fdd9d-0cf2-474d-ba36-e2a658daebc2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/73756b4c-777e-484d-934a-e9fa1285b4c0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/746cfa45-edd9-4b07-aa01-45127ae0c6fd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/77d428e4-224f-459b-b0d2-141da6ce8a9f.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/7fbeaccb-dfb7-40ff-a3e6-3102965d9596.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/8180234c-cf0d-4cdf-a7da-1dc370d986e0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/8788d77f-3535-4878-a52e-6ce65570a8d7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/890619e5-64b0-4919-af12-0116df28f274.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/8c2bd66c-0611-425e-acac-89ed16b8fe6c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/8cca5170-838f-4724-b888-94a1233f1cf7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/92967caa-9494-45e7-a6d6-2cafadb1a3d8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/94a0f5dc-e158-44d9-a311-4a548cedc581.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/990432ee-efac-49ed-a937-b3c75157f817.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/99deccf2-a5eb-46f8-8b03-0b05e13b1348.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/9bdf39fe-011e-40c3-aeb5-1717cce66a47.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/9f22f615-7cd8-40d4-b0cf-bde85f0249ab.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/a5e320c3-0b64-4005-87f1-71740b0825fe.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/a72a7a74-e203-4a16-bafc-b2cf874b329e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/b2228ea2-e703-4c94-a979-2c61a53514c8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/b7adf291-e6c8-4a7d-964f-9d864a1f97a5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/bf3302fa-e640-4e0b-9ee8-35727cbb91bd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/c6331abc-1fff-444a-b25b-c3d1a3ab346b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/c7f0f6f8-9e8a-468f-b8a7-98f17b3b54a6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/c8f347f3-d1de-4af2-8ee2-106fbe147590.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/c9b34e6f-4df6-4edf-8f27-78481d34d691.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/ca91bc5e-120d-4a03-bcda-290e9c081d9a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/caaedb60-a736-4e43-8e85-661f21961f0b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/cac95f95-95af-4e49-a08f-3d9be9ac2899.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/cb565769-e8ea-47c3-9f79-9e897471c4a0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/cdc4eae3-7b14-4cc0-bca7-c7ae0aba5a37.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/cff8e768-867e-4193-8b11-82b059fadffb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/d24a13a9-48a0-4aa8-95c8-44ac153c45a2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/d553ea48-58d9-4aee-beea-5e413148a7b6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/d9b535ed-398c-441e-9797-719710070f23.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/e08f1db3-ecf6-4737-bec0-5ad434b87d13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/e3d76513-3fde-4b99-86ae-97a5907c7a5b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/ec76f7c8-7cb5-4785-91df-d4c70572fcd7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/f4522a0f-089e-4b3f-91ca-65744b372108.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/f7ff8870-2102-435b-b275-6e368f2204c5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/fb89d09e-7479-4872-9232-3daf752bf1e1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/OA/media/upload/fd653fc1-2bcd-4014-b833-b49a899497be.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/OA.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/ClassMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/DepartmentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/EmpMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/LoginLogMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/MajorMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/StudentMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/qzy/mapper/UsersMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,18 +234,180 @@
     </expand>
     <select />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
+              <folding>
+                <element signature="e#960#976#0" expanded="true" />
+                <element signature="e#1014#1027#0" expanded="true" />
+                <element signature="e#1070#1088#0" expanded="true" />
+                <element signature="e#1131#1149#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://E:/xinhai/apache-maven/repo/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="88" column="6" selection-start-line="88" selection-start-column="6" selection-end-line="88" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="102" column="35" selection-start-line="102" selection-start-column="35" selection-end-line="102" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="spring-beans.schema" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>lomb</find>
+      <find>InvokeResult</find>
+      <find>qzy</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>bitware</replace>
+      <replace>BitResult</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/qzy/controller/Login.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/MajorMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Classes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Depart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Emp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/LoginLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Major.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/MajorType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Users.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/Users.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/CommonController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/ClassController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/CourseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/DepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/StudentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/UploadController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/Login.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/LoginStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/ExcelUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/PageUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java" />
+      </list>
+    </option>
   </component>
   <component name="JRebelWorkspace">
     <option name="jrebelEnabledAutocompile" value="true" />
@@ -87,8 +422,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="D:/maven/apache-maven-3.6.2" />
-        <option name="userSettingsFile" value="D:\maven\apache-maven-3.6.2\conf\settings.xml" />
+        <option name="localRepository" value="E:\xinhai\apache-maven\repo" />
+        <option name="mavenHome" value="E:/xinhai/apache-maven" />
+        <option name="userSettingsFile" value="E:\xinhai\apache-maven\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -97,26 +433,59 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bitware-OA" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bitware-OA" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-260" />
+    <option name="y" value="5" />
+    <option name="width" value="1940" />
+    <option name="height" value="1056" />
+  </component>
   <component name="ProjectId" id="1UjII4B5R4guEawyKAQLw1qV9Bt" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/media/tem" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../energyreport" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="com.zeroturnaround.javarebel.idea.plugin.settings.JRebelSettingsComponent" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\WEB-INF\jsp" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\media\tem" />
       <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\media\upload" />
       <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp" />
       <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\WEB-INF\jsp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -131,80 +500,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.27">
-    <configuration name="MyTest.test10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test10" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.test11" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test11" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.test12" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test12" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.test13" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test13" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.test14" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OA" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test14" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tomcat 9.0.27" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.27" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+  <component name="RunManager">
+    <configuration name="Unnamed" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 16.0.0.Final1" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="OA:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/" />
-          </settings>
+          <settings />
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_OA" />
+        <option name="SERVER" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="USERNAME" value="" />
+        <option name="CREDENTIAL_ALIAS" />
       </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
+      <predefined_log_file enabled="true" id="JBoss" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="61111" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="JRebel Debug">
-        <option name="DEBUG_PORT" value="61112" />
+        <option name="DEBUG_PORT" value="56719" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -236,36 +550,6 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="JRebel Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="JRebel Executor">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -283,28 +567,8 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="OA:war exploded" />
-        </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="JUnit.MyTest.test10" />
-      <item itemvalue="JUnit.MyTest.test11" />
-      <item itemvalue="JUnit.MyTest.test12" />
-      <item itemvalue="JUnit.MyTest.test13" />
-      <item itemvalue="JUnit.MyTest.test14" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.27" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.MyTest.test14" />
-        <item itemvalue="JUnit.MyTest.test13" />
-        <item itemvalue="JUnit.MyTest.test12" />
-        <item itemvalue="JUnit.MyTest.test11" />
-        <item itemvalue="JUnit.MyTest.test10" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
@@ -333,8 +597,53 @@
       <workItem from="1576151458943" duration="39122000" />
       <workItem from="1576291003165" duration="11654000" />
       <workItem from="1576468865971" duration="5952000" />
+      <workItem from="1578033792036" duration="19000" />
+      <workItem from="1578033822801" duration="3563000" />
+      <workItem from="1578037410102" duration="2206000" />
     </task>
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="5788000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.329718" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39587852" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.23101953" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Application Servers" order="7" sideWeight="0.49946696" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Problems" order="11" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="13" weight="0.329718" />
+      <window_info anchor="bottom" id="Spring" order="14" />
+      <window_info anchor="bottom" id="Java Enterprise" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.13113007" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -345,9 +654,185 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/courseupdate.jsp</url>
           <line>102</line>
+          <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/OA.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/MajorMapper.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Depart.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Emp.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Major.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/MajorType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Student.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Classes.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/ClassController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/CourseController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/DepartmentController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/StudentController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/UploadController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/Users.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/ClassMapper.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LoginLogMapper.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LoginLogMapper.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/CommonController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/LoginLog.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/UserController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/ClassService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/LoginLogService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/UsersService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/Login.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/ExcelUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/PageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/LoginStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://E:/xinhai/apache-maven/repo/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="88" column="6" selection-start-line="88" selection-start-column="6" selection-end-line="88" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/java/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
+          <folding>
+            <element signature="e#960#976#0" expanded="true" />
+            <element signature="e#1014#1027#0" expanded="true" />
+            <element signature="e#1070#1088#0" expanded="true" />
+            <element signature="e#1131#1149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="102" column="35" selection-start-line="102" selection-start-column="35" selection-end-line="102" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

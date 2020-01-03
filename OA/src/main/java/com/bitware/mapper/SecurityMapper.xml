@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitware.mapper.SecurityMapper">
+
+    <resultMap id="userInfoMap" type="com.bitware.bean.UserInfo">
+        <id column="id" property="id"/>
+        <result column="user_account" property="userAccount"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="create_Date" property="createDate"/>
+        <result column="last_login_date" property="lastLoginDate"/>
+        <result column="email" property="email"/>
+        <result column="remark" property="remark"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="is_enable" property="isEnable"/>
+        <result column="org_id" property="orgId"/>
+        <result column="tel" property="tel"/>
+    </resultMap>
+    <sql id="user">
+        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,org_id,tel,is_enable
+    </sql>
+    <select id="getUserInfoByUserAccount" resultMap="userInfoMap">
+        select <include refid="user"/> from user
+        where user_account = #{userAccount}
+    </select>
+</mapper>

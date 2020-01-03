@@ -25,8 +25,8 @@
     <!--映射Mapper文件-->
     <!--引入映射文件-->
     <mappers>
-        <package name="com/qzy/mapper"/>
-        <!--        <mapper resource="com/qzy/mapper/UserMapper.xml"/>-->
+        <package name="com/bitware/mapper"/>
+        <!--        <mapper resource="com/bitware/mapper/UserMapper.xml"/>-->
     </mappers>
 
 
