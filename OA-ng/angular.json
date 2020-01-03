@@ -30,7 +30,12 @@
             "styles": [
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/ajv/dist/ajv.bundle.js",
+              "node_modules/@antv/g2/dist/g2.min.js",
+              "node_modules/@antv/data-set/dist/data-set.min.js",
+              "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -67,7 +72,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bitware-manage:build"
+            "browserTarget": "bitware-manage:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -95,7 +101,12 @@
             "styles": [
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/ajv/dist/ajv.bundle.js",
+              "node_modules/@antv/g2/dist/g2.min.js",
+              "node_modules/@antv/data-set/dist/data-set.min.js",
+              "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"
+            ]
           }
         },
         "lint": {
@@ -124,6 +135,43 @@
           }
         }
       }
-    }},
-  "defaultProject": "bitware-manage"
+    }
+  },
+  "defaultProject": "bitware-manage",
+  "schematics": {
+    "ng-alain:module": {
+      "routing": true,
+      "spec": false
+    },
+    "ng-alain:list": {
+      "spec": false
+    },
+    "ng-alain:edit": {
+      "spec": false,
+      "modal": true
+    },
+    "ng-alain:view": {
+      "spec": false,
+      "modal": true
+    },
+    "ng-alain:curd": {
+      "spec": false
+    },
+    "@schematics/angular:module": {
+      "routing": true,
+      "spec": false
+    },
+    "@schematics/angular:component": {
+      "spec": false,
+      "flat": false,
+      "inlineStyle": true,
+      "inlineTemplate": false
+    },
+    "@schematics/angular:directive": {
+      "spec": false
+    },
+    "@schematics/angular:service": {
+      "spec": false
+    }
+  }
 }

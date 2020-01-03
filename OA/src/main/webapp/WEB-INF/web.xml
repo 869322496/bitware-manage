@@ -6,7 +6,7 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>/</welcome-file>
   </welcome-file-list>
 
   <!--指定Spring配置文件的地址-->
