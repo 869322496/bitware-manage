@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitware.mapper.ShareMapper">
+
+    <resultMap id="dicItemMap" type="com.bitware.bean.DictionaryItem">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+    </resultMap>
+    <sql id="baseDicItem">
+        id,code,name
+    </sql>
+    <select id="getDictionary" resultMap="dicItemMap">
+        SELECT
+	    di.*
+        FROM
+            dictionary_item di
+            LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        <where>
+            <if test="dicCode != 'all'">
+                dic.`code` = #{dicCode}
+            </if>
+            <if test="dicItemCode != 'all'">
+                and  di.`code` = #{dicItemCode}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -12,12 +12,18 @@ import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
       nzPlacement="bottomRight"
       [nzDropdownMenu]="userMenu"
     >
-      <nz-avatar [nzSrc]="settings.user.avatar" nzSize="small" class="mr-sm"></nz-avatar>
+      <nz-avatar
+        [nzSrc]="settings.user.avatar"
+        nzSize="small"
+        class="mr-sm"
+        style="border: 1px solid #eee;
+    background: #fff;"
+      ></nz-avatar>
       {{ settings.user.name }}
     </div>
     <nz-dropdown-menu #userMenu="nzDropdownMenu">
       <div nz-menu class="width-sm">
-        <div nz-menu-item routerLink="/pro/account/center">
+        <!--       <div nz-menu-item routerLink="/pro/account/center">
           <i nz-icon nzType="user" class="mr-sm"></i>
           {{ 'menu.account.center' | translate }}
         </div>
@@ -29,7 +35,7 @@ import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
           <i nz-icon nzType="close-circle" class="mr-sm"></i>
           {{ 'menu.account.trigger' | translate }}
         </div>
-        <li nz-menu-divider></li>
+        <li nz-menu-divider></li> -->
         <div nz-menu-item (click)="logout()">
           <i nz-icon nzType="logout" class="mr-sm"></i>
           {{ 'menu.account.logout' | translate }}

@@ -13,15 +13,13 @@ import { TranslateModule } from '@ngx-translate/core';
 // #region third libs
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CountdownModule } from 'ngx-countdown';
-const THIRDMODULES = [
-  NgZorroAntdModule,
-  CountdownModule
-];
+import { LeaveDetailComponent } from './component/leave-detail/leave-detail.component';
+const THIRDMODULES = [NgZorroAntdModule, CountdownModule];
 // #endregion
 
 // #region your componets & directives
-const COMPONENTS = [];
-const DIRECTIVES = [];
+const COMPONENTS = [LeaveDetailComponent];
+const DIRECTIVES = [LeaveDetailComponent];
 // #endregion
 
 @NgModule({
@@ -35,12 +33,12 @@ const DIRECTIVES = [];
     DelonACLModule,
     DelonFormModule,
     // third libs
-    ...THIRDMODULES
+    ...THIRDMODULES,
   ],
   declarations: [
     // your components
     ...COMPONENTS,
-    ...DIRECTIVES
+    ...DIRECTIVES,
   ],
   exports: [
     CommonModule,
@@ -57,7 +55,7 @@ const DIRECTIVES = [];
     ...THIRDMODULES,
     // your components
     ...COMPONENTS,
-    ...DIRECTIVES
-  ]
+    ...DIRECTIVES,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

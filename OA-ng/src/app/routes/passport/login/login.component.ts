@@ -22,6 +22,7 @@ export class UserLoginComponent implements OnDestroy {
     private router: Router,
     private settingsService: SettingsService,
     private socialService: SocialService,
+    private settingService: SettingsService,
     @Optional()
     @Inject(ReuseTabService)
     private reuseTabService: ReuseTabService,
@@ -31,7 +32,7 @@ export class UserLoginComponent implements OnDestroy {
     public msg: NzMessageService,
   ) {
     this.form = fb.group({
-      userAccount: [null, [Validators.required, Validators.minLength(4)]],
+      userAccount: [null, [Validators.required]] /* , Validators.minLength(4) */,
       password: [null, Validators.required],
       mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
       captcha: [null, [Validators.required]],
@@ -118,75 +119,27 @@ export class UserLoginComponent implements OnDestroy {
         userAccount: this.userAccount.value,
         password: this.password.value,
       })
-      .subscribe(res => {
-        if (res['hasErrors']) {
+      .toPromise()
+      .then(res => {
+        if (res.hasErrors) {
           this.error = res.errorMessage;
           return;
         }
-        /*   if (res.msg !== 'ok') {
-          this.error = res.msg;
-          return;
-        } */
-
+        this.settingService.setUser({
+          name: res.data.userInfo.name,
+          id: res.data.userInfo.id,
+          email: res.data.userInfo.email,
+          avatar: res.data.userInfo.avatar,
+        });
         // 清空路由复用信息
         this.reuseTabService.clear();
         // 设置用户Token信息
-        this.tokenService.set(res.data as any);
+        this.tokenService.set({
+          token: res.data.token,
+        });
         // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
-        this.startupSrv.load().then(() => {
-          let url = this.tokenService.referrer!.url || '/';
-          if (url.includes('/passport')) {
-            url = '/';
-          }
-          this.router.navigateByUrl(url);
-        });
+        this.startupSrv.load().then(() => this.router.navigate(['/']));
       });
-  }
-
-  // #region social
-
-  open(type: string, openType: SocialOpenType = 'href') {
-    let url = ``;
-    let callback = ``;
-    // tslint:disable-next-line: prefer-conditional-expression
-    if (environment.production) {
-      callback = 'https://ng-alain.github.io/ng-alain/#/callback/' + type;
-    } else {
-      callback = 'http://localhost:4200/#/callback/' + type;
-    }
-    switch (type) {
-      case 'auth0':
-        url = `//cipchk.auth0.com/login?client=8gcNydIDzGBYxzqV0Vm1CX_RXH-wsWo5&redirect_uri=${decodeURIComponent(
-          callback,
-        )}`;
-        break;
-      case 'github':
-        url = `//github.com/login/oauth/authorize?client_id=9d6baae4b04a23fcafa2&response_type=code&redirect_uri=${decodeURIComponent(
-          callback,
-        )}`;
-        break;
-      case 'weibo':
-        url = `https://api.weibo.com/oauth2/authorize?client_id=1239507802&response_type=code&redirect_uri=${decodeURIComponent(
-          callback,
-        )}`;
-        break;
-    }
-    if (openType === 'window') {
-      this.socialService
-        .login(url, '/', {
-          type: 'window',
-        })
-        .subscribe(res => {
-          if (res) {
-            this.settingsService.setUser(res);
-            this.router.navigateByUrl('/');
-          }
-        });
-    } else {
-      this.socialService.login(url, '/', {
-        type: 'href',
-      });
-    }
   }
 
   // #endregion

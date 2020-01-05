@@ -4,14 +4,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.bitware.bean.BitResult;
 import com.bitware.bean.UserInfo;
 import com.bitware.service.impl.SecurityService;
+import com.bitware.utils.RedisUtil;
+import com.bitware.utils.SystemUtil;
+import com.bitware.utils.TokenUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author lu
@@ -23,17 +28,33 @@ public class SecurityController {
     @Autowired
     SecurityService securityService;
 
+    @Autowired
+    RedisUtil redisUtil;
+
+    @Autowired
+    TokenUtil tokenUtil;
+
+    @Autowired
+    SystemUtil systemUtil;
+    @RequestMapping("/initApp")
+    @ResponseBody
+    public BitResult login() {
+        JSONObject initInfo = new JSONObject();
+        initInfo.put("app",systemUtil);
+        return BitResult.success(initInfo);
+    }
     /**
      * 登录 此处后期集成shiro MD5加解密 redis session等
      *
      * @param jsonObject
-     * @param session
+     * @param request
      * @return
      */
     @RequestMapping("/login")
     @ResponseBody
-    public BitResult login(@RequestBody JSONObject jsonObject, HttpSession session) {
+    public BitResult login(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
         UserInfo loginUser;
+        JSONObject loginDto = new JSONObject();
         try {
             String userAccount = jsonObject.getString("userAccount");
             loginUser = securityService.getUserInfoByUserAccount(userAccount);
@@ -46,10 +67,17 @@ public class SecurityController {
             if(!StringUtils.equals(loginUser.getPassword(),jsonObject.getString("password"))){
                 return BitResult.failure("密码错误！");
             }
+            String userAgent = request.getHeader("user-agent");
+            String token = tokenUtil.generateToken(userAgent, userAccount);
+            tokenUtil.saveToken(token, loginUser);
+            loginDto.put("userInfo",loginUser);
+            loginDto.put("token",token);
+            System.out.println(redisUtil.get(token));
         }catch (Exception e){
             e.printStackTrace();
             return BitResult.failure("登录失败！");
         }
-        return BitResult.success(loginUser);
+
+        return BitResult.success(loginDto);
     }
 }

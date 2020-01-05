@@ -50,4 +50,16 @@
         <property name="maxUploadSize" value="10485760000"></property>
         <property name="maxInMemorySize" value="40960"></property>
     </bean>
+
+    <!-- 拦截器的配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- /** 表示对所有的方法都进行拦截 -->
+            <mvc:mapping path="/**"/>
+            <!-- 指定不需要拦截的方法 -->
+            <mvc:exclude-mapping path="/security/login"/>
+            <!-- 指定拦截器 -->
+            <bean class="com.bitware.controller.TokenInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

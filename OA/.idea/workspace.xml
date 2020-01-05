@@ -6,29 +6,60 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4279579d-8c58-4397-9809-a903c80880f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../OA-ng/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/README.md" afterDir="false" />
+    <list default="true" id="569845cf-15ef-42eb-9915-cad3fb73d802" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/bean/DictionaryItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/bean/LeaveInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/controller/ShareController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/controller/TokenInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/ShareMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/ShareMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveServicelmpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/ShareServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/utils/RedisUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/utils/SystemUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bitware/utils/TokenUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OA-ng/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/bitware-manage/e2e/protractor.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/bitware-manage/e2e/src/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/bitware-manage/e2e/src/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/bitware-manage/e2e/tsconfig.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../OA-ng/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OA-ng/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/app.component.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/src/styles.less" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/styles.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OA-ng/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/core/startup/startup.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/core/startup/startup.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/layout/default/default.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/layout/default/default.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/layout/default/header/components/user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/layout/default/header/components/user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/layout/default/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/layout/default/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/layout/passport/passport.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/layout/passport/passport.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/layout/passport/passport.component.less" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/layout/passport/passport.component.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/routes/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/routes/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/routes/passport/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/routes/passport/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/routes/passport/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/routes/passport/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/routes/routes-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/routes/routes-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/shared/entity/InvokeResult.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/shared/entity/InvokeResult.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/app/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/app/shared/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/assets/alain-default.less" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/assets/alain-default.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/assets/tmp/app-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/assets/tmp/app-data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OA-ng/src/styles/theme.less" beforeDir="false" afterPath="$PROJECT_DIR$/../OA-ng/src/styles/theme.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/OA.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/20e2b3c1-d7e6-4f44-90d5-412a3bed48c9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/20e2b3c1-d7e6-4f44-90d5-412a3bed48c9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/20e2b3c1-d7e6-4f44-90d5-412a3bed48c9/storage_v2/_src_/schema/qzy.cLcBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bitware.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,9 +67,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CompilerWorkspaceConfiguration">
-    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -51,50 +79,16 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="qzy@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="qzy@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="qzy@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="qzy: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="qzy@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="qzy: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="qzy@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="qzy: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="t_student: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-    </expand>
+    <expand />
     <select />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/LeaveController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+            <state relative-caret-position="399">
+              <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,25 +96,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveServicelmpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+            <state relative-caret-position="285">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#546#547#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
+                <element signature="e#532#533#0" expanded="true" />
+                <element signature="e#578#579#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,23 +115,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
-              <folding>
-                <element signature="e#960#976#0" expanded="true" />
-                <element signature="e#1014#1027#0" expanded="true" />
-                <element signature="e#1070#1088#0" expanded="true" />
-                <element signature="e#1131#1149#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="358">
+              <caret line="66" column="40" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/spring.xml">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+            <state relative-caret-position="357">
+              <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -152,8 +133,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+            <state relative-caret-position="12">
+              <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/TokenInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="12">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/LeaveInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,28 +161,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="-8">
+              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/RedisUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="12311">
+              <caret line="681" column="14" selection-start-line="681" selection-start-column="14" selection-end-line="681" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/TokenUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="102" column="35" selection-start-line="102" selection-start-column="35" selection-end-line="102" selection-end-column="35" />
+            <state relative-caret-position="315">
+              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,97 +198,62 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="spring-beans.schema" />
-        <option value="Interface" />
-        <option value="Jsp File" />
         <option value="Class" />
-        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lomb</find>
-      <find>InvokeResult</find>
-      <find>qzy</find>
+      <find>jsf</find>
+      <find>RedisUtil</find>
     </findStrings>
-    <replaceStrings>
-      <replace>bitware</replace>
-      <replace>BitResult</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
-      </map>
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/qzy/controller/Login.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/MajorMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Classes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Depart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Emp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/LoginLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Major.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/MajorType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Student.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Users.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/Users.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/CommonController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/ClassController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/CourseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/DepartmentController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/StudentController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/UploadController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/Login.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/LoginStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/ExcelUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/PageUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/TokenInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/redisUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/redis.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/TokenService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/TokenService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/RedisUtil.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/SystemUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/bitware.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/utils/TokenUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/TokenInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/Leave.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/DictionaryItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/ShareService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/ShareServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/ShareMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/ShareController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/ShareMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveServicelmpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/controller/LeaveController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/bean/LeaveInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.xml" />
       </list>
     </option>
-  </component>
-  <component name="JRebelWorkspace">
-    <option name="jrebelEnabledAutocompile" value="true" />
-  </component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="E:\xinhai\apache-maven\repo" />
-        <option name="mavenHome" value="E:/xinhai/apache-maven" />
-        <option name="userSettingsFile" value="E:\xinhai\apache-maven\settings.xml" />
+        <option name="userSettingsFile" value="E:\work\apache-maven\conf\settings.xml" />
       </MavenGeneralSettings>
-    </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
     </option>
   </component>
   <component name="MavenProjectNavigator">
@@ -298,24 +268,29 @@
           <item name="bitware-OA" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bitware-OA" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
       </expand>
       <select />
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-260" />
-    <option name="y" value="5" />
-    <option name="width" value="1940" />
-    <option name="height" value="1056" />
+    <option name="x" value="485" />
+    <option name="y" value="42" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
   </component>
-  <component name="ProjectId" id="1UjII4B5R4guEawyKAQLw1qV9Bt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,6 +314,73 @@
               <item name="OA" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bitware" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bitware" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bitware" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bitware" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bitware" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bitware" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OA" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -349,10 +391,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="OA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -360,26 +398,20 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowJava Enterprise.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../energyreport" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="D:\idea\IntelliJ IDEA 2019.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578231904083" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\media\tem" />
-      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\media\upload" />
-      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp" />
-      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\resources" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.bitware.bean" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\QZY\Desktop\二阶段02\Day20191206-SpringMvc基础入门-下午\代码\OA\src\main\webapp\WEB-INF\jsp" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\project\bitware-manage\OA\src\main\java\com\bitware\mapper" />
+      <recent name="E:\work\project\bitware-manage\OA\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -395,7 +427,88 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 16.0.0.Final1" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="SERVER" value="" />
+        <option name="BINDING_SET_NAME" value="" />
+        <option name="DOMAIN" value="false" />
+        <option name="SERVER_GROUP" value="" />
+        <option name="USERNAME" value="" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55315" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JBossConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="serverGroup" value="" />
+          <option name="transportHostId" />
+          <server-group />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55314" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bitware-server" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 10.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="OA:war exploded">
@@ -406,13 +519,13 @@
         <option name="SERVER" />
         <option name="BINDING_SET_NAME" value="" />
         <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" value="main-server-group" />
+        <option name="SERVER_GROUP" />
         <option name="USERNAME" value="" />
         <option name="CREDENTIAL_ALIAS" />
       </server-settings>
       <predefined_log_file enabled="true" id="JBoss" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="56719" />
+        <option name="DEBUG_PORT" value="55315" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -464,86 +577,67 @@
       </method>
     </configuration>
   </component>
-  <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand />
-          <select />
-        </treeState>
-      </serviceView>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4279579d-8c58-4397-9809-a903c80880f9" name="Default Changelist" comment="" />
-      <created>1575863494483</created>
+      <changelist id="569845cf-15ef-42eb-9915-cad3fb73d802" name="Default Changelist" comment="" />
+      <created>1578134329464</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1575863494483</updated>
-      <workItem from="1575863497354" duration="66426000" />
-      <workItem from="1576053990156" duration="5508000" />
-      <workItem from="1576060809890" duration="25290000" />
-      <workItem from="1576139566486" duration="10182000" />
-      <workItem from="1576151458943" duration="39122000" />
-      <workItem from="1576291003165" duration="11654000" />
-      <workItem from="1576468865971" duration="5952000" />
-      <workItem from="1578033792036" duration="19000" />
-      <workItem from="1578033822801" duration="3563000" />
-      <workItem from="1578037410102" duration="3857000" />
+      <updated>1578134329464</updated>
+      <workItem from="1578134332342" duration="2075000" />
+      <workItem from="1578138130885" duration="309000" />
+      <workItem from="1578140969070" duration="766000" />
+      <workItem from="1578141762064" duration="249000" />
+      <workItem from="1578142031308" duration="241000" />
+      <workItem from="1578142295602" duration="459000" />
+      <workItem from="1578142785757" duration="135000" />
+      <workItem from="1578142948496" duration="2307000" />
+      <workItem from="1578145309069" duration="18558000" />
+      <workItem from="1578227933687" duration="4153000" />
     </task>
-    <task id="LOCAL-00001" summary="first commit">
-      <created>1578039674988</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1578039674989</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7439000" />
+    <option name="totallyTimeSpent" value="29252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.81095403" visible="true" weight="0.1988273" />
+      <window_info id="Structure" order="1" sideWeight="0.18904594" side_tool="true" visible="true" weight="0.1988273" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" weight="0.329718" />
-      <window_info anchor="bottom" id="Messages" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39587852" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.60954446" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3286334" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.38611713" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Application Servers" order="7" sideWeight="0.49946696" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329718" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Problems" order="11" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" weight="0.4251627" />
-      <window_info anchor="bottom" id="Spring" order="14" />
-      <window_info anchor="bottom" id="Java Enterprise" order="15" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3264642" />
+      <window_info anchor="bottom" id="Spring" order="8" show_stripe_button="false" weight="0.3290993" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" show_stripe_button="false" weight="0.3290993" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.3290993" />
+      <window_info anchor="bottom" id="Messages" order="15" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.13113007" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.23507462" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32995737" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
@@ -551,205 +645,326 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/courseupdate.jsp</url>
-          <line>102</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/MajorMapper.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Depart.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Emp.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Major.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/MajorType.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Student.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/Classes.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/ClassController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/CourseController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/DepartmentController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/StudentController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/UploadController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/Users.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/ClassMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LoginLogMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LoginLogMapper.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/CommonController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/LoginLog.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/ClassService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/LoginLogService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/UsersService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/Login.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/redis.properties" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/TokenService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/LoginStatus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/PageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-343">
+          <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/ExcelUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="-8">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/PageUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/LoginStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://E:/xinhai/apache-maven/repo/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="88" column="6" selection-start-line="88" selection-start-column="6" selection-end-line="88" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/test/java/MyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring.xml">
+    <entry file="jar://$PROJECT_DIR$/../../../apache-maven/repo/org/springframework/data/spring-data-redis/1.6.1.RELEASE/spring-data-redis-1.6.1.RELEASE.jar!/org/springframework/data/redis/core/HashOperations.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+    <entry file="jar://$PROJECT_DIR$/../../../apache-maven/repo/org/springframework/data/spring-data-redis/1.6.1.RELEASE/spring-data-redis-1.6.1.RELEASE.jar!/org/springframework/data/redis/core/RedisTemplate.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
-          <folding>
-            <element signature="e#960#976#0" expanded="true" />
-            <element signature="e#1014#1027#0" expanded="true" />
-            <element signature="e#1070#1088#0" expanded="true" />
-            <element signature="e#1131#1149#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="9717">
+          <caret line="723" column="46" selection-start-line="723" selection-start-column="46" selection-end-line="723" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="102" column="35" selection-start-line="102" selection-start-column="35" selection-end-line="102" selection-end-column="35" />
+        <state relative-caret-position="400">
+          <caret line="212" column="14" selection-start-line="212" selection-start-column="14" selection-end-line="212" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../jdk/src.zip!/javax/annotation/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="59" column="9" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/SystemUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/bitware.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        <state relative-caret-position="76">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis-config.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="342">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/TokenInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/SecurityService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/DictionaryItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/SecurityMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+        <state relative-caret-position="285">
+          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/ShareController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="69" lean-forward="true" selection-start-line="23" selection-start-column="69" selection-end-line="23" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/ShareService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/ShareServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/ShareMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="8" column="38" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/ShareMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/RedisUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12311">
+          <caret line="681" column="14" selection-start-line="681" selection-start-column="14" selection-end-line="681" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/utils/TokenUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/BitResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/LeaveController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/TokenInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/UserInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+        <state relative-caret-position="12">
+          <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/service/impl/LeaveServicelmpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="66" column="40" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/bean/LeaveInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OA.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/controller/SecurityController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bitware/mapper/LeaveMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="357">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

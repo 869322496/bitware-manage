@@ -25,6 +25,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '首页' } },
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
+      { path: 'leave', loadChildren: () => import('./leave/leave.module').then(m => m.LeaveModule) },
       // 业务子模块
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
     ],
@@ -49,7 +50,7 @@ const routes: Routes = [
   },
   // 单页不包裹Layout
   { path: 'callback/:type', component: CallbackComponent },
-  { path: '**', redirectTo: 'exception/404' },
+  /*  { path: '**', redirectTo: 'exception/404' }, */
 ];
 
 @NgModule({

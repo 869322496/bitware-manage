@@ -20,4 +20,5 @@ public class UserInfo {
     private int isEnable;
     private String orgId;
     private String tel;
+    private String avatar;
 }

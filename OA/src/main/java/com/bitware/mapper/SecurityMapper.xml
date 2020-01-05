@@ -16,9 +16,10 @@
         <result column="is_enable" property="isEnable"/>
         <result column="org_id" property="orgId"/>
         <result column="tel" property="tel"/>
+        <result column="avatar" property="avatar"/>
     </resultMap>
     <sql id="user">
-        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,org_id,tel,is_enable
+        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,org_id,tel,is_enable,avatar
     </sql>
     <select id="getUserInfoByUserAccount" resultMap="userInfoMap">
         select <include refid="user"/> from user

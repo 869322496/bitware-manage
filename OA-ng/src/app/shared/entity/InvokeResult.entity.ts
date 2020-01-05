@@ -1,5 +1,5 @@
 export interface InvokeResult {
-  data: any[];
+  data: any | any[];
   errorMessage: string;
   failed: boolean;
   hasErrors: boolean;
