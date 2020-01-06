@@ -15,36 +15,84 @@
         <result column="create_time" property="createTime"/>
         <result column="userName" property="userName"/>
         <result column="leaveTypeName" property="leaveTypeName"/>
+        <result column="auditorName" property="auditorName"/>
+        <result column="reviewerName" property="reviewerName"/>
         <result column="status" property="status"/>
+    </resultMap>
+    <resultMap id="leaveAuditMap" type="com.bitware.bean.LeaveAudit">
+        <result column="auditor" property="auditor"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="reason" property="reason"/>
+        <result column="leave_id" property="leaveId"/>
+        <result column="auditorName" property="auditorName" />
+        <result column="typeName" property="typeName"/>
+        <result column="time" property="time"/>
     </resultMap>
     <sql id="baseLeave">
         id,user_id,leave_type,title,begin_time,end_time,reason,order_no,status,create_time
     </sql>
     <select id="getLeaveById" resultMap="leaveMap">
         SELECT
-        l.*,
-        o.NAME AS leaveTypeName,
-        u.NAME AS userName
+        o. NAME AS leaveTypeName,
+        u. NAME AS userName,
+        l.*
         FROM
         `leave` l
         LEFT JOIN `user` u ON l.user_id = u.id
-        LEFT JOIN ( SELECT di.* FROM dictionary_item di LEFT JOIN dictionary dic ON dic.id = di.dictionary_id AND dic.CODE = 'LeaveType' ) o ON o.CODE = l.leave_type
+        LEFT JOIN (
+        SELECT
+        di.*
+        FROM
+        dictionary_item di
+        LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        AND dic. CODE = 'LeaveType'
+        ) o ON o. CODE = l.leave_type
         <if test="id != null and id != 'all'">
             where id = #{id}
         </if>
+        order by l.create_time
     </select>
     <select id="getLeaveByUserId" resultMap="leaveMap">
         SELECT
-        l.*,
-        o.NAME AS leaveTypeName,
-        u.NAME AS userName
+        o. NAME AS leaveTypeName,
+        u. NAME AS userName,
+        l.*
         FROM
         `leave` l
         LEFT JOIN `user` u ON l.user_id = u.id
-        LEFT JOIN ( SELECT di.* FROM dictionary_item di LEFT JOIN dictionary dic ON dic.id = di.dictionary_id AND dic.CODE = 'LeaveType' ) o ON o.CODE = l.leave_type
+        LEFT JOIN (
+        SELECT
+        di.*
+        FROM
+        dictionary_item di
+        LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        AND dic. CODE = 'LeaveType'
+        ) o ON o. CODE = l.leave_type
         <if test="userId != null and userId != 'all'">
             where l.user_id = #{userId}
         </if>
+        order by l.create_time
+    </select>
+    <select id="getLeaveProcessByLeaveId" resultMap="leaveAuditMap">
+        SELECT
+            la.*, u. NAME AS AuditorName,
+            o. NAME AS typeName
+        FROM
+            leave_audit la
+        LEFT JOIN USER u ON u.id = la.auditor
+        LEFT JOIN (
+            SELECT
+                di.*
+            FROM
+                dictionary_item di
+            LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+            AND dic.`code` = 'AuditType'
+        ) o ON o. CODE = la.type
+        WHERE
+            la.leave_id = #{leaveId}
+        ORDER BY
+            o.order_no
     </select>
     <insert id="insertLeave">
        INSERT INTO `leave`

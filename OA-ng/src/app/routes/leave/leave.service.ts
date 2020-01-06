@@ -7,8 +7,8 @@ import { InvokeResult } from '@shared/entity/InvokeResult.entity';
 @Injectable({ providedIn: 'root' })
 export class LeaveService {
   private insertLeaveUrl = 'OA/leave/insertLeave';
-  private getLeaveByIdUrl = 'OA/leave/getLeaveById';
-  private getLeaveByUserIdUrl = 'OA/leave/getLeaveByUserId';
+  private getLeaveDetailByIdUrl = 'OA/leave/getLeaveDetailById';
+  private getLeaveDetailByUserIdUrl = 'OA/leave/getLeaveDetailByUserId';
   constructor(private http: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,18 +25,18 @@ export class LeaveService {
   }
 
   /**
-   * 获取请假信息
+   * 获取某条请假信息
    * @param id
    */
-  getLeaveById(id?: string): Observable<InvokeResult> {
-    return this.http.get<InvokeResult>(this.getLeaveByIdUrl + '/' + (id ? id : 'all'));
+  getLeaveDetailById(id?: string): Observable<InvokeResult> {
+    return this.http.get<InvokeResult>(this.getLeaveDetailByIdUrl + '/' + (id ? id : 'all'));
   }
 
   /**
-   * 获取请假信息
+   * 获取某位用户请假信息
    * @param userId
    */
-  getLeaveByUserId(userId?: string): Observable<InvokeResult> {
-    return this.http.get<InvokeResult>(this.getLeaveByUserIdUrl + '/' + (userId ? userId : 'all'));
+  getLeaveDetailByUserId(userId?: string): Observable<InvokeResult> {
+    return this.http.get<InvokeResult>(this.getLeaveDetailByUserIdUrl + '/' + (userId ? userId : 'all'));
   }
 }

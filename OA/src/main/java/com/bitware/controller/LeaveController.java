@@ -2,6 +2,7 @@ package com.bitware.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bitware.bean.BitResult;
+import com.bitware.bean.LeaveAudit;
 import com.bitware.bean.LeaveInfo;
 import com.bitware.service.impl.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,38 +23,43 @@ import java.util.List;
 public class LeaveController {
     @Autowired
     LeaveService leaveService;
+
     @RequestMapping("/insertLeave")
     @ResponseBody
     public BitResult insertLeave(@RequestBody LeaveInfo leaveInfo) {
         try {
             leaveService.insertLeave(leaveInfo);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("插入失败！");
         }
-       return BitResult.success(leaveInfo);
+        return BitResult.success(leaveInfo);
     }
 
-    @RequestMapping("/getLeaveById/{id}")
+    @RequestMapping("/getLeaveDetailById/{id}")
     @ResponseBody
-    public BitResult getLeaveById(@PathVariable String id) {
+    public BitResult getLeaveDetailById(@PathVariable String id) {
         List<LeaveInfo> leaveInfoList;
         try {
-            leaveInfoList =  leaveService.getLeaveById(id);
-        }catch (Exception e){
+            leaveInfoList = leaveService.getLeaveById(id);
+            leaveInfoList.forEach(leave -> leave.setLeaveProcess(leaveService.getLeaveProcessByLeaveId(leave.getId())));
+        } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("获取失败！");
         }
         return BitResult.success(leaveInfoList);
     }
 
-    @RequestMapping("/getLeaveByUserId/{userId}")
+    @RequestMapping("/getLeaveDetailByUserId/{userId}")
     @ResponseBody
-    public BitResult getLeaveByUserId(@PathVariable String userId) {
+    public BitResult getLeaveDetailByUserId(@PathVariable String userId) {
         List<LeaveInfo> leaveInfoList;
         try {
-            leaveInfoList =  leaveService.getLeaveByUserId(userId);
-        }catch (Exception e){
+            leaveInfoList = leaveService.getLeaveByUserId(userId);
+
+            leaveInfoList.forEach(leave -> leave.setLeaveProcess(leaveService.getLeaveProcessByLeaveId(leave.getId())));
+
+        } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("获取失败！");
         }

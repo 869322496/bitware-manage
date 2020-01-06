@@ -16,12 +16,15 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+
         String token  =request.getHeader("token");
         if(token != null){
          if(StringUtils.isNotEmpty(redisUtil.get(token))){
             return true;
          }
         }
+        response.setStatus(401);
         response.getWriter().write(JSONObject.toJSONString(BitResult.failure("认证失败")));
         return false;
     }

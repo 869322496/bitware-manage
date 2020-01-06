@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +22,7 @@ public class LeaveInfo {
     private String userName;
     private Date createTime;
     private Integer status;
+    private String auditorName;
+    private String reviewerName;
+    private List<LeaveAudit> leaveProcess;
 }

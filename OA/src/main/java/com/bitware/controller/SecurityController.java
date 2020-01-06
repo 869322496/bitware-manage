@@ -36,11 +36,24 @@ public class SecurityController {
 
     @Autowired
     SystemUtil systemUtil;
+    @RequestMapping("/verifylogin")
+    @ResponseBody
+    public BitResult verifylogin() {
+        JSONObject initInfo = new JSONObject();
+        JSONObject sys = new JSONObject();
+        sys.put("appDescription",systemUtil.getAppDescription());
+        sys.put("appName",systemUtil.getAppName());
+        initInfo.put("app",sys);
+        return BitResult.success(initInfo);
+    }
     @RequestMapping("/initApp")
     @ResponseBody
     public BitResult login() {
         JSONObject initInfo = new JSONObject();
-        initInfo.put("app",systemUtil);
+        JSONObject sys = new JSONObject();
+        sys.put("appDescription",systemUtil.getAppDescription());
+        sys.put("appName",systemUtil.getAppName());
+        initInfo.put("app",sys);
         return BitResult.success(initInfo);
     }
     /**

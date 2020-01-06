@@ -1,5 +1,6 @@
 package com.bitware.mapper;
 
+import com.bitware.bean.LeaveAudit;
 import com.bitware.bean.LeaveInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,5 +14,5 @@ public interface LeaveMapper {
 
     void insertLeave(LeaveInfo leave);
 
-
+    List<LeaveAudit> getLeaveProcessByLeaveId(@Param("leaveId") String leaveId);
 }

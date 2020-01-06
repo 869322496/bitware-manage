@@ -42,6 +42,8 @@
         <property name="maxIdle" value="${redis.maxIdle}"/>
         <property name="maxWaitMillis" value="${redis.maxWait}"/>
         <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+
     </bean>
     <!-- redis连接工厂 -->
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">

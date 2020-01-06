@@ -1,3 +1,5 @@
+import { LeaveAudit } from './LeaveAudit.enetity';
+
 export class LeaveInfo {
   id: string;
   userId: string;
@@ -11,4 +13,7 @@ export class LeaveInfo {
   userName: string;
   createTime: Date;
   status: number;
+  auditorName: string;
+  reviewerName: string;
+  leaveProcess: LeaveAudit[];
 }

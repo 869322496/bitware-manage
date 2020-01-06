@@ -7,9 +7,13 @@
         <id column="id" property="id"/>
         <result column="code" property="code"/>
         <result column="name" property="name"/>
+        <result column="dictionary_id" property="dictionaryId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="order_no" property="orderNo"/>
+
     </resultMap>
     <sql id="baseDicItem">
-        id,code,name
+        id,code,name,dictionary_id,parent_id,order_no
     </sql>
     <select id="getDictionary" resultMap="dicItemMap">
         SELECT
@@ -25,5 +29,6 @@
                 and  di.`code` = #{dicItemCode}
             </if>
         </where>
+        order by di.order_no
     </select>
 </mapper>

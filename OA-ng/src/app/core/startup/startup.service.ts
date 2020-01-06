@@ -40,13 +40,11 @@ export class StartupService {
       i18n: 'menu.pro',
       group: false,
       hideInBreadcrumb: true,
-      reuse: true,
       children: [
         {
           text: '首页',
           /*        i18n: 'menu.form', */
           link: '/dashboard',
-          reuse: true,
           children: [],
           /*   icon: 'anticon-edit', */
         },
@@ -54,13 +52,12 @@ export class StartupService {
           text: '请假管理',
           /*        i18n: 'menu.form', */
           /*   link: '/leave/form', */
-          reuse: true,
           icon: 'anticon-edit',
           children: [
             {
               text: '请假统计分析',
               link: '/leave/leave-statistical-analysis',
-              reuse: true,
+
               /*          i18n: 'menu.form.basicform', */
               /*          shortcut: true, */
             },
