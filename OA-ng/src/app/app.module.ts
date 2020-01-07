@@ -90,6 +90,7 @@ import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReuseTabStrategy, ReuseTabService } from '@delon/abc';
+import { DelonACLModule } from '@delon/acl';
 
 @NgModule({
   declarations: [AppComponent],
@@ -98,6 +99,7 @@ import { ReuseTabStrategy, ReuseTabService } from '@delon/abc';
     BrowserAnimationsModule,
     HttpClientModule,
     DelonModule.forRoot(),
+    DelonACLModule.forRoot(),
     CoreModule,
     SharedModule,
     LayoutModule,
@@ -111,12 +113,11 @@ import { ReuseTabStrategy, ReuseTabService } from '@delon/abc';
     ...INTERCEPTOR_PROVIDES,
     ...I18NSERVICE_PROVIDES,
     ...APPINIT_PROVIDES,
-    {
-      provide: RouteReuseStrategy,
-      useClass: ReuseTabStrategy,
-      deps: [ReuseTabService],
-    },
-  ],
+  ] /*  {
+    provide: RouteReuseStrategy,
+    useClass: ReuseTabStrategy,
+    deps: [ReuseTabService],
+  }, */,
   bootstrap: [AppComponent],
 })
 export class AppModule {}

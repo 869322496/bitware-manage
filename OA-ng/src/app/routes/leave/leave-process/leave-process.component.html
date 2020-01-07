@@ -1,3 +1,122 @@
 <page-header title="请假处理">
   下面是今天最新的请假记录，请处理。
 </page-header>
+<nz-card nzBordered
+         class="mb-lg"
+         [nzExtra]="action"
+         nzTitle="请假列表">
+  <ng-template #action>
+    <label>查询时间&nbsp;:&nbsp;</label><!--    [nzDisabledDate]="setDisabledDateRange" -->
+    <nz-range-picker nzPlacement="top"
+                     [nzAllowClear]="false"
+                     [(ngModel)]="dateRange"
+                     [nzFormat]="dateFormat"
+                     (ngModelChange)="changeSearchType('type',$event)">
+    </nz-range-picker>
+    <label style="height: 30px;margin-left: 10px;
+line-height: 30px;">请假人姓名&nbsp;:&nbsp;</label>
+    <input nz-input
+           type="text"
+           [(ngModel)]="userName"
+           (ngModelChange)="changeSearchType('type',$event)"
+           style="width:  150px;margin-right: 10px;"
+           placeholder="请输入姓名">
+    <label style="height: 30px;margin-left: 10px;
+line-height: 30px;">请假类型&nbsp;:&nbsp;</label>
+    <nz-select style="min-width: 150px;margin-right: 10px;
+  margin-left: 5px; "
+               nzAllowClear
+               nzPlaceHolder="请选择请假类型"
+               nzSize="default"
+               [(ngModel)]="leaveType"
+               (ngModelChange)="changeSearchType('type',$event)">
+      <!-- <nz-option nzValue="all"
+                 nzLabel="全部"> -->
+      <!--   </nz-option> -->
+      <nz-option [nzValue]="item.value"
+                 [nzLabel]="item.label"
+                 *ngFor="let item of  leaveTypeList">
+      </nz-option>
+    </nz-select>
+    <!--     <label style="height: 30px; margin-left: 10px;
+line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
+    <nz-select style="min-width: 150px;margin-right: 10px;
+  margin-left: 5px; "
+               nzAllowClear
+               nzPlaceHolder="请选择审核状态"
+               nzSize="default"
+               [(ngModel)]="status"
+               (ngModelChange)="changeSearchType('type',$event)">
+      <nz-option [nzValue]="0"
+                 nzLabel="审批中">
+      </nz-option>
+      <nz-option [nzValue]="10"
+                 nzLabel="已通过">
+      </nz-option>
+      <nz-option [nzValue]="2"
+                 nzLabel="已拒绝">
+      </nz-option>
+    </nz-select> -->
+    <button nz-button
+            [nzType]="'primary'"
+            (click)="getLeaveList()">查询</button>
+  </ng-template>
+  <nz-table #leaveTable
+            [nzData]="leaveList"
+            [nzLoading]="isLoading"
+            nzBordered>
+    <thead>
+      <tr>
+        <th nzAlign="center">编号</th>
+        <th nzAlign="center">请假人</th>
+        <th nzAlign="center">类型</th>
+        <th nzAlign="center">标题</th>
+        <th nzAlign="center">申请时间</th>
+        <th nzAlign="center">请假时间</th>
+        <th nzAlign="center">审核状态</th>
+        <th nzAlign="center">操作</th>
+        <!--  <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of leaveTable.data">
+        <td nzAlign="center">{{item.orderNo}}</td>
+        <td nzAlign="center">{{item.userName}}</td>
+        <td nzAlign="center">{{item.leaveTypeName}}</td>
+        <td nzAlign="center">{{item.title}}</td>
+        <td nzAlign="center">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td nzAlign="center">
+          <ng-container *ngIf="item.dateType === 'ALL'">
+            {{ item.beginTime | date: 'yyyy-MM-dd' }} 到 {{ item.endTime | date: 'yyyy-MM-dd' }}
+          </ng-container>
+          <ng-container *ngIf="item.dateType != 'ALL'">
+            {{ item.beginTime | date: 'yyyy-MM-dd' }} {{item.dateType == 'AM'?'上午':'下午'}}
+          </ng-container>
+        </td>
+        <td nzAlign="center">
+          <nz-tag [nzColor]="item.status == 9 ? 'red' : item.status == 10 ? 'green' : '#108ee9'">
+            {{ item.statusName }}</nz-tag>
+        </td>
+        <td nzAlign="center">
+          <button nz-button
+                  nzType="primary"
+                  (click)="audit(item,true)">同意</button>
+          <button nz-button
+                  class="margin-left-10"
+                  nzType="danger"
+                  (click)="audit(item,false)">拒绝</button>
+          <!--     <button nz-button
+                  [nzType]="'primary'"
+                  (click)="lookDetail(item)"><i nz-icon
+               nzType="search"
+               nzTheme="outline"></i>查看详情</button> -->
+        </td><!-- lookDetail(item) -->
+        <!--    <td>
+          <a>Action 一 {{item.name}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td> -->
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>

@@ -1,126 +1,177 @@
-<page-header title="请假编号 : {{ leave.orderNo }}"
-             [logo]="logo"
-             [action]="action"
-             [extra]="extra"
-             [tab]="tab">
-  <!--   <ng-template #logo>
+<nz-spin [nzTip]="'请稍后..'"
+         [nzSpinning]="isLoading">
+
+  <page-header title="请假编号 : {{ leave.orderNo }}"
+               [action]="action"
+               [extra]="extra">
+
+    <!--         <!--  [logo]="logo" -->
+    <!--   <ng-template #logo>
     <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png" />
   </ng-template> -->
-  <ng-template #action>
+    <ng-template #action>
 
-    <button nz-button
-            [nzType]="'primary'"
-            (click)="getLeaveList()">刷新</button>
-    <button nz-button
-            class="margin-left-10"
-            [nzType]="'primary'">撤销申请</button>
-  </ng-template>
-  <ng-template #extra>
-    <div nz-row>
-      <div nz-col
-           nzXs="24"
-           nzSm="12">
-        <p class="text-grey"
-           style="margin-right: 17px;">状态</p>
-        <p class="text-lg">
-          <nz-tag style="height: 30px;
+      <button nz-button
+              [nzType]="'primary'"
+              (click)="getLeaveList()">刷新</button>
+      <button nz-button
+              class="margin-left-10"
+              [nzType]="'primary'"
+              (click)="cancelApply(leave)">撤销申请</button>
+    </ng-template>
+    <ng-template #extra>
+      <div nz-row>
+        <div nz-col
+             nzXs="24"
+             nzSm="12">
+          <p class="text-grey"
+             style="margin-right: 17px;">状态</p>
+          <p class="text-lg">
+            <ng-container *ngIf="this.leaveList.length > 0">
+              <nz-tag style="height: 30px;
           font-size: 14px;
           line-height: 30px;
           margin-right: 0px;"
-                  [nzColor]="leave.status == 9 ? 'red' : leave.status == 3 ? 'green' : '#108ee9'">
-            {{ leave.status == 9 ? '已拒绝' : leave.status == 3 ? '已通过' : '待审批' }}</nz-tag>
-        </p>
-      </div>
-      <!--  <div nz-col nzXs="24" nzSm="12">
+                      [nzColor]="leave.status == 9 ? 'red' : leave.status == 10 ? 'green' : '#108ee9'">
+                {{ leave.statusName }}</nz-tag>
+            </ng-container>
+          </p>
+        </div>
+        <!--  <div nz-col nzXs="24" nzSm="12">
         <p class="text-grey">订单金额</p>
         <p class="text-lg">¥ 568.08</p>
       </div> -->
-    </div>
-  </ng-template>
-  <ng-template #tab>
-    <nz-tabset>
-      <nz-tab nzTitle="详情"></nz-tab>
-      <nz-tab nzTitle="规则"></nz-tab>
-    </nz-tabset>
-  </ng-template>
-  <sv-container size="small"
-                col="2">
-    <sv label="创建人">{{ leave.userName }}</sv>
-    <sv label="标题">{{ leave.title }}</sv>
-    <sv label="创建时间">{{ leave.createTime | date: 'yyyy-MM-dd' }}</sv>
-    <sv label="请假类型">
-      {{ leave.leaveTypeName }}
-      <!-- <a (click)="msg.success('yes')">12421</a> -->
-    </sv>
-    <sv label="请假时间">{{ leave.beginTime | date: 'yyyy-MM-dd' }} ~ {{ leave.endTime | date: 'yyyy-MM-dd' }}</sv>
-    <sv label="详情">{{ leave.reason }}</sv>
-  </sv-container>
-  <!--   <sv-container col="1">
-   
-  </sv-container> -->
-</page-header>
-<nz-card [nzBordered]="false"
+      </div>
+    </ng-template>
+
+    <sv-container size="small"
+                  col="2">
+      <sv label="创建人">{{ leave.userName }}</sv>
+      <sv label="标题">{{ leave.title }}</sv>
+      <sv label="创建时间">{{ leave.createTime | date: 'yyyy-MM-dd' }}</sv>
+      <sv label="请假类型">
+        {{ leave.leaveTypeName }}
+        <!-- <a (click)="msg.success('yes')">12421</a> -->
+      </sv>
+      <sv label="请假时间">
+        <ng-container *ngIf="this.leaveList.length > 0">
+          <ng-container *ngIf="leave.dateType === 'ALL'">
+            {{ leave.beginTime | date: 'yyyy-MM-dd' }} ~ {{ leave.endTime | date: 'yyyy-MM-dd' }}
+          </ng-container>
+          <ng-container *ngIf="leave.dateType != 'ALL'">
+            {{ leave.beginTime | date: 'yyyy-MM-dd' }} {{leave.dateType == 'AM'?'上午':'下午'}}
+          </ng-container>
+        </ng-container>
+      </sv>
+      <sv label="详情">{{ leave.reason }}</sv>
+    </sv-container>
+    <sv-container col="1">
+      <sv>
+
+        <nz-upload nzListType="picture-card"
+                   style="margin-top: 10px;"
+                   nzAction="OA/fileUpload/uploadImg"
+                   [(nzFileList)]="imageList"
+                   nzShowButton="false"
+                   [nzShowUploadList]="showUploadList"
+                   [nzPreview]="handlePreview">
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible"
+                  [nzContent]="modalContent"
+                  [nzFooter]="null"
+                  (nzOnCancel)="previewVisible = false">
+          <ng-template #modalContent>
+            <img [src]="previewImage"
+                 [ngStyle]="{ width: '100%' }" />
+          </ng-template>
+        </nz-modal>
+      </sv>
+    </sv-container>
+  </page-header>
+  <!--   <ng-container *ngIf="this.leaveList.length > 0"> -->
+  <nz-card [nzBordered]="false"
+           class="mb-lg"
+           nzTitle="流程进度">
+    <nz-steps [nzCurrent]="currentProcess()">
+      <nz-step [nzTitle]="item.title"
+               [nzIcon]="item.icon"
+               [nzDescription]="createDesc"
+               *ngFor="let item of steps">
+        <ng-template #createDesc>
+          <div class="desc">
+            <div class="my-sm">
+              <span *ngIf="item.status != 'process'&& item.status != 'wait' && item.isMain">审核人&nbsp;:&nbsp;</span>
+              {{item.userName}}
+            </div>
+            <div style="width: max-content;"> <span
+                    *ngIf="item.status != 'process'&& item.status != 'wait' && item.isMain">审核时间&nbsp;:&nbsp;</span>
+              {{item.time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+            <div class="my-sm"
+                 *ngIf="item.status == 'process'">
+              <a (click)="msg.success('已催别点了')">催一下叮叮~</a>
+            </div>
+          </div>
+        </ng-template>
+      </nz-step>
+    </nz-steps>
+    <div class="steps-content"></div>
+  </nz-card>
+  <!--   </ng-container> -->
+</nz-spin>
+<nz-card nzBordered
          class="mb-lg"
-         nzTitle="流程进度">
-  <nz-steps [nzCurrent]="leave.leaveProcess.length">
-    <nz-step [nzTitle]="item.title"
-             [nzIcon]="item.icon"
-             [nzDescription]="createDesc"
-             *ngFor="let item of steps">
-      <ng-template #createDesc>
-        <!--         <ng-container *ngIf="item.status != 0"> -->
-        <div class="desc">
-          <div class="my-sm">
-            <span *ngIf="item.status != 'process' && item.isMain">审核人&nbsp;:&nbsp;</span> {{item.userName}}
-            <!--   <i nz-icon
-               nzType="dingding"
-               class="ml-sm"></i> -->
-          </div>
-          <div> {{item.time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
-        </div>
-        <!--      </ng-container> -->
-      </ng-template>
-    </nz-step>
-  </nz-steps>
-  <!--   <nz-steps [nzCurrent]="1">
-    <nz-step [nzTitle]="'提交假单'"
-             [nzDescription]="createDesc"
-             [nzIcon]="'check-circle'">
-      <ng-template #createDesc>
-        <div class="
-             desc">
-          <div class="my-sm">
-            {{leave.userName}}
-            <i nz-icon
-               nzType="dingding"
-               class="ml-sm"></i>
-          </div>
-          <div> {{leave.createTime | date:'yyyy-MM-dd'}}</div>
-        </div>
-      </ng-template>
-    </nz-step>
-    <nz-step [nzTitle]="'部门初审'"
-             [nzDescription]="checkedDesc"
-             [nzIcon]="'loading'">
-      <ng-template #checkedDesc>
-        <div class="desc">
-          <div class="my-sm">
-            冯晓旭
-            <i nz-icon
-               nzType="dingding"
-               class="ml-sm"
-               style="color: #00a0e9;"></i>
-          </div>
-          <a (click)="msg.success('click')">催一下</a>
-        </div>
-      </ng-template>
-    </nz-step>
-    <nz-step [nzTitle]="'公司复核'"></nz-step>
-    <nz-step [nzTitle]="'完成'"></nz-step>
-  </nz-steps> -->
-  <div class="steps-content"></div>
+         nzTitle="请假历史">
+  <nz-table #leaveTable
+            [nzData]="leaveList"
+            nzBordered
+            [nzLoading]="isLoading">
+    <thead>
+      <tr>
+        <th nzAlign="center">编号</th>
+        <th nzAlign="center">类型</th>
+        <th nzAlign="center">标题</th>
+        <th nzAlign="center">申请时间</th>
+        <th nzAlign="center">请假时间</th>
+        <th nzAlign="center">状态</th>
+        <th nzAlign="center">操作</th>
+        <!--  <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of leaveTable.data">
+        <td nzAlign="center">{{item.orderNo}}</td>
+        <td nzAlign="center">{{item.leaveTypeName}}</td>
+        <td nzAlign="center">{{item.title}}</td>
+        <td nzAlign="center">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td nzAlign="center">
+          <ng-container *ngIf="item.dateType === 'ALL'">
+            {{ item.beginTime | date: 'yyyy-MM-dd' }} 到 {{ item.endTime | date: 'yyyy-MM-dd' }}
+          </ng-container>
+          <ng-container *ngIf="item.dateType != 'ALL'">
+            {{ item.beginTime | date: 'yyyy-MM-dd' }} {{item.dateType == 'AM'?'上午':'下午'}}
+          </ng-container>
+        </td>
+        <td nzAlign="center">
+          <nz-tag [nzColor]="item.status == 9 ? 'red' : item.status == 10 ? 'green' : '#108ee9'">
+            {{ item.statusName}}</nz-tag>
+        </td>
+        <td nzAlign="center">
+          <button nz-button
+                  [nzType]="'primary'"
+                  (click)="lookDetail(item)"><i nz-icon
+               nzType="search"
+               nzTheme="outline"></i>查看详情</button>
+        </td><!-- lookDetail(item) -->
+        <!--    <td>
+          <a>Action 一 {{item.name}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td> -->
+      </tr>
+    </tbody>
+  </nz-table>
 </nz-card>
-<nz-card [nzBordered]="false"
+<!-- <nz-card [nzBordered]="false"
          nzTitle="用户信息"
          class="mb-lg">
   <sv-container class="mb-lg">
@@ -201,4 +252,4 @@
                 [nzText]="'进行中'"></nz-badge>
     </ng-template>
   </st>
-</nz-card>
+</nz-card> -->

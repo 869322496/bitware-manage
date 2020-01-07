@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bitware.bean.BitResult;
 import com.bitware.bean.UserInfo;
 import com.bitware.service.impl.SecurityService;
+import com.bitware.utils.BitUser;
 import com.bitware.utils.RedisUtil;
 import com.bitware.utils.SystemUtil;
 import com.bitware.utils.TokenUtil;
@@ -36,6 +37,7 @@ public class SecurityController {
 
     @Autowired
     SystemUtil systemUtil;
+
     @RequestMapping("/verifylogin")
     @ResponseBody
     public BitResult verifylogin() {
@@ -46,9 +48,14 @@ public class SecurityController {
         initInfo.put("app",sys);
         return BitResult.success(initInfo);
     }
+
+    /**
+     * 初始化平台信息
+     * @return
+     */
     @RequestMapping("/initApp")
     @ResponseBody
-    public BitResult login() {
+    public BitResult initApp() {
         JSONObject initInfo = new JSONObject();
         JSONObject sys = new JSONObject();
         sys.put("appDescription",systemUtil.getAppDescription());
@@ -56,6 +63,7 @@ public class SecurityController {
         initInfo.put("app",sys);
         return BitResult.success(initInfo);
     }
+
     /**
      * 登录 此处后期集成shiro MD5加解密 redis session等
      *

@@ -8,11 +8,15 @@ import java.util.List;
 
 public interface LeaveMapper {
 
-    List<LeaveInfo> getLeaveById(@Param("id") String id);
+    LeaveInfo getLeaveById(@Param("id") String id);
 
     List<LeaveInfo> getLeaveByUserId(@Param("userId") String userId);
 
     void insertLeave(LeaveInfo leave);
 
+    void insertAudit(LeaveAudit leaveAudit);
+
     List<LeaveAudit> getLeaveProcessByLeaveId(@Param("leaveId") String leaveId);
+
+    List<LeaveInfo> getLeaveByRoleId(@Param("roleId") String roleId);
 }

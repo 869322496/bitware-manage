@@ -11,7 +11,14 @@ import {
   Inject,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Router, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, NavigationError, NavigationCancel } from '@angular/router';
+import {
+  Router,
+  NavigationEnd,
+  RouteConfigLoadStart,
+  RouteConfigLoadEnd,
+  NavigationError,
+  NavigationCancel,
+} from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { updateHostClass } from '@delon/util';
 import { SettingsService } from '@delon/theme';
@@ -77,12 +84,12 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngAfterViewInit(): void {
     // Setting componet for only developer
-    if (true) {
+    /* if (true) {
       setTimeout(() => {
         const settingFactory = this.resolver.resolveComponentFactory(SettingDrawerComponent);
         this.settingHost.createComponent(settingFactory);
       }, 22);
-    }
+    } */
   }
 
   ngOnInit() {

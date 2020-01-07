@@ -21,4 +21,7 @@ public class UserInfo {
     private String orgId;
     private String tel;
     private String avatar;
+    private String roleId;
+    private String roleName;
+    private String role;
 }

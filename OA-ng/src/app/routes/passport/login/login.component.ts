@@ -8,6 +8,7 @@ import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
 import { StartupService } from '@core';
 import { InvokeResult } from '@shared/entity/InvokeResult.entity';
+import { UserInfo } from '@shared/entity/UserInfo.entity';
 
 @Component({
   selector: 'passport-login',
@@ -125,12 +126,8 @@ export class UserLoginComponent implements OnDestroy {
           this.error = res.errorMessage;
           return;
         }
-        this.settingService.setUser({
-          name: res.data.userInfo.name,
-          id: res.data.userInfo.id,
-          email: res.data.userInfo.email,
-          avatar: res.data.userInfo.avatar,
-        });
+        const userInfo: UserInfo = res['data']['userInfo'];
+        this.settingService.setUser(userInfo);
         // 清空路由复用信息
         this.reuseTabService.clear();
         // 设置用户Token信息

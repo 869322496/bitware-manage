@@ -30,16 +30,17 @@ export class StartupService {
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
     private httpClient: HttpClient,
     private injector: Injector,
+    private aCLService: ACLService,
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
     this.translate.setDefaultLang(this.i18n.defaultLang);
   }
   mockMenu = [
     {
-      text: '',
-      i18n: 'menu.pro',
-      group: false,
-      hideInBreadcrumb: true,
+      text: '导航',
+      /*   i18n: 'menu.pro', */
+      /*    group: false,
+      hideInBreadcrumb: true, */
       children: [
         {
           text: '首页',
@@ -128,15 +129,19 @@ export class StartupService {
     },
   ];
   private initHttp(resolve: any, reject: any) {
-    this.httpClient
-      .get('OA/security/initApp')
+    forkJoin([
+      this.httpClient.get('OA/security/initApp'),
+      this.httpClient.get('OA/share/getMenu/' + this.settingService.user.roleId),
+    ])
       .toPromise()
       .then((res: any) => {
-        this.settingService.setApp(res.data.app);
+        this.settingService.setApp(res[0].data.app);
+        this.titleService.suffix = res[0].data.app.name;
+        this.menuService.add(res[1].data);
         /*    this.settingService.setUser(this.tokenService.get()); */
         this.aclService.setFull(true);
-        this.menuService.add(this.mockMenu);
-        this.titleService.suffix = res.data.app.name;
+        this.aCLService.setRole([this.settingService.user.role]);
+        console.log(this.aCLService.data);
       })
       .catch(err => console.log(err))
       .finally(() => resolve(null));

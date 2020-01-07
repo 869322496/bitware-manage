@@ -25,4 +25,7 @@ public class LeaveInfo {
     private String auditorName;
     private String reviewerName;
     private List<LeaveAudit> leaveProcess;
+    private String img;
+    private String dateType;
+    private String  statusName;
 }

@@ -10,8 +10,22 @@
         <result column="dictionary_id" property="dictionaryId"/>
         <result column="parent_id" property="parentId"/>
         <result column="order_no" property="orderNo"/>
-
     </resultMap>
+
+    <resultMap id="ResourceMap" type="com.bitware.bean.ResourceInfo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="description" property="description"/>
+        <result column="menu_icon" property="menuIcon"/>
+        <result column="url" property="url"/>
+        <result column="category" property="category"/>
+        <result column="enabled" property="enabled"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="code" property="code"/>
+    </resultMap>
+
     <sql id="baseDicItem">
         id,code,name,dictionary_id,parent_id,order_no
     </sql>
@@ -30,5 +44,25 @@
             </if>
         </where>
         order by di.order_no
+    </select>
+
+    <select id="getResourceByRoleId" resultMap="ResourceMap">
+        SELECT
+        r.*
+        FROM
+        resource r
+        LEFT JOIN role_auth ra ON r.id = ra.resource_id
+        <where>
+            <if test="category != '' and  category != null">
+                category = #{category}
+             </if>
+            <if test="roleId != '' and roleId != null">
+                and role_id = #{roleId}
+            </if>
+            <if test="code != '' and code != null">
+                and code = #{code}
+            </if>
+        </where>
+        order by order_no
     </select>
 </mapper>

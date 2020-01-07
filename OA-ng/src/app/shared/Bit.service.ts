@@ -2,11 +2,22 @@ import { Injectable, Injector, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DictionaryItem } from './entity/DictionaryItem.entity';
+import { NzMessageService } from 'ng-zorro-antd';
+import { PlatformLocation } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class BitService {
+  constructor(private http: HttpClient, private msg: NzMessageService, private planform: PlatformLocation) {
+    if (!`${planform['location']['host']}`.includes('localhost'))
+      BitService.ConstUtil.ApiUrl = `http://${planform['location']['host']}`;
+  }
+  public static ConstUtil = {
+    // 常量池
+    noimg: '../assets/imgs/addphoto.png',
+    emptyStr: '暂无',
+    ApiUrl: 'http://localhost:8080',
+  };
   private getDictionaryUrl = 'OA/share/getDictionary';
-  constructor(private http: HttpClient) {}
 
   /**
    * 获取字典项
@@ -29,5 +40,12 @@ export class BitService {
     s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
     s[8] = s[13] = s[18] = s[23] = '-';
     return s.join('');
+  }
+  /**
+   * 生成loading
+   * @param time
+   */
+  createLoading(time: number, title: string, callback?) {
+    this.msg.loading('1');
   }
 }

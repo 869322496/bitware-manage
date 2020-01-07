@@ -17,12 +17,20 @@
         <result column="org_id" property="orgId"/>
         <result column="tel" property="tel"/>
         <result column="avatar" property="avatar"/>
+        <result column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role" property="role"/>
     </resultMap>
     <sql id="user">
         id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,org_id,tel,is_enable,avatar
     </sql>
     <select id="getUserInfoByUserAccount" resultMap="userInfoMap">
-        select <include refid="user"/> from user
-        where user_account = #{userAccount}
+        SELECT
+            u.*,ur.role_id,r. NAME AS role_name,r.code as role
+        FROM
+            USER u
+        LEFT JOIN user_role ur ON ur.user_id = u.id
+        LEFT JOIN role r ON r.id = ur.role_id
+        where u.user_account = #{userAccount}
     </select>
 </mapper>

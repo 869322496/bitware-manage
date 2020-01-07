@@ -9,6 +9,7 @@ export class LeaveService {
   private insertLeaveUrl = 'OA/leave/insertLeave';
   private getLeaveDetailByIdUrl = 'OA/leave/getLeaveDetailById';
   private getLeaveDetailByUserIdUrl = 'OA/leave/getLeaveDetailByUserId';
+  private getAuditLeaveUrl = 'OA/leave/getAuditLeave';
   constructor(private http: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -38,5 +39,11 @@ export class LeaveService {
    */
   getLeaveDetailByUserId(userId?: string): Observable<InvokeResult> {
     return this.http.get<InvokeResult>(this.getLeaveDetailByUserIdUrl + '/' + (userId ? userId : 'all'));
+  }
+  /**
+   * 获取当前登录角色权限审核的请假单
+   */
+  getAuditLeave(): Observable<InvokeResult> {
+    return this.http.get<InvokeResult>(this.getAuditLeaveUrl);
   }
 }

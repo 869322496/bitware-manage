@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NzMessageService, NzTabChangeEvent } from 'ng-zorro-antd';
+import { NzMessageService, NzTabChangeEvent, UploadFile, UploadFilter } from 'ng-zorro-antd';
 import { _HttpClient, SettingsService } from '@delon/theme';
 import { STColumn } from '@delon/abc';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
@@ -11,6 +11,7 @@ import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
 import { Step } from '@shared/entity/Step.entity';
 import { BitService } from '@shared/Bit.service';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'leave-detail',
@@ -37,6 +38,24 @@ export class LeaveDetailComponent implements OnInit {
   leaveList: LeaveInfo[] = [];
   leaveProcess: LeaveAudit[] = [];
   steps: Step[] = [];
+  isLoading = false;
+  imageList = []; //照片回显双绑文件集
+  //照片放大回显参数
+  showUploadList = {
+    showPreviewIcon: true,
+    showRemoveIcon: false,
+    hidePreviewIconInNonImage: true,
+  };
+  /**
+   * 回显回调
+   */
+  handlePreview = (file: UploadFile) => {
+    this.previewImage = file.url || file.thumbUrl;
+    this.previewVisible = true;
+  };
+  previewImage: string | undefined = '';
+  previewVisible = false;
+
   constructor(
     public msg: NzMessageService,
     private leaveService: LeaveService,
@@ -49,25 +68,89 @@ export class LeaveDetailComponent implements OnInit {
   }
 
   /**
+   * 照片回显
+   */
+  imageEditBackView() {
+    this.imageList = [];
+    if (this.leave.img && JSON.parse(this.leave.img).length > 0) {
+      JSON.parse(this.leave.img).forEach(item => {
+        this.imageList = [
+          ...this.imageList,
+          {
+            uid: this.bitService.uuid(),
+            name: '巡检图片',
+            status: 'done',
+            trueUrl: item,
+            url: `${BitService.ConstUtil.ApiUrl}\/upload${item.sourceFileUrl}`,
+          },
+        ];
+      });
+    }
+  }
+
+  currentProcess() {
+    const current = 0;
+    if (this.leave) {
+      if (this.leave.status === 10) {
+        return this.steps.length - 1;
+      }
+      return this.leave.leaveProcess ? this.leave.leaveProcess.length : 0;
+    }
+  }
+
+  /**
+   * 查看详情
+   * @param leave
+   */
+  lookDetail(leave: LeaveInfo) {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.leave = leave;
+      this.createLeaveProcess(leave.leaveProcess);
+
+      this.isLoading = false;
+    }, 500);
+  }
+
+  /**
+   * 撤销申请
+   * @param leave
+   */
+  cancelApply(leave: LeaveInfo) {
+    this.msg.info('正在开发中..暂时不能取消！');
+  }
+
+  /**
    * 生成进度
    * @param leaveAudits
    */
   createLeaveProcess(leaveAudits: LeaveAudit[]) {
+    this.imageEditBackView();
+    /*     if (this.leave.img) this.imageList = JSON.parse(this.leave.img); */
     this.steps = [];
-    this.steps = [new Step(this.leave.userName, 'finish', this.leave.createTime, '提交假单', 'check-circle', false)];
+
+    this.steps = [new Step(this.leave.userName, 'wait', this.leave.createTime, '提交假单', null, false)];
+    if (leaveAudits.length > 0) {
+      this.steps = [new Step(this.leave.userName, 'finish', this.leave.createTime, '提交假单', 'check-circle', false)];
+    }
     this.bitService
       .getDictionary('AuditType', 'all')
       .pipe(pluck('data'))
       .toPromise()
       .then((res: DictionaryItem[]) => {
-        this.steps = [...this.steps, ...res.map(item => new Step(null, 'wait', null, item.name, 'close-circle', true))];
+        this.steps = [...this.steps, ...res.map(item => new Step(null, 'wait', null, item.name, null, true))];
         const lastStep = leaveAudits.find(item => item.typeName === this.steps[this.steps.length - 1].title);
-        if (lastStep.status === 1) {
+        /*  if () { */
+        if (lastStep != undefined && lastStep.status === 1) {
           // 若通过
-          this.steps = [...this.steps, new Step(null, 'finish', null, '完成', 'check-circle', false)];
+          this.steps = [...this.steps, new Step(null, 'finish', null, '已批准', 'check-circle', false)];
         } else {
-          this.steps = [...this.steps, new Step(null, 'wait', null, '完成', null, false)];
+          this.steps = [...this.steps, new Step(null, 'wait', null, '已批准', null, false)];
         }
+        /*       }else{
+          this.steps = [...this.steps, new Step(null, 'wait', null, '已批准', null, false)];
+        } */
+
         this.steps.forEach(item => {
           const tmp = leaveAudits.find(audit => audit.typeName === item.title);
           if (tmp) {
@@ -91,8 +174,11 @@ export class LeaveDetailComponent implements OnInit {
                 item.time = tmp.time;
                 break;
             }
+          } else {
+            item.status = 'wait';
           }
         });
+        console.log(this.steps);
       });
   }
 
@@ -100,18 +186,22 @@ export class LeaveDetailComponent implements OnInit {
    * 获取请假列表
    */
   getLeaveList() {
+    this.isLoading = true;
     this.leaveService
       .getLeaveDetailByUserId(this.settingService.user.id)
       .pipe(pluck('data'))
       .toPromise()
       .then(res => {
         this.leaveList = res;
-        this.leave = this.leaveList[0];
-        this.createLeaveProcess(this.leave.leaveProcess);
+        if (this.leaveList.length > 0) {
+          this.leave = this.leaveList[0];
+          this.createLeaveProcess(this.leave.leaveProcess);
+        } else {
+          this.createLeaveProcess([]);
+        }
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
-  }
-
-  change(args: NzTabChangeEvent) {
-    this.list = this.data[`advancedOperation${args.index + 1}`];
   }
 }

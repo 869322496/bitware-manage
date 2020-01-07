@@ -5,6 +5,7 @@ export class Step {
     this.time = time;
     this.title = title;
     this.icon = icon;
+    this.isMain = isMain;
   }
   userName: string;
   status: string;

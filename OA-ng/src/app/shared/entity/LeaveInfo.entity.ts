@@ -5,15 +5,19 @@ export class LeaveInfo {
   userId: string;
   leaveType: string;
   title: string;
-  beginTime: Date;
-  endTime: Date;
+  beginTime: Date | number;
+  endTime: Date | number;
   reason: string;
   orderNo: string;
   leaveTypeName: string;
   userName: string;
-  createTime: Date;
+  createTime: Date | number;
   status: number;
   auditorName: string;
   reviewerName: string;
   leaveProcess: LeaveAudit[];
+  img: string;
+  role: string;
+  dateType: string;
+  statusName: string;
 }
