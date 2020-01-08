@@ -29,7 +29,7 @@ public class TreeUtil {
         TreeUtil.shareService = shareService;
     }
     public static final String MENUROOT = "menu_root";
-
+    public static final String FUNCROOT = "func_root";
     /**
      * 新增节点
      *
@@ -41,6 +41,8 @@ public class TreeUtil {
     public static void addTreeNode(JSONObject childNode, String parentId, List<JSONObject> allTreeNodes, JSONArray childrenTree) {
         JSONObject orgTreeNode = new JSONObject();
         orgTreeNode.put("text", childNode.getString("name"));
+        orgTreeNode.put("title", childNode.getString("name"));
+        orgTreeNode.put("key",childNode.getString("id"));
         orgTreeNode.put("link", childNode.getString("url"));
         orgTreeNode.put("parentId", parentId);
         orgTreeNode.put("icon", childNode.getString("menuIcon"));
@@ -49,6 +51,7 @@ public class TreeUtil {
                 .collect(Collectors.toList());
         if (allChildNodes.size() == 0) {//没有根节点
             orgTreeNode.put("children", new JSONArray());
+            orgTreeNode.put("isLeaf",true);
         } else {
             allChildNodes.sort((o1, o2) -> o1.getInteger("orderNo").compareTo(o2.getInteger("orderNo")));
             // allChildNodes = allChildNodes.stream().sorted(Comparator.comparing(o->o.get("orderNo"))).collect(Collectors.toList());

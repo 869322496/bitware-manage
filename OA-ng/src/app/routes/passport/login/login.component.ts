@@ -7,7 +7,7 @@ import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '
 import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
 import { StartupService } from '@core';
-import { InvokeResult } from '@shared/entity/InvokeResult.entity';
+import { BitResult } from '@shared/entity/BitResult.entity';
 import { UserInfo } from '@shared/entity/UserInfo.entity';
 
 @Component({
@@ -115,7 +115,7 @@ export class UserLoginComponent implements OnDestroy {
     // 默认配置中对所有HTTP请求都会强制 [校验](https://ng-alain.com/auth/getting-started) 用户 Token
     // 然一般来说登录请求不需要校验，因此可以在请求URL加上：`/login?_allow_anonymous=true` 表示不触发用户 Token 校验
     this.http
-      .post<InvokeResult>('OA/security/login', {
+      .post<BitResult>('OA/security/login', {
         type: this.type,
         userAccount: this.userAccount.value,
         password: this.password.value,

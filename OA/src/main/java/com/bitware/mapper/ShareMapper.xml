@@ -31,7 +31,7 @@
     </sql>
     <select id="getDictionary" resultMap="dicItemMap">
         SELECT
-	    di.*
+        DISTINCT di.*
         FROM
             dictionary_item di
             LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
@@ -48,7 +48,7 @@
 
     <select id="getResourceByRoleId" resultMap="ResourceMap">
         SELECT
-        r.*
+        DISTINCT r.*
         FROM
         resource r
         LEFT JOIN role_auth ra ON r.id = ra.resource_id

@@ -1,4 +1,4 @@
-export interface InvokeResult {
+export interface BitResult {
   data: any | any[];
   errorMessage: string;
   failed: boolean;

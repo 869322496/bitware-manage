@@ -1,3 +1,5 @@
+import { ResourceInfo } from './ResourceInfo.entity';
+
 export class UserInfo {
   userAccount: string;
   name: string;
@@ -15,4 +17,5 @@ export class UserInfo {
   roleId: string;
   roleName: string;
   role: string;
+  roleResource: ResourceInfo[];
 }

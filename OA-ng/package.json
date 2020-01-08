@@ -1,10 +1,10 @@
 {
   "name": "bitware-manage",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "npm run color-less && ng s -o",
-    "build": "npm run color-less && node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod",
+    "start": "ng serve -o --proxy-config proxy.conf.json",
+    "build": "npm build --max_old_space_size=5120 --base-href=. --prod --build-optimizer",
     "test": "ng test",
     "lint": "npm run lint:ts && npm run lint:style",
     "e2e": "ng e2e",

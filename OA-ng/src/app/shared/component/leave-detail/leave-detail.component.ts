@@ -5,11 +5,11 @@ import { NzMessageService, NzTabChangeEvent, UploadFile, UploadFilter } from 'ng
 import { _HttpClient, SettingsService } from '@delon/theme';
 import { STColumn } from '@delon/abc';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
-import { LeaveService } from 'src/app/routes/leave/leave.service';
+import { LeaveService } from '@shared/service/leave.service';
 import { pluck } from 'rxjs/operators';
 import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
 import { Step } from '@shared/entity/Step.entity';
-import { BitService } from '@shared/Bit.service';
+import { BitService } from '@shared/service/Bit.service';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { Observable, Observer } from 'rxjs';
 

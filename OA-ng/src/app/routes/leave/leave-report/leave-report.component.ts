@@ -4,11 +4,11 @@ import { FormGroup, FormBuilder, Validators, FormControl, MaxLengthValidator } f
 import { NzMessageService, UploadFile, UploadFilter } from 'ng-zorro-antd';
 import { _HttpClient, SettingsService } from '@delon/theme';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
-import { BitService } from '@shared/Bit.service';
+import { BitService } from '@shared/service/Bit.service';
 import { pluck } from 'rxjs/operators';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { SelectOption } from '@shared/entity/SelectOption.enetity';
-import { LeaveService } from '../leave.service';
+import { LeaveService } from '../../../shared/service/leave.service';
 import { Observable, Observer } from 'rxjs';
 import { differenceInDays, startOfDay, addHours, endOfDay } from 'date-fns';
 

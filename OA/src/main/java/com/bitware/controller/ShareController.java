@@ -8,6 +8,8 @@ import com.bitware.bean.DictionaryItem;
 import com.bitware.bean.ResourceInfo;
 import com.bitware.service.impl.ShareService;
 import com.bitware.utils.TreeUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +48,7 @@ public class ShareController {
             JSONArray resourceArray = JSONArray.parseArray(JSON.toJSONString(resourceInfoList));
             menuArray = JSONArray.parseObject(resourceArray.toString(), List.class);
             rootNode = menuArray.stream()
-                    .filter(o -> o.getString("parentId").equals(TreeUtil.MENUROOT))
+                    .filter(o -> StringUtils.equals(o.getString("parentId"),TreeUtil.MENUROOT))
                     .findAny()
                     .orElse(null);
             if (rootNode == null) {
@@ -60,4 +62,6 @@ public class ShareController {
         }
 
     }
+
+
 }

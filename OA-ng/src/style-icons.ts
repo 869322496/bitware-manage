@@ -1,11 +1,39 @@
-// Custom icon static resources
-
 import {
-  InfoOutline,
-  BulbOutline,
-  ProfileOutline,
-  ExceptionOutline,
-  LinkOutline,
+  MenuFoldOutline,
+  MenuUnfoldOutline,
+  SearchOutline,
+  SettingOutline,
+  FullscreenOutline,
+  FullscreenExitOutline,
+  BellOutline,
+  LockOutline,
+  PlusOutline,
+  UserOutline,
+  LogoutOutline,
+  EllipsisOutline,
+  GlobalOutline,
+  ArrowDownOutline,
+  // Optional
+  GithubOutline,
+  AppstoreOutline,
 } from '@ant-design/icons-angular/icons';
 
-export const ICONS = [InfoOutline, BulbOutline, ProfileOutline, ExceptionOutline, LinkOutline];
+export const ICONS = [
+  MenuFoldOutline,
+  MenuUnfoldOutline,
+  SearchOutline,
+  SettingOutline,
+  FullscreenOutline,
+  FullscreenExitOutline,
+  BellOutline,
+  LockOutline,
+  PlusOutline,
+  UserOutline,
+  LogoutOutline,
+  EllipsisOutline,
+  GlobalOutline,
+  ArrowDownOutline,
+  // Optional
+  GithubOutline,
+  AppstoreOutline,
+];

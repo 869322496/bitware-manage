@@ -1,9 +1,10 @@
 import { Injectable, Injector, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DictionaryItem } from './entity/DictionaryItem.entity';
+import { DictionaryItem } from '../entity/DictionaryItem.entity';
 import { NzMessageService } from 'ng-zorro-antd';
 import { PlatformLocation } from '@angular/common';
+import { Tree } from '@shared/entity/Tree.entity';
 
 @Injectable({ providedIn: 'root' })
 export class BitService {
@@ -47,5 +48,23 @@ export class BitService {
    */
   createLoading(time: number, title: string, callback?) {
     this.msg.loading('1');
+  }
+
+  /**
+   * 树结构数组扁平化
+   */
+  formatTreeToArr(tree: Tree[]) {
+    let arr: Array<Tree> = [];
+    const format = tree => {
+      if (tree.length === 0) return;
+      tree.forEach(item => {
+        arr = [...arr, item];
+        if (item['children'].length > 0) {
+          format(item['children']);
+        }
+      });
+      return arr;
+    };
+    return format(tree);
   }
 }

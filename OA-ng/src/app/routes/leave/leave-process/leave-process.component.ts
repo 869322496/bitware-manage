@@ -4,9 +4,9 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { NzMessageService, isTemplateRef } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
-import { LeaveService } from '../leave.service';
+import { LeaveService } from '../../../shared/service/leave.service';
 import { pluck } from 'rxjs/operators';
-import { BitService } from '@shared/Bit.service';
+import { BitService } from '@shared/service/Bit.service';
 import { SelectOption } from '@shared/entity/SelectOption.enetity';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { differenceInDays, startOfDay, endOfDay } from 'date-fns';
@@ -59,8 +59,8 @@ export class LeaveProcessComponent implements OnInit {
               return true;
             }
             return item['leaveType'] === this.leaveType;
-          })
-          .filter(item => {
+          });
+        /*           .filter(item => {
             if (this.dateRange == [] || this.dateRange == null) {
               return true;
             }
@@ -68,7 +68,7 @@ export class LeaveProcessComponent implements OnInit {
               startOfDay(this.dateRange[0]).getTime() < Number(item['createTime']) &&
               endOfDay(this.dateRange[1]).getTime() >= Number(item['createTime'])
             );
-          });
+          }); */
         /*  .filter(item => {
             if (this.faultStatus == 'all') { 
               return true;

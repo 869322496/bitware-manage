@@ -141,6 +141,7 @@
                 FROM
                     leave_audit la
                 WHERE
+                        la.`status`  = 0 and
                     type IN (
                         SELECT
                             CODE
@@ -189,7 +190,7 @@
             </if>
             <if test="orderNo != '' and orderNo != null">
                 order_no = #{orderNo},
-             </if>
+            </if>
             <if test="endTime != null">
                 end_time = #{endTime},
             </if>

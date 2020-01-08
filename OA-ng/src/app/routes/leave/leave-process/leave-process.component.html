@@ -1,7 +1,21 @@
 <page-header title="请假处理">
-  下面是今天最新的请假记录，请处理。
+  下面是最新的请假申请，请处理。
+  <div style="float: right;"><label>您所拥有的权限&nbsp;:&nbsp;</label>
+    <nz-tag nzColor="purple"
+            acl
+            [acl-ability]="'DepartmentAudit'">
+      部门初审</nz-tag>
+    <nz-tag nzColor="purple"
+            acl
+            [acl-ability]="'CompanyReview'">
+      公司复核</nz-tag>
+  </div>
+
 </page-header>
-<nz-card nzBordered class="mb-lg" [nzExtra]="action" nzTitle="请假列表">
+<nz-card nzBordered
+         class="mb-lg"
+         [nzExtra]="action"
+         nzTitle="请假列表">
   <ng-template #action>
     <!--     <label>查询时间&nbsp;:&nbsp;</label>
     <nz-range-picker nzPlacement="top"
@@ -10,37 +24,29 @@
                      [nzFormat]="dateFormat"
                      (ngModelChange)="changeSearchType('type',$event)">
     </nz-range-picker> -->
-    <label
-      style="height: 30px;margin-left: 10px;
-line-height: 30px;"
-      >请假人姓名&nbsp;:&nbsp;</label
-    >
-    <input
-      nz-input
-      type="text"
-      [(ngModel)]="userName"
-      (ngModelChange)="changeSearchType('type', $event)"
-      style="width:  150px;margin-right: 10px;"
-      placeholder="请输入姓名"
-    />
-    <label
-      style="height: 30px;margin-left: 10px;
-line-height: 30px;"
-      >请假类型&nbsp;:&nbsp;</label
-    >
-    <nz-select
-      style="min-width: 150px;margin-right: 10px;
+    <label style="height: 30px;margin-left: 10px;
+line-height: 30px;">请假人姓名&nbsp;:&nbsp;</label>
+    <input nz-input
+           type="text"
+           [(ngModel)]="userName"
+           (ngModelChange)="changeSearchType('type', $event)"
+           style="width:  150px;margin-right: 10px;"
+           placeholder="请输入姓名" />
+    <label style="height: 30px;margin-left: 10px;
+line-height: 30px;">请假类型&nbsp;:&nbsp;</label>
+    <nz-select style="min-width: 150px;margin-right: 10px;
   margin-left: 5px; "
-      nzAllowClear
-      nzPlaceHolder="请选择请假类型"
-      nzSize="default"
-      [(ngModel)]="leaveType"
-      (ngModelChange)="changeSearchType('type', $event)"
-    >
+               nzAllowClear
+               nzPlaceHolder="请选择请假类型"
+               nzSize="default"
+               [(ngModel)]="leaveType"
+               (ngModelChange)="changeSearchType('type', $event)">
       <!-- <nz-option nzValue="all"
                  nzLabel="全部"> -->
       <!--   </nz-option> -->
-      <nz-option [nzValue]="item.value" [nzLabel]="item.label" *ngFor="let item of leaveTypeList"> </nz-option>
+      <nz-option [nzValue]="item.value"
+                 [nzLabel]="item.label"
+                 *ngFor="let item of leaveTypeList"> </nz-option>
     </nz-select>
     <!--     <label style="height: 30px; margin-left: 10px;
 line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
@@ -61,9 +67,14 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
                  nzLabel="已拒绝">
       </nz-option>
     </nz-select> -->
-    <button nz-button [nzType]="'primary'" (click)="getLeaveList()">查询</button>
+    <button nz-button
+            [nzType]="'primary'"
+            (click)="getLeaveList()">查询</button>
   </ng-template>
-  <nz-table #leaveTable [nzData]="leaveList" [nzLoading]="isLoading" nzBordered>
+  <nz-table #leaveTable
+            [nzData]="leaveList"
+            [nzLoading]="isLoading"
+            nzBordered>
     <thead>
       <tr>
         <th nzAlign="center">编号</th>
@@ -94,12 +105,16 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
         </td>
         <td nzAlign="center">
           <nz-tag [nzColor]="item.status == 9 ? 'red' : item.status == 10 ? 'green' : '#108ee9'">
-            {{ item.statusName }}</nz-tag
-          >
+            {{ item.statusName }}</nz-tag>
         </td>
         <td nzAlign="center">
-          <button nz-button nzType="primary" (click)="audit(item, true)">同意</button>
-          <button nz-button class="margin-left-10" nzType="danger" (click)="audit(item, false)">拒绝</button>
+          <button nz-button
+                  nzType="primary"
+                  (click)="audit(item, true)">同意</button>
+          <button nz-button
+                  class="margin-left-10"
+                  nzType="danger"
+                  (click)="audit(item, false)">拒绝</button>
           <!--     <button nz-button
                   [nzType]="'primary'"
                   (click)="lookDetail(item)"><i nz-icon

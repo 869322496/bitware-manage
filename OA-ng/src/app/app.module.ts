@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // #region default language
 // Reference: https://ng-alain.com/docs/i18n
 import { default as ngLang } from '@angular/common/locales/zh';
-import { NZ_I18N, zh_CN as zorroLang } from 'ng-zorro-antd';
+import { NZ_I18N, zh_CN as zorroLang, NgZorroAntdModule, zh_CN } from 'ng-zorro-antd';
 import { DELON_LOCALE, zh_CN as delonLang } from '@delon/theme';
 const LANG = {
   abbr: 'zh',
@@ -91,6 +91,9 @@ import { LayoutModule } from './layout/layout.module';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReuseTabStrategy, ReuseTabService } from '@delon/abc';
 import { DelonACLModule } from '@delon/acl';
+import { AppRoutingModule } from './app-routing.module';
+import { IconsProviderModule } from './icons-provider.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -107,6 +110,10 @@ import { DelonACLModule } from '@delon/acl';
     ...I18NSERVICE_MODULES,
     ...FORM_MODULES,
     ...GLOBAL_THIRD_MODULES,
+
+    IconsProviderModule,
+    NgZorroAntdModule,
+    FormsModule,
   ],
   providers: [
     ...LANG_PROVIDES,

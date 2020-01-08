@@ -19,7 +19,7 @@ import {
   NavigationError,
   NavigationCancel,
 } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, NzIconService } from 'ng-zorro-antd';
 import { updateHostClass } from '@delon/util';
 import { SettingsService } from '@delon/theme';
 import { environment } from '@env/environment';
@@ -27,6 +27,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { SettingDrawerComponent } from './setting-drawer/setting-drawer.component';
+import { ICONS } from 'src/style-icons';
+import { ICONS_AUTO } from 'src/style-icons-auto';
 
 @Component({
   selector: 'layout-default',
@@ -40,6 +42,7 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     router: Router,
+    iconSrv: NzIconService,
     _message: NzMessageService,
     private resolver: ComponentFactoryResolver,
     private settings: SettingsService,
@@ -47,6 +50,7 @@ export class LayoutDefaultComponent implements OnInit, AfterViewInit, OnDestroy 
     private renderer: Renderer2,
     @Inject(DOCUMENT) private doc: any,
   ) {
+    iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
     // scroll to top in change page
     router.events.pipe(takeUntil(this.unsubscribe$)).subscribe(evt => {
       if (!this.isFetching && evt instanceof RouteConfigLoadStart) {

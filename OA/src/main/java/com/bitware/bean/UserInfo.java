@@ -2,7 +2,9 @@ package com.bitware.bean;
 
 import lombok.*;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,4 +26,5 @@ public class UserInfo {
     private String roleId;
     private String roleName;
     private String role;
+    private List<ResourceInfo> roleResource;
 }
