@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { InvokeResult } from '@shared/entity/InvokeResult.entity';
+import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
 
 @Injectable({ providedIn: 'root' })
 export class LeaveService {
@@ -10,6 +11,7 @@ export class LeaveService {
   private getLeaveDetailByIdUrl = 'OA/leave/getLeaveDetailById';
   private getLeaveDetailByUserIdUrl = 'OA/leave/getLeaveDetailByUserId';
   private getAuditLeaveUrl = 'OA/leave/getAuditLeave';
+  private auditLeaveUrl = 'OA/leave/auditLeave';
   constructor(private http: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -45,5 +47,13 @@ export class LeaveService {
    */
   getAuditLeave(): Observable<InvokeResult> {
     return this.http.get<InvokeResult>(this.getAuditLeaveUrl);
+  }
+
+  /**
+   * 审核请假
+   * @param audits
+   */
+  auditLeave(audits: LeaveAudit[]): Observable<InvokeResult> {
+    return this.http.post<InvokeResult>(this.auditLeaveUrl, audits, this.httpOptions);
   }
 }

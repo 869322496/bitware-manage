@@ -49,7 +49,7 @@
         di.*
         FROM
         dictionary_item di
-        LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        inner JOIN dictionary dic ON dic.id = di.dictionary_id
         AND dic. CODE = 'LeaveType'
         ) o ON o. CODE = l.leave_type
         LEFT JOIN (
@@ -57,11 +57,11 @@
         di.*
         FROM
         dictionary_item di
-        LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        inner JOIN dictionary dic ON dic.id = di.dictionary_id
         AND dic. CODE = 'LeaveStatus'
         ) o1 ON o1. DATA = l.`status`
         <if test="id != null and id != 'all'">
-            where id = #{id}
+            where l.id = #{id}
         </if>
         order by l.create_time desc
     </select>
@@ -79,7 +79,7 @@
         di.*
         FROM
         dictionary_item di
-        LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        inner JOIN dictionary dic ON dic.id = di.dictionary_id
         AND dic. CODE = 'LeaveType'
         ) o ON o. CODE = l.leave_type
         LEFT JOIN (
@@ -87,7 +87,7 @@
         di.*
         FROM
         dictionary_item di
-        LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+        inner JOIN dictionary dic ON dic.id = di.dictionary_id
         AND dic. CODE = 'LeaveStatus'
         ) o1 ON o1. DATA = l.`status`
         <if test="userId != null and userId != 'all'">
@@ -108,7 +108,7 @@
                 di.*
             FROM
                 dictionary_item di
-            LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+            inner JOIN dictionary dic ON dic.id = di.dictionary_id
             AND dic.`code` = 'AuditType'
         ) o ON o. CODE = la.type
         WHERE
@@ -127,7 +127,7 @@
         (null, #{type}, #{status}, null,#{leaveId},null);
     </insert>
 
-    <select id="getLeaveByRoleId" resultMap="leaveMap">
+    <select id="getAuditLeaveByRoleId" resultMap="leaveMap">
             SELECT
                 o. NAME AS leaveTypeName,
                 o2. NAME AS statusName,
@@ -157,7 +157,7 @@
                     di.*
                 FROM
                     dictionary_item di
-                LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+                inner JOIN dictionary dic ON dic.id = di.dictionary_id
                 AND dic. CODE = 'LeaveType'
             ) o ON o. CODE = l.leave_type
             LEFT JOIN (
@@ -165,11 +165,65 @@
                     di.*
                 FROM
                     dictionary_item di
-                LEFT JOIN dictionary dic ON dic.id = di.dictionary_id
+                inner JOIN dictionary dic ON dic.id = di.dictionary_id
                 AND dic. CODE = 'LeaveStatus'
             ) o2 ON o2. DATA = l. STATUS
+            where l.status not in (9,10)
             ORDER BY
                 l.create_time DESC
     </select>
+    <update id="updateLeave">
+        UPDATE `LEAVE`
+        <set>
+            <if test="leaveType != '' and leaveType != null">
+                leave_type = #{leaveType},
+            </if>
+            <if test="title != '' and title != null">
+                title = #{title},
+            </if>
+            <if test="beginTime != null">
+                begin_time = #{beginTime},
+            </if>
+            <if test="reason != '' and reason != null">
+                reason = #{reason},
+            </if>
+            <if test="orderNo != '' and orderNo != null">
+                order_no = #{orderNo},
+             </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="status != '' and status != null">
+                status = #{status},
+            </if>
+            <if test="img != '' and img != null">
+                img = #{img},
+            </if>
+            <if test="dateType != '' and dateType != null">
+                date_type = #{dateType},
+            </if>
+        </set>
+        WHERE
+        id=#{id}
+    </update>
+    <update id="updateAudit">
+        UPDATE leave_audit
+        <set>
+            <if test="auditor != '' and auditor != null">
+                auditor = #{auditor},
+            </if>
+            <if test="status != '' and status != null">
+                status = #{status},
+            </if>
+            <if test="reason != '' and reason != null">
+                reason = #{reason},
+            </if>
+            <if test="time != null">
+                `time` = #{time},
+            </if>
 
+        </set>
+        WHERE
+        leave_id = #{leaveId} AND `type` = #{type}
+    </update>
 </mapper>

@@ -86,7 +86,8 @@ public class LeaveController {
     public BitResult getAuditLeave(){
         List<LeaveInfo> leaveInfoList;
         try {
-            leaveInfoList = leaveService.getLeaveByRoleId(BitUser.getCurrentUser().getRoleId());
+            leaveInfoList = leaveService.getAuditLeaveByRoleId(BitUser.getCurrentUser().getRoleId());
+            leaveInfoList.forEach(leave -> leave.setLeaveProcess(leaveService.getLeaveProcessByLeaveId(leave.getId())));
         } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("获取失败！");
@@ -95,7 +96,7 @@ public class LeaveController {
     }
 
     /**
-     * 获取当前登录角色权限审核的请假单
+     * 审核请假单
      * @return
      */
     @RequestMapping("/auditLeave")
@@ -103,11 +104,11 @@ public class LeaveController {
     public BitResult auditLeave(@RequestBody List<LeaveAudit> leaveAudit){
         List<LeaveInfo> leaveInfoList;
         try {
-            leaveInfoList = leaveService.auditLeave(leaveAudit);
+          leaveService.updateAuditLeave(leaveAudit);
         } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("获取失败！");
         }
-        return BitResult.success(leaveInfoList);
+        return BitResult.success("审核成功！");
     }
 }

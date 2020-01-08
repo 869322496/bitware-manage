@@ -18,5 +18,10 @@ public interface LeaveMapper {
 
     List<LeaveAudit> getLeaveProcessByLeaveId(@Param("leaveId") String leaveId);
 
-    List<LeaveInfo> getLeaveByRoleId(@Param("roleId") String roleId);
+    List<LeaveInfo> getAuditLeaveByRoleId(@Param("roleId") String roleId);
+
+    void updateLeave(LeaveInfo leave);
+
+    void updateAudit(LeaveAudit leaveAudit);
+
 }

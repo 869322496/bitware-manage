@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzMessageService, isTemplateRef } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { LeaveService } from '../leave.service';
@@ -34,7 +34,7 @@ export class LeaveProcessComponent implements OnInit {
   leaveType: string;
   leaveTypeList: SelectOption[] = [];
   userName: string;
-  status: number = 0; //默认审核中
+  status: number = null; //默认审核中
   dateFormat = 'YYYY/MM/DD'; //时间格式转换 yyyy/MM/dd'
   dateRange = [startOfDay(new Date()), endOfDay(new Date())]; //时间范围
   changeSearchType(type: string, data?: any) {
@@ -124,7 +124,21 @@ export class LeaveProcessComponent implements OnInit {
    * @param data
    * @param type
    */
-  audit(data: LeaveInfo, type: boolean) {}
+  audit(data: LeaveInfo, type: boolean) {
+    const currentAudit = data['leaveProcess'][data['leaveProcess'].length - 1];
+    currentAudit['status'] = type ? 1 : 2;
+    this.leaveService
+      .auditLeave([currentAudit])
+      .toPromise()
+      .then(res => {
+        if (res['hasErrors']) {
+          this.msg.warning(res['errorMessage']);
+        } else {
+          this.getLeaveList();
+          this.msg.success(type ? '您已同意该申请！' : '您已拒绝该申请！');
+        }
+      });
+  }
   /**
    * 设置不可选时间
    */

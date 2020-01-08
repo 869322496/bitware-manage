@@ -16,7 +16,7 @@ public interface LeaveService {
 
     List<LeaveAudit> getLeaveProcessByLeaveId(String leaveId);
 
-    List<LeaveInfo> getLeaveByRoleId(String roleId);
+    List<LeaveInfo> getAuditLeaveByRoleId(String roleId);
 
-    void auditLeave(List<LeaveAudit> leaveAudits);
+    void updateAuditLeave(List<LeaveAudit> leaveAudits);
 }

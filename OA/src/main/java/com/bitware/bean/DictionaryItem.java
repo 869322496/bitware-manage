@@ -13,5 +13,6 @@ public class DictionaryItem {
     private String code;
     private String dictionaryId;
     private String parentId;
-    private String orderNo;
+    private Integer orderNo;
+    private String data;
 }
