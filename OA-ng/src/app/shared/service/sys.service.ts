@@ -11,6 +11,7 @@ export class SysService {
   private getRoleListUrl = 'OA/security/getRoleList';
   private getResourceByCategoryUrl = 'OA/security/getResourceByCategory';
   private getResourceByRoleIdUrl = 'OA/security/getResourceByRoleId';
+  private insertRoleResourceUrl = 'OA/security/insertRoleResource';
   constructor(private http: HttpClient, private settingService: SettingsService) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -46,5 +47,23 @@ export class SysService {
    */
   getResourceByRoleId(role: string, category: string): Observable<BitResult> {
     return this.http.get<BitResult>(this.getResourceByRoleIdUrl + '/' + role + '/' + category);
+  }
+
+  /**
+   *
+   * 设置角色资源 增删改
+   * @author ludaxian
+   * @date 2020-01-08
+   * @param {string} roleId
+   * @param {string} category
+   * @param {string[]} resourceIds
+   * @returns {Observable<BitResult>}
+   */
+  insertRoleResource(roleId: string, category: string, resourceIds: string[]): Observable<BitResult> {
+    return this.http.post<BitResult>(this.insertRoleResourceUrl, {
+      roleId: roleId,
+      category: category,
+      resourceIds: resourceIds,
+    });
   }
 }

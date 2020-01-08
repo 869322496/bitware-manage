@@ -27,4 +27,5 @@ public class UserInfo {
     private String roleName;
     private String role;
     private List<ResourceInfo> roleResource;
+    private String token;
 }

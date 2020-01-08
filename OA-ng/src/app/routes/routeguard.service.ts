@@ -16,7 +16,7 @@ export class RouteguardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {
     const menu = this.menuService.menus[0];
-    if (menu.children === undefined || menu.children.length === 0) {
+    if (menu === undefined || menu.children === undefined || menu.children.length === 0) {
       this.router.navigateByUrl('/passport/login');
       return false;
     }

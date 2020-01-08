@@ -32,36 +32,7 @@ public class ShareController {
       return BitResult.success(dictionaryItemList);
     }
 
-    /**
-     * 根据角色获取目录
-     * @param roleId
-     * @return
-     */
-    @RequestMapping("/getMenu/{roleId}")
-    @ResponseBody
-    public BitResult  getMenu(@PathVariable String roleId){
-        List<JSONObject> menuArray;
-        try {
-            JSONArray menu = new JSONArray();
-            JSONObject rootNode; //map太多泛型强转容易出错
-            List<ResourceInfo>  resourceInfoList = shareService.getMenuByRoleId(roleId);
-            JSONArray resourceArray = JSONArray.parseArray(JSON.toJSONString(resourceInfoList));
-            menuArray = JSONArray.parseObject(resourceArray.toString(), List.class);
-            rootNode = menuArray.stream()
-                    .filter(o -> StringUtils.equals(o.getString("parentId"),TreeUtil.MENUROOT))
-                    .findAny()
-                    .orElse(null);
-            if (rootNode == null) {
-                return BitResult.failure("没有根目录结构！");
-            }
-            TreeUtil.addTreeNode(rootNode, null, menuArray, menu);
-            return BitResult.success(menu);
-        }catch (Exception e){
-            e.printStackTrace();
-            return BitResult.failure("获取目录失败");
-        }
 
-    }
 
 
 }

@@ -66,14 +66,16 @@ public class SecurityController {
         sys.put("appDescription",systemUtil.getAppDescription());
         sys.put("appName",systemUtil.getAppName());*/
         initInfo.put("app", systemUtil);
+        List<ResourceInfo> funcResources = securityService.getResourceByRoleId(BitUser.getCurrentUser().getRoleId(), ConstUtil.FUNC, null);
         initInfo.put("userInfo", BitUser.getCurrentUser());
+        initInfo.put("userAuth",funcResources);
         return BitResult.success(initInfo);
     }
 
     /**
-     * 登录 此处后期集成shiro MD5加解密 redis session等
-     *
-     * @param jsonObject
+     * 2019-12-30 登录 此处后期集成shiro MD5加解密 redis session等
+     * 2020-01-08 redis已继承 session放弃改用token兼容移动端
+     * param jsonObject
      * @param request
      * @return
      */
@@ -96,8 +98,9 @@ public class SecurityController {
             }
             String userAgent = request.getHeader("user-agent");
             String token = tokenUtil.generateToken(userAgent, userAccount);
-            List<ResourceInfo> roleResource = shareService.getResourceByRoleId(loginUser.getRoleId(), "func", null);
+            List<ResourceInfo> roleResource = securityService.getResourceByRoleId(loginUser.getRoleId(), "func", null);
             loginUser.setRoleResource(roleResource);
+            loginUser.setToken(token);
             tokenUtil.saveToken(token, loginUser);
             loginDto.put("userInfo", loginUser);
             loginDto.put("token", token);
@@ -132,7 +135,7 @@ public class SecurityController {
         try {
             JSONArray resourceTree = new JSONArray();
             JSONObject rootNode; //map太多泛型强转容易出错
-            List<ResourceInfo> resourceInfoList = shareService.getResourceByRoleId(null, category, null);
+            List<ResourceInfo> resourceInfoList = securityService.getResourceByRoleId(null, category, null);
             JSONArray resourceArray = JSONArray.parseArray(JSON.toJSONString(resourceInfoList));
             resources = JSONArray.parseObject(resourceArray.toString(), List.class);
             rootNode = resources.stream()
@@ -158,6 +161,57 @@ public class SecurityController {
     @RequestMapping("/getResourceByRoleId/{roleId}/{category}")
     @ResponseBody
     public BitResult getResourceByRoleId(@PathVariable String roleId, @PathVariable String category) {
-        return BitResult.success(shareService.getResourceByRoleId(roleId, category, null));
+        return BitResult.success(securityService.getResourceByRoleId(roleId, category, null));
+    }
+
+    /***
+     * 插入更新角色资源
+     * @return
+     */
+    @RequestMapping("/insertRoleResource")
+    @ResponseBody
+    public BitResult insertRoleResource(@RequestBody JSONObject jsonObject) {
+        try {
+            String roleId = jsonObject.getString("roleId");
+            String category = jsonObject.getString("category");
+            List<String> resourceIds = JSON.parseArray(jsonObject.getJSONArray("resourceIds").toJSONString(), String.class);
+            securityService.insertRoleResource(roleId, category, resourceIds);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("更新角色设置失败！");
+        }
+        return BitResult.success("更新角色设置成功！");
+    }
+
+    /**
+     * 根据角色获取目录
+     *
+     * @param roleId
+     * @return
+     */
+    @RequestMapping("/getMenu/{roleId}")
+    @ResponseBody
+    public BitResult getMenu(@PathVariable String roleId) {
+        List<JSONObject> menuArray;
+        try {
+            JSONArray menu = new JSONArray();
+            JSONObject rootNode; //map太多泛型强转容易出错
+            List<ResourceInfo> resourceInfoList = securityService.getMenuByRoleId(roleId);
+            JSONArray resourceArray = JSONArray.parseArray(JSON.toJSONString(resourceInfoList));
+            menuArray = JSONArray.parseObject(resourceArray.toString(), List.class);
+            rootNode = menuArray.stream()
+                    .filter(o -> StringUtils.equals(o.getString("parentId"), TreeUtil.MENUROOT))
+                    .findAny()
+                    .orElse(null);
+            if (rootNode == null) {
+                return BitResult.failure("没有根目录结构！");
+            }
+            TreeUtil.addTreeNode(rootNode, null, menuArray, menu);
+            return BitResult.success(menu);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("获取目录失败");
+        }
+
     }
 }

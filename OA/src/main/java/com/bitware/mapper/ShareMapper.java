@@ -10,6 +10,6 @@ import java.util.List;
 public interface ShareMapper {
     List<DictionaryItem> getDictionary(@Param("dicCode") String dicCode, @Param("dicItemCode") String dicItemCode);
 
-    List<ResourceInfo> getResourceByRoleId(@Param("roleId") String roleId,@Param("category") String category,@Param("code") String code);
+
 
 }

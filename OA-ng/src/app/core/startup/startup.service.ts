@@ -36,10 +36,10 @@ export class StartupService {
     /*  iconSrv.addIcon(...ICONS_AUTO, ...ICONS); */
     this.translate.setDefaultLang(this.i18n.defaultLang);
   }
-  private initHttp(resolve: any, reject: any) {
+  initHttp(resolve: any, reject: any) {
     forkJoin([
       this.httpClient.get('OA/security/initApp').pipe(pluck('data')),
-      this.httpClient.get('OA/share/getMenu/' + this.settingService.user.roleId).pipe(pluck('data')),
+      this.httpClient.get('OA/security/getMenu/' + this.settingService.user.roleId).pipe(pluck('data')),
     ])
       .toPromise()
       .then((res: any) => {
@@ -56,7 +56,7 @@ export class StartupService {
         /*    this.settingService.setUser(this.tokenService.get()); */
         /* this.aclService.setFull(true); */
         this.aCLService.setRole([res[0].userInfo.role]);
-        this.aCLService.setAbility([...res[0].userInfo.roleResource.map((item: ResourceInfo) => item['code'])]);
+        this.aCLService.setAbility([...res[0].userAuth.map((item: ResourceInfo) => item['code'])]);
 
         console.log(this.aCLService.data);
       })
