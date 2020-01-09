@@ -1,44 +1,17 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NzMessageService, NzTabChangeEvent, UploadFile, UploadFilter } from 'ng-zorro-antd';
-import { _HttpClient, SettingsService } from '@delon/theme';
-import { STColumn } from '@delon/abc';
-import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
-import { LeaveService } from '@shared/service/leave.service';
-import { pluck } from 'rxjs/operators';
-import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
-import { Step } from '@shared/entity/Step.entity';
-import { BitService } from '@shared/service/Bit.service';
-import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
+import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
+import { UploadFile } from 'ng-zorro-antd';
+import { BitService } from '@shared/service/Bit.service';
 
 @Component({
   selector: 'leave-detail',
   templateUrl: './leave-detail.component.html',
   styleUrls: ['./leave-detail.component.less'],
 })
-export class LeaveDetailComponent implements OnInit {
-  list: any[] = [];
-
-  data = {
-    advancedOperation1: [],
-    advancedOperation2: [],
-    advancedOperation3: [],
-  };
-
-  opColumns: STColumn[] = [
-    { title: '操作类型', index: 'type' },
-    { title: '操作人', index: 'name' },
-    { title: '执行结果', index: 'status', render: 'status' },
-    { title: '操作时间', index: 'updatedAt', type: 'date' },
-    { title: '备注', index: 'memo', default: '-' },
-  ];
-  leave: LeaveInfo = new LeaveInfo();
-  leaveList: LeaveInfo[] = [];
-  leaveProcess: LeaveAudit[] = [];
-  steps: Step[] = [];
-  isLoading = false;
+export class LeaveDetailComponent implements OnInit, OnChanges {
+  constructor(private bitService: BitService) {}
+  @Input() leave: LeaveInfo = new LeaveInfo();
   imageList = []; //照片回显双绑文件集
   //照片放大回显参数
   showUploadList = {
@@ -55,18 +28,13 @@ export class LeaveDetailComponent implements OnInit {
   };
   previewImage: string | undefined = '';
   previewVisible = false;
-
-  constructor(
-    public msg: NzMessageService,
-    private leaveService: LeaveService,
-    private settingService: SettingsService,
-    private bitService: BitService,
-  ) {}
-
-  ngOnInit() {
-    this.getLeaveList();
+  ngOnInit(): void {
+    this.imageEditBackView();
   }
-
+  ngOnChanges(changes: SimpleChanges): void {
+    this.imageEditBackView();
+    /*  throw new Error("Method not implemented."); */
+  }
   /**
    * 照片回显
    */
@@ -86,122 +54,5 @@ export class LeaveDetailComponent implements OnInit {
         ];
       });
     }
-  }
-
-  currentProcess() {
-    const current = 0;
-    if (this.leave) {
-      if (this.leave.status === 10) {
-        return this.steps.length - 1;
-      }
-      return this.leave.leaveProcess ? this.leave.leaveProcess.length : 0;
-    }
-  }
-
-  /**
-   * 查看详情
-   * @param leave
-   */
-  lookDetail(leave: LeaveInfo) {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.leave = leave;
-      this.createLeaveProcess(leave.leaveProcess);
-
-      this.isLoading = false;
-    }, 500);
-  }
-
-  /**
-   * 撤销申请
-   * @param leave
-   */
-  cancelApply(leave: LeaveInfo) {
-    this.msg.info('正在开发中..暂时不能取消！');
-  }
-
-  /**
-   * 生成进度
-   * @param leaveAudits
-   */
-  createLeaveProcess(leaveAudits: LeaveAudit[]) {
-    this.imageEditBackView();
-    /*     if (this.leave.img) this.imageList = JSON.parse(this.leave.img); */
-    this.steps = [];
-
-    this.steps = [new Step(this.leave.userName, 'wait', this.leave.createTime, '提交假单', null, false)];
-    if (leaveAudits.length > 0) {
-      this.steps = [new Step(this.leave.userName, 'finish', this.leave.createTime, '提交假单', 'check-circle', false)];
-    }
-    this.bitService
-      .getDictionary('AuditType', 'all')
-      .pipe(pluck('data'))
-      .toPromise()
-      .then((res: DictionaryItem[]) => {
-        this.steps = [...this.steps, ...res.map(item => new Step(null, 'wait', null, item.name, null, true))];
-        const lastStep = leaveAudits.find(item => item.typeName === this.steps[this.steps.length - 1].title);
-        /*  if () { */
-        if (lastStep != undefined && lastStep.status === 1) {
-          // 若通过
-          this.steps = [...this.steps, new Step(null, 'finish', null, '已批准', 'check-circle', false)];
-        } else {
-          this.steps = [...this.steps, new Step(null, 'wait', null, '已批准', null, false)];
-        }
-        /*       }else{
-          this.steps = [...this.steps, new Step(null, 'wait', null, '已批准', null, false)];
-        } */
-
-        this.steps.forEach(item => {
-          const tmp = leaveAudits.find(audit => audit.typeName === item.title);
-          if (tmp) {
-            switch (tmp.status) {
-              case 0:
-                /*    item.userName = tmp.auditorName; */
-                item.status = 'process';
-                item.icon = 'loading';
-                break;
-              case 1:
-                /*  if(tmp) */
-                item.userName = tmp.auditorName;
-                item.status = 'finish';
-                item.icon = 'check-circle';
-                item.time = tmp.time;
-                break;
-              case 2:
-                item.userName = tmp.auditorName;
-                item.status = 'error';
-                item.icon = 'close-circle';
-                item.time = tmp.time;
-                break;
-            }
-          } else {
-            item.status = 'wait';
-          }
-        });
-        console.log(this.steps);
-      });
-  }
-
-  /**
-   * 获取请假列表
-   */
-  getLeaveList() {
-    this.isLoading = true;
-    this.leaveService
-      .getLeaveDetailByUserId(this.settingService.user.id)
-      .pipe(pluck('data'))
-      .toPromise()
-      .then(res => {
-        this.leaveList = res;
-        if (this.leaveList.length > 0) {
-          this.leave = this.leaveList[0];
-          this.createLeaveProcess(this.leave.leaveProcess);
-        } else {
-          this.createLeaveProcess([]);
-        }
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
   }
 }

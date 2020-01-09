@@ -19,7 +19,7 @@ const THIRDMODULES = [NgZorroAntdModule, CountdownModule];
 
 // #region your componets & directives
 const COMPONENTS = [LeaveDetailComponent];
-const DIRECTIVES = [LeaveDetailComponent];
+const DIRECTIVES = [];
 // #endregion
 
 @NgModule({
@@ -35,6 +35,7 @@ const DIRECTIVES = [LeaveDetailComponent];
     // third libs
     ...THIRDMODULES,
   ],
+  entryComponents: [...COMPONENTS],
   declarations: [
     // your components
     ...COMPONENTS,

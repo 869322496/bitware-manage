@@ -17,6 +17,8 @@ export class BitService {
     noimg: '../assets/imgs/addphoto.png',
     emptyStr: '暂无',
     ApiUrl: 'http://localhost:8080',
+    LEAVEAGREESTATUS: 10,
+    LEAVEREFUSESTATUS: 9,
   };
   private getDictionaryUrl = 'OA/share/getDictionary';
 

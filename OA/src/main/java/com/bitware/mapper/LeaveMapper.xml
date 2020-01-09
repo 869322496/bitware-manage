@@ -227,4 +227,19 @@
         WHERE
         leave_id = #{leaveId} AND `type` = #{type}
     </update>
+
+    <select id="isSameDay" resultMap="leaveMap">
+        SELECT
+        *
+        FROM
+        `leave`
+        WHERE
+        user_id = #{userId}
+        AND NOT (
+        (
+        end_time &lt; #{beginTime}
+        OR (begin_time &gt; #{endTime})
+        )
+        )
+    </select>
 </mapper>

@@ -89,4 +89,9 @@ public class LeaveServicelmpl implements LeaveService {
             leaveMapper.updateLeave(auditLeave);
         });
     }
+
+    @Override
+    public List<LeaveInfo> isSameDay(String userId, Date beginTime, Date endTime) {
+       return  leaveMapper.isSameDay(userId,beginTime,endTime);
+    }
 }

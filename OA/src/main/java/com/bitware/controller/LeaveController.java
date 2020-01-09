@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -110,5 +111,35 @@ public class LeaveController {
             return BitResult.failure("获取失败！");
         }
         return BitResult.success("审核成功！");
+    }
+
+    /**
+     * 异步校验时间是否重叠
+     * @return
+     */
+    @RequestMapping("/isSameDay")
+    @ResponseBody
+    public BitResult isSameDay(@RequestBody JSONObject jsonObject){
+        String userId = jsonObject.getString("userId");
+        Long beginTime = jsonObject.getLongValue("beginTime");
+        Long endTime = jsonObject.getLongValue("endTime");
+        JSONObject returnData = new JSONObject();
+        try {
+         int sameDayNum =  leaveService.isSameDay(userId,new Date(beginTime),new Date(endTime)).size();
+         if(sameDayNum  == 0){
+             returnData.put("success",true);
+             returnData.put("sameDayError",false);
+             return BitResult.success(returnData);
+         }  else{
+             returnData.put("success",true);
+             returnData.put("sameDayError",true);
+             return BitResult.success(returnData);
+         }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("获取失败！");
+        }
+
     }
 }

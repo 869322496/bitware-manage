@@ -4,6 +4,7 @@ import com.bitware.bean.LeaveAudit;
 import com.bitware.bean.LeaveInfo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface LeaveMapper {
@@ -24,4 +25,5 @@ public interface LeaveMapper {
 
     void updateAudit(LeaveAudit leaveAudit);
 
+    List<LeaveInfo> isSameDay(@Param("userId") String userId, @Param("beginTime") Date beginTime, @Param("endTime")  Date endTime);
 }
