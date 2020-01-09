@@ -152,14 +152,15 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
   </nz-table>
 </nz-card>
 <ng-template #reasonTemplate>
-  <textarea nz-input></textarea>
+  <textarea nz-input
+            #reason></textarea>
   <nz-divider></nz-divider>
   <nz-row>
     <nz-col>
       <button nz-button
               style="width: 100%;"
               nzType="primary"
-              (click)="audit($event)">提交</button>
+              (click)="audit(reason.value)">提交</button>
     </nz-col>
   </nz-row>
 </ng-template>

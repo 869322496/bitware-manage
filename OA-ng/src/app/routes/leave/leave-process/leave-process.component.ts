@@ -139,7 +139,7 @@ export class LeaveProcessComponent implements OnInit {
    * 审核请假
    */
   audit(event) {
-    this.currentAudit['reason'] = event.target.value;
+    this.currentAudit['reason'] = event;
     this.leaveService
       .auditLeave([this.currentAudit])
       .toPromise()
