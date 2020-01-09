@@ -6,7 +6,8 @@ import { LeaveRoutingModule } from './leave-routing.module';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { LeaveService } from '../../shared/service/leave.service';
-const COMPONENTS = [LeaveProcessComponent, LeaveStatisticalAnalysisComponent, LeaveReportComponent];
+import { MyLeaveComponent } from './my-leave/my-leave.component';
+const COMPONENTS = [LeaveProcessComponent, LeaveStatisticalAnalysisComponent, LeaveReportComponent, MyLeaveComponent];
 const COMPONENTS_NOROUNT = [];
 
 @NgModule({

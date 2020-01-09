@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NzMessageService, isTemplateRef } from 'ng-zorro-antd';
+import { NzMessageService, isTemplateRef, NzModalService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { LeaveService } from '../../../shared/service/leave.service';
@@ -10,6 +10,8 @@ import { BitService } from '@shared/service/Bit.service';
 import { SelectOption } from '@shared/entity/SelectOption.enetity';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { differenceInDays, startOfDay, endOfDay } from 'date-fns';
+import { LeaveDetailComponent } from '@shared/component/leave-detail/leave-detail.component';
+import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
 
 @Component({
   selector: 'leave-process',
@@ -17,6 +19,8 @@ import { differenceInDays, startOfDay, endOfDay } from 'date-fns';
   styleUrls: ['./leave-process.component.less'],
 })
 export class LeaveProcessComponent implements OnInit {
+  @ViewChild('detailFooter', { static: false }) detailFooter;
+  @ViewChild('reasonTemplate', { static: false }) reasonTemplate;
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
@@ -25,6 +29,7 @@ export class LeaveProcessComponent implements OnInit {
     public msg: NzMessageService,
     private leaveService: LeaveService,
     private bitService: BitService,
+    private modalService: NzModalService,
   ) {}
   leaveForm: FormGroup;
   submitting = false;
@@ -37,6 +42,11 @@ export class LeaveProcessComponent implements OnInit {
   status: number = null; //默认审核中
   dateFormat = 'YYYY/MM/DD'; //时间格式转换 yyyy/MM/dd'
   dateRange = [startOfDay(new Date()), endOfDay(new Date())]; //时间范围
+  currentAudit: LeaveAudit;
+  ngOnInit(): void {
+    this.getLeaveList();
+  }
+
   changeSearchType(type: string, data?: any) {
     switch (type) {
       case 'type':
@@ -86,19 +96,6 @@ export class LeaveProcessComponent implements OnInit {
   }
 
   /**
-   * 获取请假类型
-   */
-  getLeaveType() {
-    this.bitService
-      .getDictionary('LeaveType', 'all')
-      .pipe(pluck('data'))
-      .toPromise()
-      .then((res: DictionaryItem[]) => {
-        this.leaveTypeList = res.map(item => new SelectOption(item.code, item.name));
-      });
-  }
-
-  /**
    * 获取请假列表
    */
   getLeaveList() {
@@ -120,42 +117,68 @@ export class LeaveProcessComponent implements OnInit {
   }
 
   /**
-   * 审核请假
+   *填写备注原因
+   *
+   * @author ludaxian
+   * @date 2020-01-09
    * @param data
    * @param type
    */
-  audit(data: LeaveInfo, type: boolean) {
-    const currentAudit = data['leaveProcess'][data['leaveProcess'].length - 1];
-    currentAudit['status'] = type ? 1 : 2;
+  createReason(data: LeaveInfo, type: boolean) {
+    this.currentAudit = JSON.parse(JSON.stringify(data['leaveProcess'][data['leaveProcess'].length - 1]));
+    this.currentAudit['status'] = type ? 1 : 2;
+    this.modalService.create({
+      nzTitle: type ? '填写备注' : '填写原因',
+      nzContent: this.reasonTemplate,
+      nzFooter: null,
+      nzWidth: 600,
+    });
+  }
+
+  /**
+   * 审核请假
+   */
+  audit(event) {
+    this.currentAudit['reason'] = event.target.value;
     this.leaveService
-      .auditLeave([currentAudit])
+      .auditLeave([this.currentAudit])
       .toPromise()
       .then(res => {
         if (res['hasErrors']) {
           this.msg.warning(res['errorMessage']);
         } else {
           this.getLeaveList();
-          this.msg.success(type ? '您已同意该申请！' : '您已拒绝该申请！');
+          this.modalService.closeAll();
+          this.msg.success(this.currentAudit.status == 1 ? '您已同意该申请！' : '您已拒绝该申请！');
         }
       });
   }
+
   /**
    * 设置不可选时间
    */
   setDisabledDateRange = (current: Date) => {
     return differenceInDays(current, startOfDay(new Date())) > 0;
   };
-  ngOnInit(): void {
-    this.getLeaveList();
-    this.getLeaveType();
-    /*  this.leaveForm = this.fb.group({
-      title: [null, [Validators.required]],
-      date: [null, [Validators.required]],
-      leaveType: [null, [Validators.required]],
-      reason: [null, [Validators.required]],
-    }); */
-  }
 
+  /**
+   *查看详情
+   *
+   * @author ludaxian
+   * @date 2020-01-09
+   * @param Leave
+   */
+  detail(Leave: LeaveInfo) {
+    this.modalService.create({
+      nzTitle: '查看详情',
+      nzContent: LeaveDetailComponent,
+      nzFooter: null,
+      nzWidth: 600,
+      nzComponentParams: {
+        leave: Leave,
+      },
+    });
+  }
   submit() {
     this.submitting = true;
     setTimeout(() => {

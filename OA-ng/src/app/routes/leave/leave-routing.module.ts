@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LeaveStatisticalAnalysisComponent } from './leave-statistical-analysis/leave-statistical-analysis.component';
 import { LeaveProcessComponent } from './leave-process/leave-process.component';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
-import { LeaveDetailComponent } from '@shared/component/leave-detail/leave-detail.component';
 import { RouteguardService } from '../routeguard.service';
+import { MyLeaveComponent } from './my-leave/my-leave.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   { path: 'leave-process', component: LeaveProcessComponent, canActivate: [RouteguardService] },
   { path: 'leave-report', component: LeaveReportComponent, canActivate: [RouteguardService] },
-  { path: 'leave-detail', component: LeaveDetailComponent, canActivate: [RouteguardService] },
+  { path: 'my-leave', component: MyLeaveComponent, canActivate: [RouteguardService] },
 ];
 
 @NgModule({

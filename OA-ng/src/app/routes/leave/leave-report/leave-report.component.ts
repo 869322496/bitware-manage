@@ -5,12 +5,12 @@ import { NzMessageService, UploadFile, UploadFilter } from 'ng-zorro-antd';
 import { _HttpClient, SettingsService } from '@delon/theme';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { BitService } from '@shared/service/Bit.service';
-import { pluck } from 'rxjs/operators';
+import { pluck, debounceTime, switchMap, map, first } from 'rxjs/operators';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { SelectOption } from '@shared/entity/SelectOption.enetity';
 import { LeaveService } from '../../../shared/service/leave.service';
 import { Observable, Observer } from 'rxjs';
-import { differenceInDays, startOfDay, addHours, endOfDay } from 'date-fns';
+import { differenceInDays, startOfDay, addHours, endOfDay, addMinutes } from 'date-fns';
 
 @Component({
   selector: 'leave-report',
@@ -28,6 +28,54 @@ export class LeaveReportComponent implements OnInit {
     private leaveService: LeaveService,
     private router: Router,
   ) {}
+  /**
+   * 异步校验名字是否重复
+   */
+  sameDayAsyncValidator = (control: FormControl): any => {
+    return control.valueChanges.pipe(
+      //防抖时间，单位毫秒
+      debounceTime(1000),
+      //调用服务，参数可写可不写，如果写的话变成如下形式
+      switchMap(() => {
+        if (!this.isHalfDay) {
+          return this.leaveService
+            .isSameDay(
+              this.settingService.user.id,
+              startOfDay(this.leaveForm.value['date'][0]).getTime(),
+              endOfDay(this.leaveForm.value['date'][1]).getTime(),
+            )
+            .pipe(pluck('data'));
+        } else {
+          let beginTime;
+          let endTime;
+          if (this.leaveForm.value.dateType === 'AM') {
+            //0:00-12:00
+            beginTime = startOfDay(this.leaveForm.value.date).getTime();
+            endTime = addHours(startOfDay(this.leaveForm.value.date), 12).getTime();
+          } else {
+            //12:01-23:59
+            beginTime = addMinutes(addHours(startOfDay(this.leaveForm.value.date), 12), 1).getTime();
+            endTime = endOfDay(this.leaveForm.value.date).getTime();
+          }
+          return this.leaveService.isSameDay(this.settingService.user.id, beginTime, endTime).pipe(pluck('data'));
+        }
+      }),
+      //对返回值进行处理，null表示正确，对象表示错误
+      map(data => {
+        if (data['success'] && data['sameDayError']) {
+          return {
+            error: true,
+            sameDayError: true,
+            errorName: '日期存在重复',
+          };
+        } else {
+          return null;
+        }
+      }),
+      //每次验证的结果是唯一的，截断流
+      first(),
+    );
+  };
   leaveForm: FormGroup;
   submitting = false;
   leaveTypeList: SelectOption[] = [];
@@ -107,13 +155,36 @@ export class LeaveReportComponent implements OnInit {
     this.getLeaveType();
     this.leaveForm = this.fb.group({
       title: [null, [Validators.required]],
-      date: [null, [Validators.required]],
+      date: [null, [Validators.required], this.sameDayAsyncValidator],
       leaveType: [null, [Validators.required]],
       reason: [null, [Validators.required]],
     });
   }
-  test() {
-    console.log(this.radioValue);
+
+  /**
+   *切换上下午
+   *
+   * @author ludaxian
+   * @date 2020-01-09
+   * @param {*} e
+   */
+  changeHalfDay(e) {
+    /*   for (const i in this.leaveForm.controls) { */
+    this.leaveForm.get('date').markAsDirty();
+    this.leaveForm.get('date').updateValueAndValidity();
+
+    /*  } */
+    /*     const formvalue = this.leaveForm.value;
+    if (e.dateType === 'AM') {
+      //0:00-12:00
+      this.leaveForm.patchValue({
+        date: [startOfDay(formvalue.date), addHours(startOfDay(formvalue.date), 12)],
+      });
+    } else {
+      this.leaveForm.patchValue({
+        date: [addHours(startOfDay(formvalue.date), 12), endOfDay(formvalue.date)],
+      });
+    } */
   }
   /**
    * 切换时间类型
@@ -158,16 +229,16 @@ export class LeaveReportComponent implements OnInit {
         leaveInfo.beginTime = startOfDay(formvalue.date).getTime();
         leaveInfo.endTime = addHours(startOfDay(formvalue.date), 12).getTime();
       } else {
-        //12:00-23:59
-        leaveInfo.beginTime = addHours(startOfDay(formvalue.date), 12).getTime();
+        //12:01-23:59
+        leaveInfo.beginTime = addMinutes(addHours(startOfDay(formvalue.date), 12), 1).getTime();
         leaveInfo.endTime = endOfDay(formvalue.date).getTime();
       }
       leaveInfo.dateType = formvalue.dateType;
     } else {
       //全天
       leaveInfo.dateType = 'ALL';
-      leaveInfo.beginTime = formvalue.date[0].getTime();
-      leaveInfo.endTime = formvalue.date[1].getTime();
+      leaveInfo.beginTime = startOfDay(formvalue.date[0]).getTime();
+      leaveInfo.endTime = endOfDay(formvalue.date[1]).getTime();
     }
     leaveInfo.leaveType = formvalue.leaveType;
     this.submitting = true;
@@ -180,7 +251,7 @@ export class LeaveReportComponent implements OnInit {
           return;
         }
         this.msg.success('上报请假成功！');
-        this.router.navigateByUrl('leave/leave-detail');
+        this.router.navigateByUrl('leave/my-leave');
         this.leaveForm.reset();
       })
       .finally(() => {
