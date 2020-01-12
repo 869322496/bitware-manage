@@ -3,9 +3,7 @@ package com.bitware.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.bitware.bean.BitResult;
-import com.bitware.bean.ResourceInfo;
-import com.bitware.bean.UserInfo;
+import com.bitware.bean.*;
 import com.bitware.service.impl.SecurityService;
 import com.bitware.service.impl.ShareService;
 import com.bitware.utils.*;
@@ -16,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.annotation.Resource;
-import javax.management.relation.RoleInfo;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author lu
@@ -68,7 +66,7 @@ public class SecurityController {
         initInfo.put("app", systemUtil);
         List<ResourceInfo> funcResources = securityService.getResourceByRoleId(BitUser.getCurrentUser().getRoleId(), ConstUtil.FUNC, null);
         initInfo.put("userInfo", BitUser.getCurrentUser());
-        initInfo.put("userAuth",funcResources);
+        initInfo.put("userAuth", funcResources);
         return BitResult.success(initInfo);
     }
 
@@ -76,6 +74,7 @@ public class SecurityController {
      * 2019-12-30 登录 此处后期集成shiro MD5加解密 redis session等
      * 2020-01-08 redis已继承 session放弃改用token兼容移动端
      * param jsonObject
+     *
      * @param request
      * @return
      */
@@ -86,8 +85,8 @@ public class SecurityController {
         JSONObject loginDto = new JSONObject();
         try {
             String userAccount = jsonObject.getString("userAccount");
-            loginUser = securityService.getUserInfoByUserAccount(userAccount);
-            if (loginUser == null || loginUser.getIsDelete() == 1) {
+            loginUser = securityService.getUserInfoByUserAccount(userAccount).stream().findFirst().orElse(null);
+            if (!Optional.ofNullable(loginUser).isPresent() || loginUser.getIsDelete() == 1) {
                 return BitResult.failure("此用户不存在！");
             }
             if (loginUser.getIsEnable() == 0) {
@@ -108,7 +107,6 @@ public class SecurityController {
             e.printStackTrace();
             return BitResult.failure("登录失败！");
         }
-
         return BitResult.success(loginDto);
     }
 
@@ -212,6 +210,63 @@ public class SecurityController {
             e.printStackTrace();
             return BitResult.failure("获取目录失败");
         }
+    }
 
+    /**
+     * 获取用户列表
+     * @return
+     */
+    @RequestMapping("/getUserList")
+    @ResponseBody
+    public BitResult getUserList(){
+        return BitResult.success( securityService.getUserInfoByUserAccount(null));
+    }
+
+    /**
+     * 新增用户
+     * @return
+     */
+    @RequestMapping("/insertUser")
+    @ResponseBody
+    public BitResult insertUser(@RequestBody UserInfo userInfo){
+        try{
+            securityService.insertUser(userInfo);
+        }catch (Exception e){
+            e.printStackTrace();
+            return BitResult.failure("新增用户失败！");
+        }
+        return BitResult.success("新增用户成功！");
+    }
+
+    /**
+     * 设置用户角色
+     * @return
+     */
+    @RequestMapping("/updateUserRole")
+    @ResponseBody
+    public BitResult updateUserRole(@RequestBody List<UserRole> userRoleList){
+        try{
+            securityService.updateUserRole(userRoleList);
+        }catch (Exception e){
+            e.printStackTrace();
+            return BitResult.failure("设置用户角色失败！");
+        }
+        return BitResult.success("设置用户角色成功！");
+    }
+
+    /**
+     * 新增用户角色
+     * @return
+     */
+    @RequestMapping("/insertRole")
+    @ResponseBody
+    public BitResult insertRole(@RequestBody List<RoleInfo> roleInfoList){
+        try{
+            securityService.insertRole(roleInfoList);
+        }catch (Exception e){
+            e.printStackTrace();
+            return BitResult.failure("新增用户角色失败！");
+        }
+        return BitResult.success("新增用户角色成功！");
     }
 }

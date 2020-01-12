@@ -10,7 +10,7 @@ import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { SelectOption } from '@shared/entity/SelectOption.enetity';
 import { LeaveService } from '../../../shared/service/leave.service';
 import { Observable, Observer } from 'rxjs';
-import { differenceInDays, startOfDay, addHours, endOfDay, addMinutes } from 'date-fns';
+import { differenceInDays, startOfDay, addHours, endOfDay, addMinutes, setMilliseconds } from 'date-fns';
 
 @Component({
   selector: 'leave-report',
@@ -55,7 +55,7 @@ export class LeaveReportComponent implements OnInit {
           } else {
             //12:01-23:59
             beginTime = addMinutes(addHours(startOfDay(this.leaveForm.value.date), 12), 1).getTime();
-            endTime = endOfDay(this.leaveForm.value.date).getTime();
+            endTime = setMilliseconds(endOfDay(this.leaveForm.value.date), 0).getTime();
           }
           return this.leaveService.isSameDay(this.settingService.user.id, beginTime, endTime).pipe(pluck('data'));
         }
@@ -231,14 +231,14 @@ export class LeaveReportComponent implements OnInit {
       } else {
         //12:01-23:59
         leaveInfo.beginTime = addMinutes(addHours(startOfDay(formvalue.date), 12), 1).getTime();
-        leaveInfo.endTime = endOfDay(formvalue.date).getTime();
+        leaveInfo.endTime = setMilliseconds(endOfDay(formvalue.date), 0).getTime();
       }
       leaveInfo.dateType = formvalue.dateType;
     } else {
       //全天
       leaveInfo.dateType = 'ALL';
       leaveInfo.beginTime = startOfDay(formvalue.date[0]).getTime();
-      leaveInfo.endTime = endOfDay(formvalue.date[1]).getTime();
+      leaveInfo.endTime = setMilliseconds(endOfDay(formvalue.date[1]), 0).getTime();
     }
     leaveInfo.leaveType = formvalue.leaveType;
     this.submitting = true;

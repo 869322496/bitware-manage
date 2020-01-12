@@ -13,6 +13,7 @@ export class LeaveService {
   private getAuditLeaveUrl = 'OA/leave/getAuditLeave';
   private auditLeaveUrl = 'OA/leave/auditLeave';
   private isSameDayUrl = 'OA/leave/isSameDay';
+  private getUserLeaveCountEchartDataUrl = 'OA/leave/getUserLeaveCountEchartData';
   constructor(private http: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -73,5 +74,16 @@ export class LeaveService {
       JSON.stringify({ userId: userId, beginTime: beginTime, endTime: endTime }),
       this.httpOptions,
     );
+  }
+
+  /**
+   * 根据时间类型获取每月/年请假次数统计
+   * @author ludaxian
+   * @date 2020-01-10
+   * @param {string} dateType
+   * @returns {Observable<BitResult>}
+   */
+  getUserLeaveCountEchartData(dateType: string): Observable<BitResult> {
+    return this.http.get<BitResult>(`${this.getUserLeaveCountEchartDataUrl}/${dateType}`);
   }
 }

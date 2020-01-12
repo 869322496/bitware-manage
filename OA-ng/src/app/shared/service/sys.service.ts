@@ -5,6 +5,8 @@ import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { BitResult } from '@shared/entity/BitResult.entity';
 import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
 import { SettingsService } from '@delon/theme';
+import { UserInfo } from '@shared/entity/UserInfo.entity';
+import { RoleInfo } from '@shared/entity/RoleInfo.entity';
 
 @Injectable({ providedIn: 'root' })
 export class SysService {
@@ -12,6 +14,10 @@ export class SysService {
   private getResourceByCategoryUrl = 'OA/security/getResourceByCategory';
   private getResourceByRoleIdUrl = 'OA/security/getResourceByRoleId';
   private insertRoleResourceUrl = 'OA/security/insertRoleResource';
+  private getUserListUrl = 'OA/security/getUserList';
+  private insertUserUrl = 'OA/security/insertUser';
+  private updateUserRoleUrl = 'OA/security/updateUserRole';
+  private insertRoleUrl = 'OA/security/insertRole';
   constructor(private http: HttpClient, private settingService: SettingsService) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -65,5 +71,50 @@ export class SysService {
       category: category,
       resourceIds: resourceIds,
     });
+  }
+
+  /**
+   *  获取用户列表
+   * @returns {Observable<BitResult>}
+   * @memberof SysService
+   */
+  getUserList(): Observable<BitResult> {
+    return this.http.get<BitResult>(this.getUserListUrl);
+  }
+
+  /**
+   *
+   *新增用户
+   * @author ludaxian
+   * @date 2020-01-12
+   * @param {UserInfo} user
+   * @returns {Observable<BitResult>}
+   */
+  insertUser(user: UserInfo): Observable<BitResult> {
+    return this.http.post<BitResult>(this.insertUserUrl, user, this.httpOptions);
+  }
+
+  /**
+   *  更新设置用户角色
+   * @author ludaxian
+   * @date 2020-01-12
+   * @param {string} userId
+   * @param {string} roleId
+   * @returns
+   */
+  updateUserRole(userRoleList: { userId: string; roleId: string }[]) {
+    return this.http.put<BitResult>(this.updateUserRoleUrl, userRoleList, this.httpOptions);
+  }
+
+  /**
+   *  新增角色
+   *
+   * @author ludaxian
+   * @date 2020-01-12
+   * @param {RoleInfo} role
+   * @returns {Observable<BitResult>}
+   */
+  insertRole(roleList: RoleInfo[]): Observable<BitResult> {
+    return this.http.post<BitResult>(this.insertRoleUrl, roleList, this.httpOptions);
   }
 }

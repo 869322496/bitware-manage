@@ -14,11 +14,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CountdownModule } from 'ngx-countdown';
 import { LeaveDetailComponent } from './component/leave-detail/leave-detail.component';
+import { EditUserComponent } from './component/edit-user/edit-user.component';
+import { IsEmptyPipe } from './pipe/IsEmpty.pipe';
+import { EditRoleComponent } from './component/edit-role/edit-role.component';
 const THIRDMODULES = [NgZorroAntdModule, CountdownModule];
 // #endregion
 
 // #region your componets & directives
-const COMPONENTS = [LeaveDetailComponent];
+const COMPONENTS = [LeaveDetailComponent, EditUserComponent, EditRoleComponent];
 const DIRECTIVES = [];
 // #endregion
 
@@ -40,8 +43,10 @@ const DIRECTIVES = [];
     // your components
     ...COMPONENTS,
     ...DIRECTIVES,
+    IsEmptyPipe,
   ],
   exports: [
+    IsEmptyPipe,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

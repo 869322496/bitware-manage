@@ -46,7 +46,7 @@ export class LeaveDetailComponent implements OnInit, OnChanges {
           ...this.imageList,
           {
             uid: this.bitService.uuid(),
-            name: '巡检图片',
+            name: '请假图片',
             status: 'done',
             trueUrl: item,
             url: `${BitService.ConstUtil.ApiUrl}\/upload${item.sourceFileUrl}`,

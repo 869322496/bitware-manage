@@ -21,6 +21,7 @@ import { RoleInfo } from '@shared/entity/RoleInfo.entity';
 import { SysService } from '../../../shared/service/sys.service';
 import { Tree } from '@shared/entity/Tree.entity';
 import { StartupService } from '@core/startup/startup.service';
+import { EditRoleComponent } from '@shared/component/edit-role/edit-role.component';
 
 @Component({
   selector: 'role-permission',
@@ -30,7 +31,7 @@ import { StartupService } from '@core/startup/startup.service';
 export class RolePermissionComponent implements OnInit {
   @ViewChild('tree', { static: true }) tree;
   @ViewChild('myTree', { static: false }) myTree: NzTreeComponent;
-  RoleList: RoleInfo[] = [];
+  roleList: RoleInfo[] = [];
   isLoading: boolean = false;
   isTreeLoading: boolean = false;
   defaultCheckedKeys: string[] = [];
@@ -68,16 +69,34 @@ export class RolePermissionComponent implements OnInit {
       .pipe(pluck('data'))
       .toPromise()
       .then(res => {
-        this.RoleList = res;
+        this.roleList = res;
       });
   }
 
   /**
+   *新增角色
    *
-   * 设置权限
    * @author ludaxian
-   * @date 2020-01-08
-   * @param data
+   * @date 2020-01-12
+   */
+  addRole() {
+    this.modalService.create({
+      nzTitle: '新增角色',
+      nzContent: EditRoleComponent,
+      nzWidth: 600,
+      nzFooter: null,
+      nzComponentParams: {
+        orderNo: this.roleList.length,
+      },
+    });
+  }
+  /**
+   *设置权限
+   *
+   * @author ludaxian
+   * @date 2020-01-09
+   * @param {string} type
+   * @param {RoleInfo} data
    */
   setPermissionOrMenu(type: string, data: RoleInfo) {
     this.isTreeLoading = true;

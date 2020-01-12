@@ -15,7 +15,7 @@ export class BitService {
   public static ConstUtil = {
     // 常量池
     noimg: '../assets/imgs/addphoto.png',
-    emptyStr: '暂无',
+    emptyStr: '-',
     ApiUrl: 'http://localhost:8080',
     LEAVEAGREESTATUS: 10,
     LEAVEREFUSESTATUS: 9,

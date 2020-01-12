@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,5 +94,10 @@ public class LeaveServicelmpl implements LeaveService {
     @Override
     public List<LeaveInfo> isSameDay(String userId, Date beginTime, Date endTime) {
        return  leaveMapper.isSameDay(userId,beginTime,endTime);
+    }
+
+    @Override
+    public List<HashMap<String, Integer>> getUserLeaveCountEchartData(Date beginTime, Date endTime) {
+        return leaveMapper. getUserLeaveCountEchartData(beginTime,endTime);
     }
 }

@@ -42,17 +42,19 @@
         <result column="code" property="code"/>
     </resultMap>
 
-    <sql id="user">
-        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,org_id,tel,is_enable,avatar
+    <sql id="baseUser">
+        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,is_enable,org_id,tel,avatar
     </sql>
     <select id="getUserInfoByUserAccount" resultMap="userInfoMap">
         SELECT
-            u.*,ur.role_id,r. NAME AS role_name,r.code as role
+        u.*,ur.role_id,r. NAME AS role_name,r.code as role
         FROM
-            USER u
+        USER u
         LEFT JOIN user_role ur ON ur.user_id = u.id
         LEFT JOIN role r ON r.id = ur.role_id
-        where u.user_account = #{userAccount}
+        <if test="userAccount != null and userAccount != ''">
+            where u.user_account = #{userAccount}
+        </if>
     </select>
     <select id="getResourceByRoleId" resultMap="ResourceMap">
         SELECT
@@ -99,4 +101,28 @@
             #{resourceId}
         </foreach>
     </delete>
+    <insert id="insertUser">
+        INSERT INTO `user`
+        (<include refid="baseUser"/>)
+        VALUES(#{id},#{userAccount},#{name},#{password},now(),#{lastLoginDate},#{email},#{remark},0,1,#{orgId},#{tel},#{avatar})
+    </insert>
+
+    <insert id="updateUserRole">
+        INSERT INTO user_role
+        (user_id,role_id)
+        VALUES
+        <foreach item="item" index="key" collection="userRoleList" open="" separator="," close="">
+            (#{item.userId},#{item.roleId})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        user_id = VALUES(user_id),role_id = VALUES(role_id)
+    </insert>
+    <insert id="insertRole">
+        INSERT INTO role
+        (id,name,remark,order_no,code)
+        VALUES
+        <foreach item="item" index="key" collection="roleInfoList" open="" separator="," close="">
+            (#{item.id},#{item.name},#{item.remark},#{item.orderNo},#{item.code})
+        </foreach>
+    </insert>
 </mapper>

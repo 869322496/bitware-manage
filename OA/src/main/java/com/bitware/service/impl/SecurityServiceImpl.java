@@ -1,9 +1,7 @@
 package com.bitware.service.impl;
 
-import com.bitware.bean.LeaveInfo;
-import com.bitware.bean.ResourceInfo;
-import com.bitware.bean.RoleInfo;
-import com.bitware.bean.UserInfo;
+import com.alibaba.fastjson.JSONArray;
+import com.bitware.bean.*;
 import com.bitware.mapper.SecurityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,7 @@ public class SecurityServiceImpl implements SecurityService {
     SecurityMapper securityMapper;
 
     @Override
-    public UserInfo getUserInfoByUserAccount(String userAccount) {
+    public List<UserInfo> getUserInfoByUserAccount(String userAccount) {
         return securityMapper.getUserInfoByUserAccount(userAccount);
     }
 
@@ -46,5 +44,23 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public List<ResourceInfo> getResourceByRoleId(String roleId, String category, String code) {
         return securityMapper.getResourceByRoleId(roleId, category, code);
+    }
+
+    @Override
+    @Transactional
+    public void insertUser(UserInfo userInfo) {
+        securityMapper.insertUser(userInfo);
+    }
+
+    @Override
+    @Transactional
+    public void updateUserRole(List<UserRole> userRoleList) {
+        securityMapper.updateUserRole(userRoleList);
+    }
+
+    @Override
+    @Transactional
+    public void insertRole(List<RoleInfo> roleInfoList) {
+        securityMapper.insertRole(roleInfoList);
     }
 }

@@ -1,43 +1,44 @@
-<sv-container size="small"
-              col="2">
-    <sv label="创建人">{{ leave.userName }}</sv>
-    <sv label="标题">{{ leave.title }}</sv>
-    <sv label="创建时间">{{ leave.createTime | date: 'yyyy-MM-dd' }}</sv>
-    <sv label="请假类型">
-        {{ leave.leaveTypeName }}
-        <!-- <a (click)="msg.success('yes')">12421</a> -->
-    </sv>
-    <sv label="请假时间">
-        <ng-container *ngIf="leave.id">
-            <ng-container *ngIf="leave.dateType === 'ALL'">
-                {{ leave.beginTime | date: 'yyyy-MM-dd' }} ~ {{ leave.endTime | date: 'yyyy-MM-dd' }}
-            </ng-container>
-            <ng-container *ngIf="leave.dateType != 'ALL'">
-                {{ leave.beginTime | date: 'yyyy-MM-dd' }} {{leave.dateType == 'AM'?'上午':'下午'}}
-            </ng-container>
-        </ng-container>
-    </sv>
-    <sv label="详情">{{ leave.reason }}</sv>
+<sv-container size="small" col="2">
+  <sv label="创建人">{{ leave.userName }}</sv>
+  <sv label="标题">{{ leave.title }}</sv>
+  <sv label="创建时间">{{ leave.createTime | date: 'yyyy-MM-dd' }}</sv>
+  <sv label="请假类型">
+    {{ leave.leaveTypeName }}
+    <!-- <a (click)="msg.success('yes')">12421</a> -->
+  </sv>
+  <sv label="请假时间">
+    <ng-container *ngIf="leave.id">
+      <ng-container *ngIf="leave.dateType === 'ALL'">
+        {{ leave.beginTime | date: 'yyyy-MM-dd' }} ~ {{ leave.endTime | date: 'yyyy-MM-dd' }}
+      </ng-container>
+      <ng-container *ngIf="leave.dateType != 'ALL'">
+        {{ leave.beginTime | date: 'yyyy-MM-dd' }} {{ leave.dateType == 'AM' ? '上午' : '下午' }}
+      </ng-container>
+    </ng-container>
+  </sv>
+  <sv label="详情">{{ leave.reason }}</sv>
 </sv-container>
 <sv-container col="1">
-    <sv>
-
-        <nz-upload nzListType="picture-card"
-                   style="margin-top: 10px;"
-                   nzAction="OA/fileUpload/uploadImg"
-                   [(nzFileList)]="imageList"
-                   nzShowButton="false"
-                   [nzShowUploadList]="showUploadList"
-                   [nzPreview]="handlePreview">
-        </nz-upload>
-        <nz-modal [nzVisible]="previewVisible"
-                  [nzContent]="modalContent"
-                  [nzFooter]="null"
-                  (nzOnCancel)="previewVisible = false">
-            <ng-template #modalContent>
-                <img [src]="previewImage"
-                     [ngStyle]="{ width: '100%' }" />
-            </ng-template>
-        </nz-modal>
-    </sv>
+  <sv>
+    <nz-upload
+      nzListType="picture-card"
+      style="margin-top: 10px;"
+      nzAction="OA/fileUpload/uploadImg"
+      [(nzFileList)]="imageList"
+      nzShowButton="false"
+      [nzShowUploadList]="showUploadList"
+      [nzPreview]="handlePreview"
+    >
+    </nz-upload>
+    <nz-modal
+      [nzVisible]="previewVisible"
+      [nzContent]="modalContent"
+      [nzFooter]="null"
+      (nzOnCancel)="previewVisible = false"
+    >
+      <ng-template #modalContent>
+        <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+      </ng-template>
+    </nz-modal>
+  </sv>
 </sv-container>

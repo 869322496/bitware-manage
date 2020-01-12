@@ -5,6 +5,7 @@ import com.bitware.bean.LeaveInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public interface LeaveService {
@@ -22,4 +23,6 @@ public interface LeaveService {
     void updateAuditLeave(List<LeaveAudit> leaveAudits);
 
     List<LeaveInfo> isSameDay(String userId, Date beginTime, Date endTime);
+
+    List<HashMap<String, Integer>> getUserLeaveCountEchartData(Date beginTime, Date endTime);
 }

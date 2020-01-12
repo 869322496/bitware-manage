@@ -1,0 +1,53 @@
+<form nz-form [formGroup]="roleForm">
+  <nz-form-item nzSpan="24">
+    <nz-form-label nzSpan="4" nzRequired>角色名称</nz-form-label>
+    <nz-form-control nzSpan="8" [nzErrorTip]="nameErrTpl">
+      <input nz-input formControlName="name" placeholder="请输入角色名称" maxlength="20" />
+      <ng-template #nameErrTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          角色名称必输！
+        </ng-container>
+        <ng-container *ngIf="control.hasError('pattern')">
+          角色名称必须为中文！
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+
+    <nz-form-label nzSpan="4" nzRequired>角色编码</nz-form-label>
+    <nz-form-control nzSpan="8" [nzErrorTip]="codeErrTpl">
+      <input nz-input formControlName="code" placeholder="请输入角色编码" />
+      <ng-template #codeErrTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          请输入角色编码！
+        </ng-container>
+        <!--    <ng-container *ngIf="control.hasError('duplicated')">
+              The username is redundant!
+            </ng-container> -->
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nzSpan="24">
+    <nz-form-label nzSpan="4">备注</nz-form-label>
+    <nz-form-control nzSpan="20">
+      <textarea nz-input formControlName="remark" placeholder="备注" type="text"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<nz-divider></nz-divider>
+<nz-row style="text-align: right;">
+  <nz-col>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="roleForm.invalid"
+      type="submit"
+      [nzLoading]="submitting"
+      (click)="submit(roleForm.value)"
+    >
+      提交
+    </button>
+    <button nz-button nzType="primary" (click)="roleForm.reset()">
+      重置
+    </button>
+  </nz-col>
+</nz-row>

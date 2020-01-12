@@ -235,11 +235,31 @@
         `leave`
         WHERE
         user_id = #{userId}
+        AND status  != 9
         AND NOT (
         (
         end_time &lt; #{beginTime}
         OR (begin_time &gt; #{endTime})
         )
         )
+    </select>
+
+    <select id="getUserLeaveCountEchartData" resultType="java.util.HashMap">
+        SELECT
+        u.NAME AS xData,
+        sum(
+        IF
+        (
+        l.date_type = 'all',
+        datediff( l.end_time, l.begin_time ) + 1,
+        0.5
+        )
+        ) AS yData
+        FROM
+        `leave` l
+        LEFT JOIN USER u ON u.id = l.user_id
+        where begin_time  &gt;= #{beginTime} and end_time &lt;= #{endTime} and l.status = 10
+        GROUP BY
+        l.user_id
     </select>
 </mapper>

@@ -6,7 +6,10 @@ import com.bitware.bean.LeaveAudit;
 import com.bitware.bean.LeaveInfo;
 import com.bitware.service.impl.LeaveService;
 import com.bitware.utils.BitUser;
+import com.bitware.utils.ConstUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -141,5 +145,30 @@ public class LeaveController {
             return BitResult.failure("获取失败！");
         }
 
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/getUserLeaveCountEchartData/{dateType}")
+    @ResponseBody
+    public BitResult getUserLeaveCountEchartData(@PathVariable String dateType){
+        List<LeaveInfo> leaveInfoList;
+        Date beginTime = new DateTime().toDate();
+        Date endTime = new DateTime(new DateTime().getYear(),new DateTime().getMonthOfYear(),new DateTime().getDayOfMonth(),23,59,59,0).toDate();
+        List<HashMap<String,Integer>>  echartDataSet;
+        if(StringUtils.equals(dateType, ConstUtil.MONTH)){
+            beginTime =  new DateTime().dayOfMonth().withMinimumValue().withMillisOfDay(0).toDate();//本月初
+        }else if(StringUtils.equals(dateType, ConstUtil.YEAR)){
+            beginTime = new DateTime().dayOfYear().withMinimumValue().withMillisOfDay(0).toDate();//本年初
+        }
+        try {
+            echartDataSet = leaveService.getUserLeaveCountEchartData(beginTime,endTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("获取失败！");
+        }
+        return BitResult.success(echartDataSet);
     }
 }

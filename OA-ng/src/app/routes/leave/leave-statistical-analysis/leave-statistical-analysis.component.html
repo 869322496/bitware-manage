@@ -4,77 +4,83 @@
     <!--   <small> </small> -->
   </h1>
 </div>
-<!-- <div echarts
-     theme="light"
-     [options]="option"
-     stlye="height:400px"></div> -->
-<nz-card nzBordered
-         class="mb-lg"
-         [nzExtra]="action"
-         nzTitle="请假列表">
+<nz-card nzBordered class="mb-lg" [nzExtra]="action" nzTitle="请假列表">
   <ng-template #action>
     <label>查询时间&nbsp;:&nbsp;</label>
-    <nz-range-picker nzPlacement="top"
-                     nzAllowClear
-                     [(ngModel)]="dateRange"
-                     [nzFormat]="dateFormat"
-                     (ngModelChange)="changeSearchType('type',$event)">
+    <nz-range-picker
+      nzPlacement="top"
+      nzAllowClear
+      [(ngModel)]="dateRange"
+      [nzFormat]="dateFormat"
+      (ngModelChange)="changeSearchType('type', $event)"
+    >
     </nz-range-picker>
-    <label style="height: 30px;margin-left: 10px;
-line-height: 30px;">请假人姓名&nbsp;:&nbsp;</label>
-    <input nz-input
-           type="text"
-           [(ngModel)]="userName"
-           (ngModelChange)="changeSearchType('type', $event)"
-           style="width:  150px;margin-right: 10px;"
-           placeholder="请输入姓名" />
-    <label style="height: 30px;margin-left: 10px;
-line-height: 30px;">请假类型&nbsp;:&nbsp;</label>
-    <nz-select style="min-width: 150px;margin-right: 10px;
+    <label
+      style="height: 30px;margin-left: 10px;
+line-height: 30px;"
+      >请假人姓名&nbsp;:&nbsp;</label
+    >
+    <input
+      nz-input
+      type="text"
+      [(ngModel)]="userName"
+      (ngModelChange)="changeSearchType('type', $event)"
+      style="width:  150px;margin-right: 10px;"
+      placeholder="请输入姓名"
+    />
+    <label
+      style="height: 30px;margin-left: 10px;
+line-height: 30px;"
+      >请假类型&nbsp;:&nbsp;</label
+    >
+    <nz-select
+      style="min-width: 150px;margin-right: 10px;
   margin-left: 5px; "
-               nzAllowClear
-               nzPlaceHolder="请选择请假类型"
-               nzSize="default"
-               [(ngModel)]="leaveType"
-               (ngModelChange)="changeSearchType('type', $event)">
+      nzAllowClear
+      nzPlaceHolder="请选择请假类型"
+      nzSize="default"
+      [(ngModel)]="leaveType"
+      (ngModelChange)="changeSearchType('type', $event)"
+    >
       <!-- <nz-option nzValue="all"
                  nzLabel="全部"> -->
       <!--   </nz-option> -->
-      <nz-option [nzValue]="item.value"
-                 [nzLabel]="item.label"
-                 *ngFor="let item of leaveTypeList"> </nz-option>
+      <nz-option [nzValue]="item.value" [nzLabel]="item.label" *ngFor="let item of leaveTypeList"> </nz-option>
     </nz-select>
-    <label style="height: 30px; margin-left: 10px;
-line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
-    <nz-select style="min-width: 150px;margin-right: 10px;
+    <label
+      style="height: 30px; margin-left: 10px;
+line-height: 30px;"
+      >审核状态&nbsp;:&nbsp;</label
+    >
+    <nz-select
+      style="min-width: 150px;margin-right: 10px;
   margin-left: 5px; "
-               nzAllowClear
-               nzPlaceHolder="请选择审核状态"
-               nzSize="default"
-               [(ngModel)]="status"
-               (ngModelChange)="changeSearchType('type',$event)">
-      <nz-option [nzValue]="item.value"
-                 [nzLabel]="item.label"
-                 *ngFor="let item of leaveStatusList">
-      </nz-option>
+      nzAllowClear
+      nzPlaceHolder="请选择审核状态"
+      nzSize="default"
+      [(ngModel)]="status"
+      (ngModelChange)="changeSearchType('type', $event)"
+    >
+      <nz-option [nzValue]="item.value" [nzLabel]="item.label" *ngFor="let item of leaveStatusList"> </nz-option>
     </nz-select>
-    <button nz-button
-            [nzType]="'primary'"
-            (click)="getLeaveList()">查询</button>
+    <button nz-button [nzType]="'primary'" (click)="getLeaveList()">查询</button>
   </ng-template>
   <ng-template #tableFooter>
-    <label>通过天数&nbsp;:&nbsp; <span style="color: #52c41a !important;font-size: 25px;"
-            class="font-number">{{calculationDay.successDay}}</span> </label><label
-           style="margin-left: 10px;">拒绝天数&nbsp;:&nbsp; <span style="color: #f5222d !important;font-size: 25px;"
-            class="font-number">{{calculationDay.errorDay}}</span> </label>
-    <label style="margin-left: 10px;">申请总天数&nbsp;:&nbsp; <span class="font-number"
-            style="font-size: 25px;">{{calculationDay.allDay}}</span></label>
+    <label
+      >通过天数&nbsp;:&nbsp;
+      <span style="color: #52c41a !important;font-size: 25px;" class="font-number">{{
+        calculationDay.successDay
+      }}</span> </label
+    ><label style="margin-left: 10px;"
+      >拒绝天数&nbsp;:&nbsp;
+      <span style="color: #f5222d !important;font-size: 25px;" class="font-number">{{ calculationDay.errorDay }}</span>
+    </label>
+    <label style="margin-left: 10px;"
+      >申请总天数&nbsp;:&nbsp;
+      <span class="font-number" style="font-size: 25px;">{{ calculationDay.allDay }}</span></label
+    >
   </ng-template>
-  <nz-table #leaveTable
-            [nzData]="leaveList"
-            [nzLoading]="isLoading"
-            [nzFooter]="tableFooter"
-            nzBordered>
+  <nz-table #leaveTable [nzData]="leaveList" [nzLoading]="isLoading" [nzFooter]="tableFooter" nzBordered>
     <thead>
       <tr>
         <th nzAlign="center">编号</th>
@@ -105,15 +111,13 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
         </td>
         <td nzAlign="center">
           <nz-tag [nzColor]="item.status == 9 ? 'red' : item.status == 10 ? 'green' : '#108ee9'">
-            {{ item.statusName }}</nz-tag>
+            {{ item.statusName }}</nz-tag
+          >
         </td>
         <td nzAlign="center">
-          <button nz-button
-                  class="margin-left-10"
-                  nzType="primary"
-                  (click)="detail(item)"><i nz-icon
-               nzType="search"
-               nzTheme="outline"></i>详情</button>
+          <button nz-button class="margin-left-10" nzType="primary" (click)="detail(item)">
+            <i nz-icon nzType="search" nzTheme="outline"></i>详情
+          </button>
           <!--     <button nz-button
                   [nzType]="'primary'"
                   (click)="lookDetail(item)"><i nz-icon
@@ -130,3 +134,34 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
     </tbody>
   </nz-table>
 </nz-card>
+
+<div nz-row nzSpan="24" nzGutter="16">
+  <div nz-col nzSpan="12">
+    <nz-card nzTitle="员工请假天数统计" [nzExtra]="leaveCountSelect">
+      <nz-spin [nzTip]="'请稍候...'" [nzSpinning]="isEchartLoading">
+        <div echarts theme="light" [options]="userLeaveCountOption"></div>
+      </nz-spin>
+    </nz-card>
+    <ng-template #leaveCountSelect>
+      <nz-select [(ngModel)]="dateType" (ngModelChange)="getUserLeaveCountEchartData()">
+        <nz-option [nzValue]="'month'" [nzLabel]="'当月'"></nz-option>
+        <nz-option nzValue="year" nzLabel="当年"></nz-option>
+      </nz-select>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="12">
+    <nz-card stlye="height:300px" nzTitle="请假类型统计">
+      <div echarts theme="light" [options]="yearLeaveOption" stlye="height:100%"></div>
+    </nz-card>
+  </div>
+  <!--   <div nz-col nzSpan="6">
+    <nz-card stlye="height:300px">
+      <div echarts theme="light" [options]="yearLeaveOption" stlye="height:100%"></div>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="6">
+    <nz-card stlye="height:300px">
+      <div echarts theme="light" [options]="yearLeaveOption" stlye="height:100%"></div>
+    </nz-card>
+  </div> -->
+</div>
