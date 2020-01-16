@@ -212,11 +212,13 @@ export class LeaveReportComponent implements OnInit {
   submit(formvalue: any) {
     // console.log(leaveInfo);
     const leaveInfo: LeaveInfo = new LeaveInfo();
-    leaveInfo.img = JSON.stringify(
-      this.imageList.map(item => {
-        return item.trueUrl;
-      }),
-    );
+    if (this.imageList.length > 0) {
+      leaveInfo.img = JSON.stringify(
+        this.imageList.map(item => {
+          return item.trueUrl;
+        }),
+      );
+    }
     leaveInfo.id = this.bitService.uuid();
     leaveInfo.orderNo = 'QJ' + new Date().getTime();
     leaveInfo.reason = formvalue.reason;

@@ -1,3 +1,5 @@
+import { UserInfo } from '@shared/entity/UserInfo.entity';
+import { SysService } from '@shared/service/sys.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -8,10 +10,11 @@ import { pluck } from 'rxjs/operators';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { SelectOption } from '@shared/entity/SelectOption.enetity';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
-import { startOfDay, endOfDay, differenceInDays, setMilliseconds } from 'date-fns';
+import { startOfDay, endOfDay, differenceInDays, setMilliseconds, format } from 'date-fns';
 import { LeaveDetailComponent } from '@shared/component/leave-detail/leave-detail.component';
 import { LeaveService } from '@shared/service/leave.service';
 import { forkJoin } from 'rxjs';
+import { XlsxService } from '@delon/abc';
 
 @Component({
   selector: 'leave-statistical-analysis',
@@ -27,7 +30,10 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
     private bitService: BitService,
     private modalService: NzModalService,
     private leaveService: LeaveService,
+    private sysService: SysService,
+    private xlsx: XlsxService,
   ) {}
+
   dateType: string = 'month';
   leaveType: string;
   leaveTypeList: SelectOption[] = [];
@@ -46,64 +52,33 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
     errorDay: 0,
     allDay: 0,
   };
+  /* 这里是年假统计 */
+  userId: string = 'all';
+  userList: SelectOption[] = [];
   userLeaveCountOption;
-
-  yearLeaveOption = {
-    /*    title: {
-      text: '请假类型占比',
-      left: 'center',
-    }  */
-    /*     top: 30, */
-
-    tooltip: {
-      trigger: 'item',
-      formatter: '{b} : {c} ({d}%)',
-    },
-    visualMap: {
-      show: false,
-      min: 80,
-      max: 600,
-      inRange: {
-        colorLightness: [0, 1],
-      },
-    },
-    series: [
-      {
-        /*   name: '访问来源', */
-        type: 'pie',
-        radius: '70%',
-        center: ['50%', '50%'],
-        data: [
-          { value: 335, name: '直接访问' },
-          { value: 310, name: '邮件营销' },
-          { value: 274, name: '联盟广告' },
-          { value: 235, name: '视频广告' },
-          { value: 400, name: '搜索引擎' },
-        ].sort(function(a, b) {
-          return a.value - b.value;
-        }),
-        roseType: 'radius',
-        labelLine: {
-          smooth: 0.2,
-          length: 5,
-          length2: 5,
-        },
-        itemStyle: {
-          shadowBlur: 100,
-          shadowColor: 'rgba(0, 0, 0, 0.5)',
-        } /*         color: '#c23531', */,
-
-        animationType: 'scale',
-        animationEasing: 'elasticOut',
-        animationDelay: function(idx) {
-          return Math.random() * 200;
-        },
-      },
-    ],
-  };
-
-  initEchart() {}
-
+  annualLeaveDetailList = [];
+  /**
+   *
+   * 获取用户列表
+   * @author ludaxian
+   * @date 2020-01-08
+   */
+  getUserList() {
+    this.isLoading = true;
+    this.sysService
+      .getUserList()
+      .pipe(pluck('data'))
+      .toPromise()
+      .then(res => {
+        this.userList = res.map(item => {
+          return { label: item.name, value: item.id };
+        });
+        this.userId = this.userList[0]['value'];
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
   /**
    *员工请假天数统计
    * @author ludaxian
@@ -115,14 +90,21 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
       .getUserLeaveCountEchartData(this.dateType)
       .toPromise()
       .then(res => {
+        console.log(res);
         this.userLeaveCountOption = {
           xAxis: {
             type: 'category',
           },
           tooltip: {
-            trigger: 'item',
+            trigger: 'axis',
+            /*   axisPointer: {
+              type: 'cross',
+              crossStyle: {
+                color: '#999',
+              },
+            }, */
             formatter: data => {
-              return `实际已请假天数:<br />${data['name']} : ${data['value']['yData']}天`;
+              return `实际已请假天数:<br />${data[0]['name']} : ${data[0]['value']['yData']}天`;
             },
           },
           yAxis: {
@@ -140,7 +122,7 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
                   //这里是重点
                   color: function(params) {
                     //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
-                    var colorList = ['#e58dc2', '#fbe289', '#fbb8a1', '#90e5e7', '#6fbae1', '#c23531', '#2f4554'];
+                    var colorList = ['#e58dc2', '#fbe289', '#90e5e7', '#fbb8a1', '#6fbae1', '#c23531', '#2f4554'];
                     return colorList[params.dataIndex];
                   },
                 },
@@ -148,7 +130,11 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
             },
           ],
         };
-        console.log(this.userLeaveCountOption.dataset);
+        console.log(
+          res['data'].map(item => {
+            return { name: item['xData'] };
+          }),
+        );
       })
       .finally(() => {
         this.isEchartLoading = false;
@@ -156,9 +142,11 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAnnualLeave();
     this.getLeaveList();
     this.initSelect();
     this.getUserLeaveCountEchartData();
+    this.getUserList();
   }
 
   /**
@@ -292,7 +280,75 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
         this.isLoading = false;
       });
   }
+  /**
+   *导出excel
+   *
+   * @author ludaxian
+   * @date 2020-01-16
+   */
+  exportExcel() {
+    let excelData: any[] = [
+      [
+        '请假编号',
+        '姓名',
+        '请假类型',
+        '请假标题',
+        '请假时间',
+        '请假天数',
+        '审核状态',
+        '年假共计',
+        '年假剩余',
+        '请假理由',
+      ],
+    ];
+    this.leaveList.forEach(item => {
+      const annualLeaveDetail = this.annualLeaveDetailList.find(detail => detail['userId'] == item.userId);
+      const getLeaveDay = data => {
+        if (data.dateType == 'ALL') {
+          if (differenceInDays(new Date(data.endTime), new Date(data.beginTime)) === 0) {
+            //同一天
+            return 1;
+          } else {
+            return differenceInDays(new Date(data.endTime), new Date(data.beginTime)) + 1;
+          }
+        } else if (['PM', 'AM'].includes(data.dateType)) {
+          return 0.5;
+        }
+      };
 
+      const getLeaveTime = data1 => {
+        if (data1.dateType === 'ALL') {
+          return `${format(item.beginTime, 'YYYY-MM-DD')} 到 ${format(item.endTime, 'YYYY-MM-DD')}`;
+        } else {
+          return `${format(item.beginTime, 'YYYY-MM-DD')} ${item.dateType == 'AM' ? '上午' : '下午'}`;
+        }
+      };
+
+      let data = [
+        item.orderNo,
+        item.userName,
+        item.leaveTypeName,
+        item.title,
+        getLeaveTime(item),
+        getLeaveDay(item),
+        item.statusName,
+        annualLeaveDetail['annualLeaveSum'],
+        Number(annualLeaveDetail['annualLeaveSum']) - Number(annualLeaveDetail['finishLeaveSum']) > 0
+          ? Number(annualLeaveDetail['annualLeaveSum']) - Number(annualLeaveDetail['finishLeaveSum'])
+          : 0,
+        item.reason,
+      ];
+      excelData = [...excelData, data];
+    });
+    this.xlsx.export({
+      sheets: [
+        {
+          data: excelData,
+          name: '请假报表',
+        },
+      ],
+    });
+  }
   /**
    * 获取请假类型
    */
@@ -305,6 +361,26 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
       .then((res: any) => {
         this.leaveTypeList = res[0].map(item => new SelectOption(item.code, item.name));
         this.leaveStatusList = res[1].map(item => new SelectOption(item.data, item.name));
+      });
+  }
+
+  /**
+   *
+   *  获取年假情况
+   * @author ludaxian
+   * @date 2020-01-16
+   */
+  getAnnualLeave() {
+    this.leaveService
+      .getAnnualLeave(this.userId)
+      .pipe(pluck('data'))
+      .toPromise()
+      .then(res => {
+        console.log(res);
+        if (res['hasErrors']) {
+          return;
+        }
+        this.annualLeaveDetailList = res;
       });
   }
 
@@ -326,4 +402,64 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
       },
     });
   }
+
+  yearLeaveOption = {
+    /*    title: {
+      text: '请假类型占比',
+      left: 'center',
+    }  */
+    /*     top: 30, */
+
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        crossStyle: {
+          color: '#999',
+        },
+      },
+      formatter: '{b} : {c} ({d}%)',
+    },
+    visualMap: {
+      show: false,
+      min: 80,
+      max: 600,
+      inRange: {
+        colorLightness: [0, 1],
+      },
+    },
+    series: [
+      {
+        name: '访问来源',
+        type: 'pie',
+        radius: '70%',
+        center: ['50%', '50%'],
+        data: [
+          { value: 335, name: '事假' },
+          { value: 310, name: '婚假' },
+          { value: 274, name: '病假' },
+          { value: 235, name: '产假' },
+          { value: 400, name: '年休假' },
+        ].sort(function(a, b) {
+          return a.value - b.value;
+        }),
+        roseType: 'radius',
+        labelLine: {
+          smooth: 0.2,
+          length: 5,
+          length2: 5,
+        },
+        itemStyle: {
+          shadowBlur: 100,
+          shadowColor: 'rgba(0, 0, 0, 0.5)',
+        } /*         color: '#c23531', */,
+
+        animationType: 'scale',
+        animationEasing: 'elasticOut',
+        animationDelay: function(idx) {
+          return Math.random() * 200;
+        },
+      },
+    ],
+  };
 }

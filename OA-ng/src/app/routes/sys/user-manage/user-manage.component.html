@@ -1,47 +1,81 @@
 <page-header title="用户管理">
   新增修改删除用户,设置用户的角色。
 </page-header>
-<nz-card nzBordered class="mb-lg" [nzExtra]="action" nzTitle="用户列表">
-  <nz-table #userTable [nzData]="userList" [nzLoading]="isLoading" nzBordered>
+<nz-card nzBordered
+         class="mb-lg"
+         [nzExtra]="action"
+         nzTitle="用户列表">
+  <nz-table #userTable
+            [nzData]="userList"
+            [nzLoading]="isLoading"
+            (nzCurrentPageDataChange)="currentPageDataChange($event)"
+            nzBordered>
     <thead>
       <tr>
+        <th nzShowCheckbox
+            [(nzChecked)]="isAllDisplayDataChecked"
+            [nzIndeterminate]="isIndeterminate"
+            (nzCheckedChange)="checkAll($event)"></th>
         <th nzAlign="center">用户名</th>
         <th nzAlign="center">账号</th>
         <th nzAlign="center">邮箱</th>
         <th nzAlign="center">手机号</th>
         <th nzAlign="center">角色</th>
+        <th nzAlign="center">入职时间</th>
         <th nzAlign="center">操作</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of userTable.data">
+        <td nzShowCheckbox
+            [(nzChecked)]="mapOfCheckedId[item.id]"
+            (nzCheckedChange)="refreshStatus()">
+        </td>
         <td nzAlign="center">{{ item.name | isEmpty }}</td>
         <td nzAlign="center">{{ item.userAccount | isEmpty }}</td>
         <td nzAlign="center">{{ item.email | isEmpty }}</td>
         <td nzAlign="center">{{ item.tel | isEmpty }}</td>
         <td nzAlign="center">{{ item.roleName | isEmpty }}</td>
+        <td nzAlign="center">{{ item.entryTime | date:'yyyy-MM-dd' | isEmpty }}</td>
         <td nzAlign="center">
-          <button nz-button nzType="primary" (click)="setRole(item)">
-            <i nz-icon nzType="edit" nzTheme="outline"></i>设置角色
+          <button nz-button
+                  nzType="primary"
+                  (click)="setRole(item)">
+            <i nz-icon
+               nzType="edit"
+               nzTheme="outline"></i>设置角色
           </button>
-          <!--  <button nz-button class="margin-left-10" nzType="primary" (click)="setPermissionOrMenu('menu', item)">
-            <i nz-icon nzType="edit" nzTheme="outline"></i>设置菜单
-          </button> -->
+          <button nz-button
+                  class="margin-left-10"
+                  nzType="primary"
+                  (click)="editUserInfo(item)">
+            <i nz-icon
+               nzType="edit"
+               nzTheme="outline"></i>修改信息
+          </button>
         </td>
       </tr>
     </tbody>
   </nz-table>
 </nz-card>
 <ng-template #roleTpl>
-  <nz-spin [nzTip]="'请稍候...'" [nzSpinning]="isEditing">
+  <nz-spin [nzTip]="'请稍候...'"
+           [nzSpinning]="isEditing">
     <div>
-      <nz-radio-group [(ngModel)]="editUser.roleId" [nzButtonStyle]="'solid'">
-        <label nz-radio-button [nzValue]="item.id" *ngFor="let item of roleList">{{ item.name }}</label>
+      <nz-radio-group [(ngModel)]="editUser.roleId"
+                      [nzButtonStyle]="'solid'">
+        <label nz-radio-button
+               [nzValue]="item.id"
+               *ngFor="let item of roleList">{{ item.name }}</label>
       </nz-radio-group>
       <nz-divider></nz-divider>
       <nz-row>
         <nz-col>
-          <button nz-button nzType="primary" style="width: 100%;" type="submit" (click)="submitRole()">
+          <button nz-button
+                  nzType="primary"
+                  style="width: 100%;"
+                  type="submit"
+                  (click)="submitRole()">
             提交
           </button>
         </nz-col>
@@ -50,8 +84,20 @@
   </nz-spin>
 </ng-template>
 <ng-template #action>
-  <button nz-button nzType="primary" (click)="addUser()">
-    新增用户<i nz-icon nzType="user-add" nzTheme="outline"></i>
+  <button nz-button
+          nzType="primary"
+          (click)="addUser()">
+    新增用户<i nz-icon
+       nzType="user-add"
+       nzTheme="outline"></i>
+  </button>
+  <button nz-button
+          nzType="danger"
+          nz-popconfirm
+          nzTitle="确定要删除吗？"
+          (nzOnConfirm)="deleteUser()">
+    删除<i nz-icon
+       nzType="delete"></i>
   </button>
   <!-- <button nz-button nzType="primary" (click)="setUserRole()">
       设置用户角色<i nz-icon nzType="edit" nzTheme="outline"></i>

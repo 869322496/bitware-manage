@@ -214,24 +214,26 @@ public class SecurityController {
 
     /**
      * 获取用户列表
+     *
      * @return
      */
     @RequestMapping("/getUserList")
     @ResponseBody
-    public BitResult getUserList(){
-        return BitResult.success( securityService.getUserInfoByUserAccount(null));
+    public BitResult getUserList() {
+        return BitResult.success(securityService.getUserInfoByUserAccount(null));
     }
 
     /**
      * 新增用户
+     *
      * @return
      */
-    @RequestMapping("/insertUser")
+    @PostMapping("/insertUser")
     @ResponseBody
-    public BitResult insertUser(@RequestBody UserInfo userInfo){
-        try{
+    public BitResult insertUser(@RequestBody UserInfo userInfo) {
+        try {
             securityService.insertUser(userInfo);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("新增用户失败！");
         }
@@ -240,14 +242,15 @@ public class SecurityController {
 
     /**
      * 设置用户角色
+     *
      * @return
      */
-    @RequestMapping("/updateUserRole")
+    @PutMapping("/updateUserRole")
     @ResponseBody
-    public BitResult updateUserRole(@RequestBody List<UserRole> userRoleList){
-        try{
+    public BitResult updateUserRole(@RequestBody List<UserRole> userRoleList) {
+        try {
             securityService.updateUserRole(userRoleList);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("设置用户角色失败！");
         }
@@ -256,17 +259,53 @@ public class SecurityController {
 
     /**
      * 新增用户角色
+     *
      * @return
      */
-    @RequestMapping("/insertRole")
+    @PostMapping("/insertRole")
     @ResponseBody
-    public BitResult insertRole(@RequestBody List<RoleInfo> roleInfoList){
-        try{
+    public BitResult insertRole(@RequestBody List<RoleInfo> roleInfoList) {
+        try {
             securityService.insertRole(roleInfoList);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return BitResult.failure("新增用户角色失败！");
         }
         return BitResult.success("新增用户角色成功！");
     }
+
+    /**
+     * 删除用户
+     *
+     * @return
+     */
+    @DeleteMapping("/deleteUser")
+    @ResponseBody
+    public BitResult deleteUser(@RequestParam("ids") List<String> ids) {
+        try {
+            securityService.deleteUser(ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("删除用户失败！");
+        }
+        return BitResult.success("删除用户成功！");
+    }
+
+    /**
+     * 更新用户信息
+     * @param userInfo
+     * @return
+     */
+    @PutMapping("/updateUser")
+    @ResponseBody
+    public BitResult updateUser(@RequestBody UserInfo userInfo) {
+        try {
+            securityService.updateUser(userInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("更新用户信息失败！");
+        }
+        return BitResult.success("更新用户信息成功！");
+    }
+
 }

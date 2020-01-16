@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface LeaveMapper {
 
@@ -28,5 +29,13 @@ public interface LeaveMapper {
 
     List<LeaveInfo> isSameDay(@Param("userId") String userId, @Param("beginTime") Date beginTime, @Param("endTime") Date endTime);
 
-    List<HashMap<String, Integer>> getUserLeaveCountEchartData(@Param("beginTime") Date beginTime, @Param("endTime") Date endTime);
+    List<Map<String, Float>> getUserLeaveCountEchartData(@Param("beginTime") Date beginTime, @Param("endTime") Date endTime);
+
+    void deleteLeave(LeaveInfo leaveInfo);
+
+    //void deleteLeaveAudits(@Param("leaveAudits")List<LeaveAudit> leaveAudits);
+
+    void deleteLeaveAuditsByLeaveId(@Param("id") String id);
+
+    Float getFinishAnnualLeaveCount(@Param("userId")String userId, @Param("beginTime")Date beginTime,@Param("endTime") Date endTime);
 }

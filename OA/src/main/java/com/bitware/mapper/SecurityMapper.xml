@@ -20,6 +20,7 @@
         <result column="role_id" property="roleId"/>
         <result column="role_name" property="roleName"/>
         <result column="role" property="role"/>
+        <result column="entry_time" property="entryTime"/>
     </resultMap>
     <resultMap id="roleMap" type="com.bitware.bean.RoleInfo">
         <id column="id" property="id"/>
@@ -43,8 +44,20 @@
     </resultMap>
 
     <sql id="baseUser">
-        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,is_enable,org_id,tel,avatar
+        id,user_account,name,password,create_Date,last_login_date,email,remark,is_delete,is_enable,org_id,tel,avatar,entry_time
     </sql>
+    <select id="getUserInfoByUserId" resultMap="userInfoMap">
+        SELECT
+        u.*,ur.role_id,r. NAME AS role_name,r.code as role
+        FROM
+        USER u
+        LEFT JOIN user_role ur ON ur.user_id = u.id
+        LEFT JOIN role r ON r.id = ur.role_id
+        where u.is_delete = 0 and u.is_enable = 1
+        <if test="userId != null and userId != ''">
+            and u.id = #{userId}
+        </if>
+    </select>
     <select id="getUserInfoByUserAccount" resultMap="userInfoMap">
         SELECT
         u.*,ur.role_id,r. NAME AS role_name,r.code as role
@@ -52,8 +65,9 @@
         USER u
         LEFT JOIN user_role ur ON ur.user_id = u.id
         LEFT JOIN role r ON r.id = ur.role_id
+        where u.is_delete = 0 and u.is_enable = 1
         <if test="userAccount != null and userAccount != ''">
-            where u.user_account = #{userAccount}
+            and u.user_account = #{userAccount}
         </if>
     </select>
     <select id="getResourceByRoleId" resultMap="ResourceMap">
@@ -104,7 +118,7 @@
     <insert id="insertUser">
         INSERT INTO `user`
         (<include refid="baseUser"/>)
-        VALUES(#{id},#{userAccount},#{name},#{password},now(),#{lastLoginDate},#{email},#{remark},0,1,#{orgId},#{tel},#{avatar})
+        VALUES(#{id},#{userAccount},#{name},#{password},now(),#{lastLoginDate},#{email},#{remark},0,1,#{orgId},#{tel},#{avatar},#{entryTime})
     </insert>
 
     <insert id="updateUserRole">
@@ -125,4 +139,58 @@
             (#{item.id},#{item.name},#{item.remark},#{item.orderNo},#{item.code})
         </foreach>
     </insert>
+    <delete id="deleteUser">
+        UPDATE `user`
+        SET is_delete = 1,
+        is_enable = 0
+        WHERE
+        id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <update id="updateUser">
+        UPDATE `user`
+        <set>
+            <if test="userAccount != null and userAccount !=''">
+                user_account = #{userAccount},
+            </if>
+            <if test="name != null and name !=''">
+                `name`=#{name},
+            </if>
+            <if test="password != null and password !=''">
+                password =#{password},
+            </if>
+            <if test="lastLoginDate != null ">
+                last_login_date = #{lastLoginDate},
+            </if>
+            <if test="email != null and email !=''">
+                email =#{email},
+            </if>
+            <if test="remark != null and remark !=''">
+                remark = #{remark},
+            </if>
+            <if test="isDelete != null ">
+                is_delete = #{isDelete},
+            </if>
+            <if test="isEnable != null">
+                is_enable = #{isEnable},
+            </if>
+            <if test="orgId != null and orgId !=''">
+                org_id =#{orgId},
+            </if>
+            <if test="tel != null and tel !=''">
+                tel = #{tel},
+            </if>
+            <if test="avatar != null and avatar !=''">
+                avatar = #{avatar},
+            </if>
+            <if test="entryTime != null">
+                entry_time = #{entryTime}
+            </if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
 </mapper>

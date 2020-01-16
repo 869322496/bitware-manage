@@ -17,11 +17,13 @@ import { LeaveDetailComponent } from './component/leave-detail/leave-detail.comp
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { IsEmptyPipe } from './pipe/IsEmpty.pipe';
 import { EditRoleComponent } from './component/edit-role/edit-role.component';
+import { VacationDetailComponent } from './component/vacation-detail/vacation-detail.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 const THIRDMODULES = [NgZorroAntdModule, CountdownModule];
 // #endregion
 
 // #region your componets & directives
-const COMPONENTS = [LeaveDetailComponent, EditUserComponent, EditRoleComponent];
+const COMPONENTS = [LeaveDetailComponent, EditUserComponent, EditRoleComponent, VacationDetailComponent];
 const DIRECTIVES = [];
 // #endregion
 
@@ -37,6 +39,7 @@ const DIRECTIVES = [];
     DelonFormModule,
     // third libs
     ...THIRDMODULES,
+    NgxEchartsModule,
   ],
   entryComponents: [...COMPONENTS],
   declarations: [

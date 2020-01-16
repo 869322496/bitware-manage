@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { BitResult } from '@shared/entity/BitResult.entity';
 import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
-import { SettingsService } from '@delon/theme';
+import { SettingsService, User } from '@delon/theme';
 import { UserInfo } from '@shared/entity/UserInfo.entity';
 import { RoleInfo } from '@shared/entity/RoleInfo.entity';
 
@@ -18,6 +18,9 @@ export class SysService {
   private insertUserUrl = 'OA/security/insertUser';
   private updateUserRoleUrl = 'OA/security/updateUserRole';
   private insertRoleUrl = 'OA/security/insertRole';
+  private deleteUserUrl = 'OA/security/deleteUser';
+  private updateUserUrl = 'OA/security/updateUser';
+
   constructor(private http: HttpClient, private settingService: SettingsService) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -116,5 +119,32 @@ export class SysService {
    */
   insertRole(roleList: RoleInfo[]): Observable<BitResult> {
     return this.http.post<BitResult>(this.insertRoleUrl, roleList, this.httpOptions);
+  }
+  /**
+   * 删除用户
+   *
+   * @author ludaxian
+   * @date 2020-01-15
+   * @param {string} ids
+   * @returns {Observable<BitResult>}
+   */
+  deleteUser(ids: string[]): Observable<BitResult> {
+    return this.http.delete<BitResult>(this.deleteUserUrl, {
+      params: {
+        ids: ids,
+      },
+    });
+  }
+
+  /**
+   *更新用户信息
+   *
+   * @author ludaxian
+   * @date 2020-01-15
+   * @param {UserInfo} user
+   * @returns {Observable<BitResult>}
+   */
+  updateUser(user: UserInfo): Observable<BitResult> {
+    return this.http.put<BitResult>(this.updateUserUrl, user, this.httpOptions);
   }
 }

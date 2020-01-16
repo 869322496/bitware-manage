@@ -60,8 +60,9 @@
         inner JOIN dictionary dic ON dic.id = di.dictionary_id
         AND dic. CODE = 'LeaveStatus'
         ) o1 ON o1. DATA = l.`status`
+        where u.is_delete = 0 and u.is_enable = 1
         <if test="id != null and id != 'all'">
-            where l.id = #{id}
+         and   l.id = #{id}
         </if>
         order by l.create_time desc
     </select>
@@ -90,8 +91,9 @@
         inner JOIN dictionary dic ON dic.id = di.dictionary_id
         AND dic. CODE = 'LeaveStatus'
         ) o1 ON o1. DATA = l.`status`
+        where u.is_delete = 0 and u.is_enable = 1
         <if test="userId != null and userId != 'all'">
-            where l.user_id = #{userId}
+           and  l.user_id = #{userId}
         </if>
         ORDER BY
         l.create_time DESC
@@ -102,7 +104,7 @@
             o. NAME AS typeName
         FROM
             leave_audit la
-        LEFT JOIN USER u ON u.id = la.auditor
+        LEFT JOIN `USER` u ON u.id = la.auditor
         LEFT JOIN (
             SELECT
                 di.*
@@ -112,7 +114,7 @@
             AND dic.`code` = 'AuditType'
         ) o ON o. CODE = la.type
         WHERE
-            la.leave_id = #{leaveId}
+             la.leave_id = #{leaveId}
         ORDER BY
             o.order_no
     </select>
@@ -169,7 +171,7 @@
                 inner JOIN dictionary dic ON dic.id = di.dictionary_id
                 AND dic. CODE = 'LeaveStatus'
             ) o2 ON o2. DATA = l. STATUS
-            where l.status not in (9,10)
+            where l.status not in (9,10) and u.is_delete = 0 and u.is_enable = 1
             ORDER BY
                 l.create_time DESC
     </select>
@@ -258,8 +260,55 @@
         FROM
         `leave` l
         LEFT JOIN USER u ON u.id = l.user_id
-        where begin_time  &gt;= #{beginTime} and end_time &lt;= #{endTime} and l.status = 10
+        where begin_time  &gt;= #{beginTime}
+        and end_time &lt;= #{endTime}
+        and l.status = 10
+        and u.is_delete = 0
+        and u.is_enable = 1
         GROUP BY
         l.user_id
+    </select>
+    <delete id="deleteLeave">
+        DELETE
+        FROM
+            leave_audit
+        WHERE
+    	leave_id = #{id}
+    </delete>
+    <delete id="deleteLeaveAuditsByLeaveId">
+        DELETE
+        FROM
+            `leave`
+        WHERE
+    	id = #{id}
+    </delete>
+    <select id="getFinishAnnualLeaveCount" resultType="java.lang.Float">
+        SELECT
+        sum(
+        IF (
+        l.date_type = 'all',
+        datediff(l.end_time, l.begin_time) + 1,
+        0.5
+        )
+        ) AS finishLeaveSum
+        FROM
+        `leave` l
+        INNER JOIN (
+        SELECT
+        di.*
+        FROM
+        dictionary_item di
+        INNER JOIN dictionary dic ON dic.`code` = 'LeaveType'
+        WHERE
+        di.`data` = '1'
+        ) ltl ON ltl. CODE = l.leave_type
+        LEFT JOIN `user` u ON u.id = l.user_id
+        WHERE
+        l.begin_time &gt;= #{beginTime}
+        AND l.end_time &lt;= #{endTime}
+        AND u.id = #{userId}
+        AND u.is_delete = 0
+        AND l. STATUS = 10
+        AND u.is_enable = 1
     </select>
 </mapper>

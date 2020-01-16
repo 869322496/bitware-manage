@@ -18,4 +18,5 @@ export class UserInfo {
   roleName: string;
   role: string;
   roleResource: ResourceInfo[];
+  entryTime: Date;
 }

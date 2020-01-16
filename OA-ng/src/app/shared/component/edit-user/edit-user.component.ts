@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { _Validators } from '@delon/util';
 import { SysService } from '@shared/service/sys.service';
 import { NzMessageService, NzModalRef } from 'ng-zorro-antd';
 import { UserInfo } from '@shared/entity/UserInfo.entity';
 import { BitService } from '@shared/service/Bit.service';
+import { differenceInDays, startOfDay } from 'date-fns';
 
 @Component({
   selector: 'app-edit-user',
@@ -19,8 +20,13 @@ export class EditUserComponent implements OnInit {
     private modalRef: NzModalRef,
     private bitService: BitService,
   ) {}
+  @Input() pageType: string;
+  @Input() userInfo: UserInfo = new UserInfo();
   userForm: FormGroup;
   submitting: boolean = false;
+  test(e) {
+    console.log(e);
+  }
   ngOnInit() {
     this.userForm = this.fb.group({
       name: [
@@ -42,8 +48,28 @@ export class EditUserComponent implements OnInit {
         ],
       ],
       tel: [null, Validators.pattern(/^(?:(?:\+|00)86)?1\d{10}$/)],
+      entryTime: [null, Validators.required],
+      remark: [null],
     });
+    if (this.pageType == 'edit') {
+      this.userForm.patchValue({
+        name: this.userInfo.name,
+        userAccount: this.userInfo.userAccount,
+        email: this.userInfo.email,
+        tel: this.userInfo.tel,
+        entryTime: this.userInfo.entryTime,
+        remark: this.userInfo.remark,
+      });
+    }
   }
+
+  /**
+   * 设置不可选时间
+   */
+  setDisabledDateRange = (current: Date) => {
+    current.getFullYear;
+    return differenceInDays(current, startOfDay(new Date())) > 0;
+  };
 
   /**
    *  新增用户
@@ -53,19 +79,34 @@ export class EditUserComponent implements OnInit {
    * @param {*} e
    */
   submit(e) {
-    e['id'] = this.bitService.uuid();
-    e['avatar'] = `http://www.bit-ware.com.cn/image/bitwarelog.png`;
-    e['password'] = `111111`;
-    this.sysService
-      .insertUser(e)
-      .toPromise()
-      .then(res => {
-        if (res['hasErrors']) {
-          this.msg.warning(res['errorMessage']);
-          return;
-        }
-        this.msg.success('新增用户成功！');
-        this.modalRef.destroy(true);
-      });
+    if (this.pageType == 'add') {
+      e['id'] = this.bitService.uuid();
+      e['avatar'] = `http://www.bit-ware.com.cn/image/bitwarelog.png`;
+      e['password'] = `111111`;
+      this.sysService
+        .insertUser(e)
+        .toPromise()
+        .then(res => {
+          if (res['hasErrors']) {
+            this.msg.warning(res['errorMessage']);
+            return;
+          }
+          this.msg.success('新增用户成功！');
+          this.modalRef.destroy(true);
+        });
+    } else {
+      e['id'] = this.userInfo.id;
+      this.sysService
+        .updateUser(e)
+        .toPromise()
+        .then(res => {
+          if (res['hasErrors']) {
+            this.msg.warning(res['errorMessage']);
+            return;
+          }
+          this.msg.success('修改用户信息成功！');
+          this.modalRef.destroy(true);
+        });
+    }
   }
 }

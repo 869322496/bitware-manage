@@ -14,6 +14,8 @@ export class LeaveService {
   private auditLeaveUrl = 'OA/leave/auditLeave';
   private isSameDayUrl = 'OA/leave/isSameDay';
   private getUserLeaveCountEchartDataUrl = 'OA/leave/getUserLeaveCountEchartData';
+  private cancelApplyUrl = 'OA/leave/cancelApply';
+  private getAnnualLeaveUrl = 'OA/leave/getAnnualLeave';
   constructor(private http: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -85,5 +87,26 @@ export class LeaveService {
    */
   getUserLeaveCountEchartData(dateType: string): Observable<BitResult> {
     return this.http.get<BitResult>(`${this.getUserLeaveCountEchartDataUrl}/${dateType}`);
+  }
+
+  /**
+   *取消申请
+   * @author ludaxian
+   * @date 2020-01-13
+   * @param {LeaveInfo} leave
+   * @returns {Observable<BitResult>}
+   */
+  cancelApply(leave: LeaveInfo): Observable<BitResult> {
+    return this.http.post<BitResult>(this.cancelApplyUrl, JSON.stringify(leave), this.httpOptions);
+  }
+
+  /**
+   *获取所有员工年假分析数据
+   * @author ludaxian
+   * @date 2020-01-16
+   * @returns {Observable<BitResult>}
+   */
+  getAnnualLeave(userId: string): Observable<BitResult> {
+    return this.http.get<BitResult>(`${this.getAnnualLeaveUrl}/${userId}`);
   }
 }

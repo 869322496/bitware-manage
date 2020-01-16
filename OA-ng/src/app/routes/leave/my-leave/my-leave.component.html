@@ -2,6 +2,7 @@
          [nzSpinning]="isLoading">
 
   <page-header title="请假编号 : {{ leave.orderNo }}"
+               autoBreadcrumb="false"
                [action]="action"
                [extra]="extra">
 
@@ -17,7 +18,9 @@
       <button nz-button
               class="margin-left-10"
               [nzType]="'primary'"
-              (click)="cancelApply(leave)">撤销申请</button>
+              nz-popconfirm
+              nzTitle="确定要撤销当前申请吗？(会完全移除申请流程记录)"
+              (nzOnConfirm)="cancelApply(leave)">撤销申请</button>
     </ng-template>
     <ng-template #extra>
       <div nz-row>
@@ -134,85 +137,24 @@
     </tbody>
   </nz-table>
 </nz-card>
-<!-- <nz-card [nzBordered]="false"
-         nzTitle="用户信息"
-         class="mb-lg">
-  <sv-container class="mb-lg">
-    <sv label="用户姓名">付小小</sv>
-    <sv label="会员卡号">32943898021309809423</sv>
-    <sv label="身份证">3321944288191034921</sv>
-    <sv label="联系方式">18112345678</sv>
-    <sv label="联系地址">曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</sv>
-  </sv-container>
-  <sv-container class="mb-lg"
-                title="信息组">
-    <sv label="某某数据">725</sv>
-    <sv label="该数据更新时间">2017-08-08</sv>
-    <sv>&nbsp;</sv>
-    <sv [label]="label">
-      <ng-template #label>
-        某某数据
-        <i nz-tooltip
-           nzTooltipTitle="数据说明"
-           nz-icon
-           nzType="info-circle"></i>
-      </ng-template>
-      725
-    </sv>
-    <sv label="该数据更新时间">2017-08-08</sv>
-  </sv-container>
-  <h4 class="mb-md">信息组</h4>
-  <nz-card nzType="inner"
-           nzTitle="多层级信息组">
-    <sv-container size="small"
-                  title="组名称">
-      <sv label="负责人">林东东</sv>
-      <sv label="角色码">1234567</sv>
-      <sv label="所属部门">XX公司 - YY部</sv>
-      <sv label="过期时间">2017-08-08</sv>
-      <sv label="描述">这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...</sv>
-    </sv-container>
-    <nz-divider></nz-divider>
-    <sv-container size="small"
-                  title="组名称"
-                  col="1">
-      <sv label="学名">
-        Citrullus lanatus (Thunb.) Matsum. et Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
-      </sv>
-    </sv-container>
-    <nz-divider></nz-divider>
-    <sv-container size="small"
-                  title="组名称">
-      <sv label="负责人">付小小</sv>
-      <sv label="角色码">1234568</sv>
-    </sv-container>
-  </nz-card>
-</nz-card>
 <nz-card [nzBordered]="false"
-         nzTitle="用户近半年来电记录"
-         class="mb-lg">
-  <div class="no-data"><i nz-icon
-       nzType="frown"></i>暂无数据</div>
+         nzTitle="年假情况"
+         stlye="height:300px">
+  <nz-row nzSpan="24">
+    <nz-col nzSpan="12">
+      <sv-container layout="vertical"
+                    col="1">
+        <sv label="入职时间">{{mySelf?.entryTime | date:'yyyy-MM-dd HH:mm:ss'}}</sv>
+        <sv label="年假天数">{{annulLeaveDetail?.annualLeaveSum}} 天</sv>
+        <sv label="请假实际天数">{{annulLeaveDetail?.finishLeaveSum}} 天</sv>
+      </sv-container>
+    </nz-col>
+    <nz-col nzSpan="12">
+      <app-vacation-detail [userId]="userId"
+                           (emitAnnualLeave)="getAnnulLeave($event)"></app-vacation-detail>
+    </nz-col>
+  </nz-row>
+
+
+
 </nz-card>
-<nz-card [nzBordered]="false">
-  <nz-card-tab>
-    <nz-tabset nzSize="large"
-               (nzSelectChange)="change($event)">
-      <nz-tab nzTitle="操作日志一"></nz-tab>
-      <nz-tab nzTitle="操作日志二"></nz-tab>
-      <nz-tab nzTitle="操作日志三"></nz-tab>
-    </nz-tabset>
-  </nz-card-tab>
-  <st [columns]="opColumns"
-      [data]="list">
-    <ng-template st-row="status"
-                 let-i>
-      <nz-badge *ngIf="i.status === 'success'"
-                [nzStatus]="'success'"
-                [nzText]="'成功'"></nz-badge>
-      <nz-badge *ngIf="i.status !== 'success'"
-                [nzStatus]="'processing'"
-                [nzText]="'进行中'"></nz-badge>
-    </ng-template>
-  </st>
-</nz-card> -->

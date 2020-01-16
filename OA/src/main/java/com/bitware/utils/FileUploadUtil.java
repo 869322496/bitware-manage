@@ -59,7 +59,7 @@ public class FileUploadUtil {
                 MultipartFile file = multipartRequest.getFile(a.next());
 
                 // 获取文件名称
-                String fileName = new String(file.getOriginalFilename().getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8).replace(" ","");
+                String fileName = new String(file.getOriginalFilename().getBytes(StandardCharsets.UTF_8),StandardCharsets.UTF_8).replace(" ","");
                 // 获取扩展名
                 String fileExtensionName = fileName.substring(fileName.lastIndexOf(".") + 1);
 

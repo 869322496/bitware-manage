@@ -18,13 +18,17 @@ export class UserManageComponent implements OnInit {
   isLoading: boolean = false;
   isEditing: boolean = false;
   editUser: UserInfo = new UserInfo();
+  isAllDisplayDataChecked = false; //群删用
+  isIndeterminate = false; //群删用
+  listOfDisplayData: any[] = []; //群删用
+  mapOfCheckedId: { [key: string]: boolean } = {}; //群删用
   constructor(private sysService: SysService, private modal: NzModalService, private msg: NzMessageService) {}
   ngOnInit() {
     this.getUserList();
   }
   /**
    *
-   * 获取角色列表
+   * 获取用户列表
    * @author ludaxian
    * @date 2020-01-08
    */
@@ -76,6 +80,31 @@ export class UserManageComponent implements OnInit {
   }
 
   /**
+   *修改用户信息
+   *
+   * @author ludaxian
+   * @date 2020-01-15
+   * @param {UserInfo} user
+   */
+  editUserInfo(user: UserInfo) {
+    this.modal
+      .create({
+        nzTitle: '编辑用户',
+        nzContent: EditUserComponent,
+        nzFooter: null,
+        nzWidth: 600,
+        nzComponentParams: {
+          pageType: 'edit',
+          userInfo: user,
+        },
+      })
+      .afterClose.subscribe(res => {
+        if (res) {
+          this.getUserList();
+        }
+      });
+  }
+  /**
    *
    *新增用户
    * @author ludaxian
@@ -88,6 +117,9 @@ export class UserManageComponent implements OnInit {
         nzContent: EditUserComponent,
         nzFooter: null,
         nzWidth: 600,
+        nzComponentParams: {
+          pageType: 'add',
+        },
       })
       .afterClose.subscribe(res => {
         if (res) {
@@ -120,5 +152,62 @@ export class UserManageComponent implements OnInit {
         this.modal.closeAll();
         this.getUserList();
       });
+  }
+
+  /**群删逻辑1 */
+  refreshStatus(): void {
+    this.isAllDisplayDataChecked = this.listOfDisplayData.every(item => this.mapOfCheckedId[item.id]);
+    this.isIndeterminate =
+      this.listOfDisplayData.some(item => this.mapOfCheckedId[item.id]) && !this.isAllDisplayDataChecked;
+  }
+
+  /**群删逻辑2 */
+  checkAll(value: boolean): void {
+    this.listOfDisplayData.forEach(item => (this.mapOfCheckedId[item.id] = value));
+    this.refreshStatus();
+  }
+
+  /**群删逻辑3 */
+  currentPageDataChange($event: Array<UserInfo>): void {
+    if ($event.length == 0) {
+      return;
+    }
+    this.listOfDisplayData = $event;
+    this.refreshStatus();
+  }
+  /**
+   * 批量删除
+   */
+  deleteUser() {
+    let ids = [];
+    this.userList.forEach(item => {
+      if (this.mapOfCheckedId[item.id]) {
+        ids.push(item.id);
+      }
+    });
+    //ids = Object.keys(this.mapOfCheckedId)
+    if (ids.length == 0) {
+      this.msg.error('暂未选中用户！');
+      return;
+    }
+    this.mapOfCheckedId = {};
+    this.isAllDisplayDataChecked = false;
+    console.log(ids);
+    this.sysService
+      .deleteUser(ids)
+      .toPromise()
+      .then(res => {
+        if (!res['success']) {
+          this.msg.warning(res['errorMessage']);
+        } else {
+          /*         this.getTree(); */
+          this.msg
+            .success('删除用户成功！', { nzDuration: 1000 })
+            .onClose.toPromise()
+            .then(res => {
+              this.getUserList();
+            });
+        }
+      }); //执行删除
   }
 }

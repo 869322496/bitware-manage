@@ -63,4 +63,14 @@ public class SecurityServiceImpl implements SecurityService {
     public void insertRole(List<RoleInfo> roleInfoList) {
         securityMapper.insertRole(roleInfoList);
     }
+
+    @Override
+    public void deleteUser(List<String> ids) {
+        securityMapper.deleteUser(ids);
+    }
+
+    @Override
+    public void updateUser(UserInfo userInfo) {
+         securityMapper.updateUser(userInfo);
+    }
 }

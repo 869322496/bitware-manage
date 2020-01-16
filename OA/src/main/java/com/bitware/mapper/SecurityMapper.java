@@ -13,6 +13,8 @@ public interface  SecurityMapper {
 
     List<UserInfo> getUserInfoByUserAccount(@Param("userAccount") String userAccount);
 
+    List<UserInfo> getUserInfoByUserId(@Param("userId") String userId);
+
     List<RoleInfo> getRoleList();
 
     List<ResourceInfo> getResourceByRoleId(@Param("roleId") String roleId, @Param("category") String category, @Param("code") String code);
@@ -26,4 +28,8 @@ public interface  SecurityMapper {
     void updateUserRole(@Param("userRoleList") List<UserRole> userRoleList);
 
     void insertRole(@Param("roleInfoList") List<RoleInfo> roleInfoList);
+
+    void deleteUser(@Param("ids") List<String> ids);
+
+    void updateUser(UserInfo userInfo);
 }

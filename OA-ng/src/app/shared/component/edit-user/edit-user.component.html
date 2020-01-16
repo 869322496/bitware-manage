@@ -1,9 +1,16 @@
-<form nz-form [formGroup]="userForm">
+<form nz-form
+      [formGroup]="userForm">
   <nz-form-item nzSpan="24">
-    <nz-form-label nzSpan="4" nzRequired>姓名</nz-form-label>
-    <nz-form-control nzSpan="8" [nzErrorTip]="nameErrTpl">
-      <input nz-input formControlName="name" placeholder="请输入姓名" maxlength="4" />
-      <ng-template #nameErrTpl let-control>
+    <nz-form-label nzSpan="4"
+                   nzRequired>姓名</nz-form-label>
+    <nz-form-control nzSpan="8"
+                     [nzErrorTip]="nameErrTpl">
+      <input nz-input
+             formControlName="name"
+             placeholder="请输入姓名"
+             maxlength="4" />
+      <ng-template #nameErrTpl
+                   let-control>
         <ng-container *ngIf="control.hasError('required')">
           姓名必输！
         </ng-container>
@@ -12,11 +19,15 @@
         </ng-container>
       </ng-template>
     </nz-form-control>
-
-    <nz-form-label nzSpan="4" nzRequired>账户名</nz-form-label>
-    <nz-form-control nzSpan="8" [nzErrorTip]="userAccountErrTpl">
-      <input nz-input formControlName="userAccount" placeholder="请输入账户名" />
-      <ng-template #userAccountErrTpl let-control>
+    <nz-form-label nzSpan="4"
+                   nzRequired>账户名</nz-form-label>
+    <nz-form-control nzSpan="8"
+                     [nzErrorTip]="userAccountErrTpl">
+      <input nz-input
+             formControlName="userAccount"
+             placeholder="请输入账户名" />
+      <ng-template #userAccountErrTpl
+                   let-control>
         <ng-container *ngIf="control.hasError('required')">
           账户名必输！
         </ng-container>
@@ -28,9 +39,14 @@
   </nz-form-item>
   <nz-form-item nzSpan="24">
     <nz-form-label nzSpan="4">手机号码</nz-form-label>
-    <nz-form-control nzSpan="8" [nzErrorTip]="telErrorTpl">
-      <input nz-input formControlName="tel" placeholder="请输入手机号码" type="text" />
-      <ng-template #telErrorTpl let-control>
+    <nz-form-control nzSpan="8"
+                     [nzErrorTip]="telErrorTpl">
+      <input nz-input
+             formControlName="tel"
+             placeholder="请输入手机号码"
+             type="text" />
+      <ng-template #telErrorTpl
+                   let-control>
         <ng-container *ngIf="control.hasError('pattern')">
           手机号码格式错误！
         </ng-container>
@@ -40,31 +56,67 @@
       </ng-template>
     </nz-form-control>
     <nz-form-label nzSpan="4">邮箱</nz-form-label>
-    <nz-form-control nzSpan="8" [nzErrorTip]="emailErrorTpl">
-      <input nz-input formControlName="email" placeholder="请输入邮箱" type="text" />
-      <ng-template #emailErrorTpl let-control>
+    <nz-form-control nzSpan="8"
+                     [nzErrorTip]="emailErrorTpl">
+      <input nz-input
+             formControlName="email"
+             placeholder="请输入邮箱"
+             type="text" />
+      <ng-template #emailErrorTpl
+                   let-control>
         <ng-container *ngIf="control.hasError('pattern')">
           邮箱格式错误！
         </ng-container>
       </ng-template>
     </nz-form-control>
   </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="4"
+                   nzRequired>入职时间</nz-form-label>
+    <nz-form-control nzSpan="20"
+                     [nzErrorTip]="entryTimeErrTpl">
+      <nz-date-picker formControlName="entryTime"
+                      [nzDisabledDate]="setDisabledDateRange"></nz-date-picker>
+      <!--   <nz-form-explain *ngIf="userForm.get('entryTime').dirty && userForm.get('entryTime').errors"> -->
+      <ng-template #entryTimeErrTpl>
+        <ng-container *ngIf="
+                       userForm.get('entryTime').hasError('required')">
+          入职日期必选！
+        </ng-container>
+      </ng-template>
+      <!--   </nz-form-explain> -->
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="4">备注</nz-form-label>
+    <nz-form-control nzSpan="20">
+      <textarea nz-input
+                formControlName="remark"
+                placeholder="请输入备注"
+                type="text"></textarea>
+    </nz-form-control>
+  </nz-form-item>
 </form>
+
 <nz-divider></nz-divider>
+
 <nz-row style="text-align: right;">
   <nz-col>
-    <button
-      nz-button
-      nzType="primary"
-      [disabled]="userForm.invalid"
-      type="submit"
-      [nzLoading]="submitting"
-      (click)="submit(userForm.value)"
-    >
+    <button nz-button
+            nzType="primary"
+            [disabled]="userForm.invalid"
+            type="submit"
+            [nzLoading]="submitting"
+            (click)="submit(userForm.value)">
       提交
     </button>
-    <button nz-button nzType="primary" (click)="userForm.reset()">
+    <button nz-button
+            nzType="primary"
+            (click)="userForm.reset()">
       重置
     </button>
+    <!--   <button (click)="test(userForm)">
+      ceshi
+    </button> -->
   </nz-col>
 </nz-row>

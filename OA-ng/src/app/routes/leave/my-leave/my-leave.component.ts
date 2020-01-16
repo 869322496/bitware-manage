@@ -1,3 +1,4 @@
+import { UserInfo } from '@shared/entity/UserInfo.entity';
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -12,15 +13,15 @@ import { Step } from '@shared/entity/Step.entity';
 import { BitService } from '@shared/service/Bit.service';
 import { DictionaryItem } from '@shared/entity/DictionaryItem.entity';
 import { Observable, Observer } from 'rxjs';
-
 @Component({
   selector: 'my-leave',
   templateUrl: './my-leave.component.html',
   styleUrls: ['./my-leave.component.less'],
 })
 export class MyLeaveComponent implements OnInit {
+  userId: string = this.settingService.user.id;
+  mySelf: UserInfo = this.settingService.user as UserInfo;
   list: any[] = [];
-
   data = {
     advancedOperation1: [],
     advancedOperation2: [],
@@ -55,14 +56,23 @@ export class MyLeaveComponent implements OnInit {
   };
   previewImage: string | undefined = '';
   previewVisible = false;
-
+  annulLeaveDetail: any;
   constructor(
     public msg: NzMessageService,
     private leaveService: LeaveService,
     private settingService: SettingsService,
     private bitService: BitService,
   ) {}
-
+  /**
+   *获取用户的年假情况
+   *
+   * @author ludaxian
+   * @date 2020-01-16
+   * @param {*} e
+   */
+  getAnnulLeave(e) {
+    this.annulLeaveDetail = e[0]; /* ['annualLeaveSum'] - res[0]['finishLeaveSum']; */
+  }
   ngOnInit() {
     this.getLeaveList();
   }
@@ -124,7 +134,28 @@ export class MyLeaveComponent implements OnInit {
    * @param leave
    */
   cancelApply(leave: LeaveInfo) {
-    this.msg.info('正在开发中..暂时不能取消！');
+    this.isLoading = true;
+    this.leaveService
+      .cancelApply(leave)
+      .toPromise()
+      .then(res => {
+        if (res['hasErrors']) {
+          this.msg.warning(res['errorMessage']);
+          return;
+        }
+        this.msg
+          .success('撤销申请成功！', {
+            nzDuration: 1000,
+          })
+          .onClose.toPromise()
+          .then(res => {
+            this.getLeaveList();
+          });
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+    /*  this.msg.info('正在开发中..暂时不能取消！'); */
   }
 
   /**
@@ -202,6 +233,7 @@ export class MyLeaveComponent implements OnInit {
       .toPromise()
       .then(res => {
         this.leaveList = res;
+
         if (this.leaveList.length > 0) {
           this.leave = this.leaveList[0];
           this.createLeaveProcess(this.leave.leaveProcess);

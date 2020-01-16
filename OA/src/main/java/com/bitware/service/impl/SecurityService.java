@@ -24,4 +24,8 @@ public interface SecurityService {
 
 
     void insertRole(List<RoleInfo> roleInfoList);
+
+    void deleteUser(List<String> ids);
+
+    void updateUser(UserInfo userInfo);
 }

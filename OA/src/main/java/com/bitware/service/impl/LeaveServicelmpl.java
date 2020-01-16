@@ -3,16 +3,20 @@ package com.bitware.service.impl;
 import com.bitware.bean.DictionaryItem;
 import com.bitware.bean.LeaveAudit;
 import com.bitware.bean.LeaveInfo;
+import com.bitware.bean.UserInfo;
 import com.bitware.mapper.LeaveMapper;
+import com.bitware.mapper.SecurityMapper;
 import com.bitware.mapper.ShareMapper;
 import com.bitware.utils.BitUser;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.Years;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +25,8 @@ public class LeaveServicelmpl implements LeaveService {
     LeaveMapper leaveMapper;
     @Autowired
     ShareMapper shareMapper;
+    @Autowired
+    SecurityMapper securityMapper;
 
     @Override
     public LeaveInfo getLeaveById(String id) {
@@ -71,7 +77,7 @@ public class LeaveServicelmpl implements LeaveService {
                         .indexOf(audit.getType());
                 //判断是否为最终流程
                 DictionaryItem finishStatus = shareMapper.getDictionary("LeaveStatus", "LeaveStatusAgree").get(0);
-                if (currentNo == auditProcess.size() - 1 ) {
+                if (currentNo == auditProcess.size() - 1) {
                     //最终流程则同意请假单
                     auditLeave.setStatus(Integer.parseInt(finishStatus.getData()));
                 } else {
@@ -83,7 +89,7 @@ public class LeaveServicelmpl implements LeaveService {
                     nextAudit.setLeaveId(audit.getLeaveId());
                     leaveMapper.insertAudit(nextAudit);
                 }
-            }else{//拒绝直接结束请假流程
+            } else {//拒绝直接结束请假流程
                 DictionaryItem endStatus = shareMapper.getDictionary("LeaveStatus", "LeaveStatusRefuse").get(0);
                 auditLeave.setStatus(Integer.parseInt(endStatus.getData()));
             }
@@ -93,11 +99,59 @@ public class LeaveServicelmpl implements LeaveService {
 
     @Override
     public List<LeaveInfo> isSameDay(String userId, Date beginTime, Date endTime) {
-       return  leaveMapper.isSameDay(userId,beginTime,endTime);
+        return leaveMapper.isSameDay(userId, beginTime, endTime);
     }
 
     @Override
-    public List<HashMap<String, Integer>> getUserLeaveCountEchartData(Date beginTime, Date endTime) {
-        return leaveMapper. getUserLeaveCountEchartData(beginTime,endTime);
+    public List<Map<String, Float>> getUserLeaveCountEchartData(Date beginTime, Date endTime) {
+        return leaveMapper.getUserLeaveCountEchartData(beginTime, endTime);
+    }
+
+    @Override
+    @Transactional
+    public void deleteApply(LeaveInfo leaveInfo) {//删除申请的同时 删除子流程
+        /*    List<LeaveAudit> leaveAudits  =  leaveMapper.getLeaveProcessByLeaveId(leaveInfo.getId());*/
+        //leaveMapper.deleteLeaveAudits(leaveAudits);
+        leaveMapper.deleteLeaveAuditsByLeaveId(leaveInfo.getId());
+        leaveMapper.deleteLeave(leaveInfo);
+    }
+
+    @Override
+    public List<Map<String, Object>> getAnnualLeave(String userId) {
+        List<Map<String, Object>> annualLeaveData = new ArrayList<>();
+        //1.年假总数annualLeaveSum b = (YearCount((now() - a) - 1year) + 5) - Day(事假、病假)
+        //当前年周期的开始时间、结束时间
+        if (!Optional.ofNullable(userId).isPresent() || StringUtils.equals(userId, "all")) {
+            List<UserInfo> allUser = securityMapper.getUserInfoByUserAccount(null);
+            allUser.forEach(user ->
+                    getUserAnnulLeaveDetail(annualLeaveData, user)
+            );
+        } else {
+            getUserAnnulLeaveDetail(annualLeaveData, Optional.ofNullable(securityMapper.getUserInfoByUserId(userId)).orElse(new ArrayList<>()).get(0));
+        }
+        return annualLeaveData;
+    }
+
+    private void getUserAnnulLeaveDetail(List<Map<String, Object>> annualLeaveData, UserInfo user) {
+        DateTime now = new DateTime();
+        int betweenYear = Years.yearsBetween(new DateTime(user.getEntryTime()),now).getYears(); //相差几年
+        Map<String,Object> noAnnualLeaveMap = new HashMap<>();
+        Date endTime = new Date();
+        Date beginTime;
+        if (betweenYear < 1) {//若不满一年 无年假 全部该扣扣
+            noAnnualLeaveMap.put("annualLeaveSum", 0f);
+            beginTime = user.getEntryTime();
+        } else {//大于1年的 取当前周期时间的请假计算 且年假总数会递增 初始为5
+            int overOneYear = Years.yearsBetween( new DateTime(user.getEntryTime()).plusYears(1),now).getYears(); //相差几年
+            BigDecimal temp1 = new BigDecimal(String.valueOf(overOneYear));
+            BigDecimal baseYear = new BigDecimal("5");
+            noAnnualLeaveMap.put("annualLeaveSum", temp1.add(baseYear).floatValue());
+            beginTime = new DateTime(user.getEntryTime()).plusYears(overOneYear + 1).toDate();
+        }
+        Float finishLeaveSum = leaveMapper.getFinishAnnualLeaveCount(user.getId(), beginTime, endTime);
+        noAnnualLeaveMap.put("finishLeaveSum", Optional.ofNullable(finishLeaveSum).orElse(0f));
+        noAnnualLeaveMap.put("userId",user.getId());
+        noAnnualLeaveMap.put("name",user.getName());
+        annualLeaveData.add(noAnnualLeaveMap);
     }
 }

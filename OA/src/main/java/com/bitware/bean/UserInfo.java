@@ -18,8 +18,8 @@ public class UserInfo {
     private Date lastLoginDate;
     private String email;
     private String remark;
-    private int isDelete;
-    private int isEnable;
+    private Integer isDelete;
+    private Integer isEnable;
     private String orgId;
     private String tel;
     private String avatar;
@@ -28,4 +28,5 @@ public class UserInfo {
     private String role;
     private List<ResourceInfo> roleResource;
     private String token;
+    private Date entryTime;
 }

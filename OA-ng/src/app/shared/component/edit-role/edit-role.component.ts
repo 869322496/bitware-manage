@@ -18,6 +18,7 @@ export class EditRoleComponent implements OnInit {
     private modalRef: NzModalRef,
     private bitService: BitService,
   ) {}
+
   roleForm: FormGroup;
   submitting: boolean = false;
   ngOnInit() {
