@@ -218,7 +218,6 @@ export class MyLeaveComponent implements OnInit {
             item.status = 'wait';
           } */
         });
-        console.log(this.steps);
       });
   }
 

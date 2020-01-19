@@ -2,7 +2,7 @@ package com.bitware.utils;
 import org.apache.poi.hssf.usermodel.*;
 
 /**
- * @author qingzeyu
+ * @author ludaxian
  */
 public class ExcelUtils {
     public static HSSFWorkbook getHSSFWorkbook(String sheetName, String[] title, String[][] values) {

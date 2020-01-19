@@ -1,13 +1,11 @@
 package com.bitware.service.impl;
 
-import com.bitware.bean.DictionaryItem;
-import com.bitware.bean.LeaveAudit;
-import com.bitware.bean.LeaveInfo;
-import com.bitware.bean.UserInfo;
+import com.bitware.bean.*;
 import com.bitware.mapper.LeaveMapper;
 import com.bitware.mapper.SecurityMapper;
 import com.bitware.mapper.ShareMapper;
 import com.bitware.utils.BitUser;
+import com.bitware.utils.ConstUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
@@ -41,12 +39,51 @@ public class LeaveServicelmpl implements LeaveService {
     @Override
     @Transactional
     public void insertLeave(LeaveInfo leave) {
+        leave.setStatus(0);
         leaveMapper.insertLeave(leave);
         LeaveAudit leaveAudit = new LeaveAudit();
         leaveAudit.setLeaveId(leave.getId());
         leaveAudit.setType("DepartmentAudit");
         leaveAudit.setStatus(0);
         leaveMapper.insertAudit(leaveAudit);
+    }
+
+    @Override
+    @Transactional
+    public void insertLeaveSupple(LeaveInfo leaveInfo) {
+        DictionaryItem finishStatus = shareMapper.getDictionary("LeaveStatus", "LeaveStatusAgree").get(0);
+        leaveInfo.setStatus(Integer.valueOf(finishStatus.getData()));//假单直接通过
+        leaveMapper.insertLeave(leaveInfo);
+        //这里其实是有问题的，补录的话应该需要审核权限才行。这版不做要求2020-01-17
+        List<DictionaryItem> auditProcess = shareMapper.getDictionary("AuditType", "all");
+        auditProcess.forEach(item->{//补录者拥有的审核权限流程直接通过，并产生流程下一不具备审核权限的流程点。
+            LeaveAudit leaveAudit = new LeaveAudit();
+            leaveAudit.setLeaveId(leaveInfo.getId());
+            leaveAudit.setType(item.getCode());
+            leaveAudit.setStatus(1);
+            leaveAudit.setAuditor(BitUser.getCurrentUser().getId());
+            leaveAudit.setTime(new Date());
+            leaveAudit.setReason("补录直接通过");
+            leaveInfo.setStatus(Integer.valueOf(item.getData()));
+            leaveMapper.updateLeave(leaveInfo);
+            leaveMapper.insertAudit(leaveAudit);
+        });
+     /*   List<ResourceInfo> allFunc = securityMapper.getResourceByRoleId(BitUser.getCurrentUser().getRoleId(), ConstUtil.FUNC, null);
+        ResourceInfo leaveAuditFunc = securityMapper.getResourceByRoleId(BitUser.getCurrentUser().getRoleId(), ConstUtil.FUNC, "LeaveAuditPermesion").get(0);
+        List<String> leaveAuditPermission = allFunc.stream().filter(item->StringUtils.equals(leaveAuditFunc.getId(),item.getParentId())).map(ResourceInfo::getCode).collect(Collectors.toList());
+        auditProcess = auditProcess.stream().filter(item->leaveAuditPermission.contains(item.getCode())).collect(Collectors.toList());
+        for (int i = 0; i < auditProcess.size() -1 ; i++) {
+            DictionaryItem item = auditProcess.get(i);
+
+        }
+
+
+         ListIterator<DictionaryItem> listIterator = auditProcess.listIterator();
+         while (listIterator.hasNext()){
+            System.out.print(listIterator.next());
+          }*/
+
+
     }
 
     @Override
@@ -136,7 +173,7 @@ public class LeaveServicelmpl implements LeaveService {
         DateTime now = new DateTime();
         int betweenYear = Years.yearsBetween(new DateTime(user.getEntryTime()),now).getYears(); //相差几年
         Map<String,Object> noAnnualLeaveMap = new HashMap<>();
-        Date endTime = new Date();
+        Date endTime  = new DateTime(new DateTime().getYear(), new DateTime().getMonthOfYear(), new DateTime().getDayOfMonth(), 23, 59, 59, 0).toDate();
         Date beginTime;
         if (betweenYear < 1) {//若不满一年 无年假 全部该扣扣
             noAnnualLeaveMap.put("annualLeaveSum", 0f);

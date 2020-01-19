@@ -57,8 +57,6 @@ export class StartupService {
         /* this.aclService.setFull(true); */
         this.aCLService.setRole([res[0].userInfo.role]);
         this.aCLService.setAbility([...res[0].userAuth.map((item: ResourceInfo) => item['code'])]);
-
-        console.log(this.aCLService.data);
       })
       .catch(err => console.log(err))
       .finally(() => resolve(null));

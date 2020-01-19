@@ -1,9 +1,7 @@
-<div class="alain-default__content-title">
-  <h1>
-    请假统计分析
-    <!--   <small> </small> -->
-  </h1>
-</div>
+<page-header title="请假统计分析"
+             autoBreadcrumb="false">
+  提供公司所有员工请假情况统计。
+</page-header>
 <nz-card nzBordered
          class="mb-lg"
          [nzExtra]="action"
@@ -71,7 +69,7 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
             style="font-size: 25px;">{{ calculationDay.allDay }}</span></label>
     <button nz-button
             style="margin-left: 15px;"
-            (click)="exportExcel()">导出表中数据<i nz-icon
+            (click)="exportExcel(exportTpl)">导出表中数据<i nz-icon
          nzType="export"
          nzTheme="outline"></i></button>
   </ng-template>
@@ -144,9 +142,14 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
   <div nz-col
        nzSpan="8">
     <nz-card nzTitle="请假天数统计"
-             [nzExtra]="leaveCountSelect">
+             [nzExtra]="leaveCountSelect"
+             style="height: 450px;">
       <nz-spin [nzTip]="'请稍候...'"
                [nzSpinning]="isEchartLoading">
+        <div class="noData"
+             *ngIf="!isDataExsit">
+          暂无数据
+        </div>
         <div echarts
              theme="light"
              [options]="userLeaveCountOption"></div>
@@ -156,7 +159,7 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
   </div>
   <div nz-col
        nzSpan="8">
-    <nz-card stlye="height:300px"
+    <nz-card style="height: 450px;"
              nzTitle="请假类型统计(待开发)">
       <div echarts
            theme="light"
@@ -166,29 +169,40 @@ line-height: 30px;">审核状态&nbsp;:&nbsp;</label>
   </div>
   <div nz-col
        nzSpan="8">
-    <nz-card stlye="height:300px"
+    <nz-card style="height: 450px;"
              nzTitle="年假剩余情况"
              [nzExtra]="userSelectTpl">
       <app-vacation-detail [userId]="userId"></app-vacation-detail>
     </nz-card>
   </div>
-
-  <ng-template #leaveCountSelect>
-    <nz-select [(ngModel)]="dateType"
-               (ngModelChange)="getUserLeaveCountEchartData()">
-      <nz-option [nzValue]="'month'"
-                 [nzLabel]="'当月'"></nz-option>
-      <nz-option nzValue="year"
-                 nzLabel="当年"></nz-option>
-    </nz-select>
-  </ng-template>
-  <ng-template #userSelectTpl>
-    <nz-select [(ngModel)]="userId"
-               style="width: 100px;">
-      <nz-option [nzValue]="item.value"
-                 [nzLabel]="item.label"
-                 *ngFor="let item of userList"></nz-option>
-    </nz-select>
-  </ng-template>
-
 </div>
+<ng-template #leaveCountSelect>
+  <nz-select [(ngModel)]="dateType"
+             (ngModelChange)="getUserLeaveCountEchartData()">
+    <nz-option [nzValue]="'month'"
+               [nzLabel]="'当月'"></nz-option>
+    <nz-option nzValue="year"
+               nzLabel="当年"></nz-option>
+  </nz-select>
+</ng-template>
+<ng-template #userSelectTpl>
+  <nz-select [(ngModel)]="userId"
+             style="width: 100px;">
+    <nz-option [nzValue]="item.value"
+               [nzLabel]="item.label"
+               *ngFor="let item of userList"></nz-option>
+  </nz-select>
+</ng-template>
+<ng-template #exportTpl>
+  <div style="border-bottom: 1px solid rgb(233, 233, 233);">
+    <label nz-checkbox
+           [(ngModel)]="allChecked"
+           (ngModelChange)="updateAllChecked()"
+           [nzIndeterminate]="indeterminate">
+      全选
+    </label>
+  </div>
+  <br />
+  <nz-checkbox-group [(ngModel)]="checkOptionsOne"
+                     (ngModelChange)="updateSingleChecked()"></nz-checkbox-group>
+</ng-template>

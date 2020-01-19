@@ -1,3 +1,4 @@
+import { BitService } from '@shared/service/Bit.service';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SettingsService } from '@delon/theme';
 
@@ -13,6 +14,7 @@ export class HeaderComponent {
 
   toggleCollapsedSidebar() {
     this.settings.setLayout('collapsed', !this.settings.layout.collapsed);
+    console.log(BitService.IsPC());
   }
 
   searchToggleChange() {

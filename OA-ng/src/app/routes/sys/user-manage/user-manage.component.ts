@@ -1,3 +1,4 @@
+import { deepCopy } from '@delon/util';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { pluck } from 'rxjs/operators';
 import { UserInfo } from '@shared/entity/UserInfo.entity';
@@ -69,7 +70,7 @@ export class UserManageComponent implements OnInit {
    * @param {UserInfo} user
    */
   setRole(user: UserInfo) {
-    this.editUser = user;
+    this.editUser = deepCopy(user);
     this.getRoleList();
     this.modal.create({
       nzTitle: '设置角色',
@@ -192,7 +193,6 @@ export class UserManageComponent implements OnInit {
     }
     this.mapOfCheckedId = {};
     this.isAllDisplayDataChecked = false;
-    console.log(ids);
     this.sysService
       .deleteUser(ids)
       .toPromise()

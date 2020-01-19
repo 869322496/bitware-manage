@@ -121,12 +121,12 @@
     <insert id="insertLeave">
        INSERT INTO `leave`
        VALUES
-       (#{id}, #{userId}, #{leaveType}, #{title},#{beginTime}, #{endTime}, #{reason}, #{orderNo} ,now(),'0',#{img},#{dateType});
+       (#{id}, #{userId}, #{leaveType}, #{title},#{beginTime}, #{endTime}, #{reason}, #{orderNo} ,now(),#{status},#{img},#{dateType});
     </insert>
     <insert id="insertAudit">
         INSERT INTO `leave_audit`
          VALUES
-        (null, #{type}, #{status}, null,#{leaveId},null);
+        (#{auditor}, #{type}, #{status}, #{reason},#{leaveId},#{time});
     </insert>
 
     <select id="getAuditLeaveByRoleId" resultMap="leaveMap">

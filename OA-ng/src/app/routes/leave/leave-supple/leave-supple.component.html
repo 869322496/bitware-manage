@@ -1,6 +1,6 @@
-<page-header title="填报请假单"
+<page-header title="补录请假"
              autoBreadcrumb="false">
-  请认真填报请假单，耐心等待管理部门的审核。
+  补录因某些原因未及时申请请假的假单,补录的假单会直接通过。
 </page-header>
 <nz-card [nzBordered]="false">
   <form nz-form
@@ -13,7 +13,7 @@
       <input nz-input
              formControlName="title"
              placeholder="标题尽量简短"
-             style="max-width: 334px;" />
+             style="width: 334px;" />
     </se>
     <se label="请假时间"
         error="请假时间必选"
@@ -82,7 +82,7 @@
       <nz-select formControlName="leaveType"
                  nzAllowClear
                  nzPlaceHolder="请选择请假类型"
-                 style="max-width: 334px;">
+                 style="width: 334px;">
         <nz-option [nzValue]="type.value"
                    [nzLabel]="type.label"
                    *ngFor="let type of leaveTypeList"></nz-option>

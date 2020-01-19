@@ -211,4 +211,20 @@ public class LeaveController {
         return BitResult.success(data);
     }
 
+    /**
+     * 补录假单
+     * @param leaveInfo
+     * @return
+     */
+    @PostMapping("/insertLeaveSupple")
+    @ResponseBody
+    public BitResult insertLeaveSupple(@RequestBody LeaveInfo leaveInfo) {
+        try {
+            leaveService.insertLeaveSupple(leaveInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BitResult.failure("补录假单失败！");
+        }
+        return BitResult.success(leaveInfo);
+    }
 }

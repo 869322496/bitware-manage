@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @author qingzeyu
+ * @author ludaxian
  */
 @Data
 public class PageUtils<T> {

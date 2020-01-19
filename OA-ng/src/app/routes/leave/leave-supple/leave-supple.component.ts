@@ -13,11 +13,11 @@ import { Observable, Observer } from 'rxjs';
 import { differenceInDays, startOfDay, addHours, endOfDay, addMinutes, setMilliseconds } from 'date-fns';
 
 @Component({
-  selector: 'leave-report',
-  templateUrl: './leave-report.component.html',
-  styleUrls: ['./leave-report.component.less'],
+  selector: 'leave-supple',
+  templateUrl: './leave-supple.component.html',
+  styleUrls: ['./leave-supple.component.less'],
 })
-export class LeaveReportComponent implements OnInit {
+export class LeaveSuppleComponent implements OnInit {
   isHalfDay: boolean = false;
   radioValue: string = 'AM'; //上午下午
   constructor(
@@ -244,15 +244,15 @@ export class LeaveReportComponent implements OnInit {
     leaveInfo.leaveType = formvalue.leaveType;
     this.submitting = true;
     this.leaveService
-      .insertLeave(leaveInfo)
+      .insertLeaveSupple(leaveInfo)
       .toPromise()
       .then(res => {
         if (res.hasErrors) {
           this.msg.error(res.errorMessage);
           return;
         }
-        this.msg.success('上报请假成功！');
-        this.router.navigateByUrl('leave/my-leave');
+        this.msg.success('请假补录成功！');
+        /*     this.router.navigateByUrl('leave/my-leave'); */
         this.leaveForm.reset();
       })
       .finally(() => {
@@ -263,7 +263,7 @@ export class LeaveReportComponent implements OnInit {
    * 设置不可选时间
    */
   setDisabledDateRange = (current: Date) => {
-    return differenceInDays(current, startOfDay(new Date())) < 0;
+    return differenceInDays(current, startOfDay(new Date())) >= 0;
   };
   /**
    * 照片上传回调
