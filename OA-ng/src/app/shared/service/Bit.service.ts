@@ -70,9 +70,9 @@ export class BitService {
    */
   formatTreeToArr(tree: Tree[]) {
     let arr: Array<Tree> = [];
-    const format = tree => {
+    const format = (tree) => {
       if (tree.length === 0) return;
-      tree.forEach(item => {
+      tree.forEach((item) => {
         arr = [...arr, item];
         if (item['children'].length > 0) {
           format(item['children']);
@@ -82,4 +82,6 @@ export class BitService {
     };
     return format(tree);
   }
+
+  //测试一下
 }
