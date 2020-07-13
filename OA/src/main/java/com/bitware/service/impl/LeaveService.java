@@ -30,6 +30,4 @@ public interface LeaveService {
     void deleteApply(LeaveInfo leaveInfo);
 
     List<Map<String, Object>> getAnnualLeave(java.lang.String userId);
-
-    void insertLeaveSupple(LeaveInfo leaveInfo);
 }

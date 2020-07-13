@@ -7,14 +7,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { LeaveService } from '../../shared/service/leave.service';
 import { MyLeaveComponent } from './my-leave/my-leave.component';
-import { LeaveSuppleComponent } from './leave-supple/leave-supple.component';
-const COMPONENTS = [
-  LeaveProcessComponent,
-  LeaveSuppleComponent,
-  LeaveStatisticalAnalysisComponent,
-  LeaveReportComponent,
-  MyLeaveComponent,
-];
+const COMPONENTS = [LeaveProcessComponent, LeaveStatisticalAnalysisComponent, LeaveReportComponent, MyLeaveComponent];
 const COMPONENTS_NOROUNT = [];
 
 @NgModule({

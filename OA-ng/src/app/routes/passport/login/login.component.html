@@ -1,53 +1,30 @@
-<form nz-form
-      [formGroup]="form"
-      (ngSubmit)="submit()"
-      role="form"
-      style="margin: 0 1rem;">
-  <nz-alert *ngIf="error"
-            [nzType]="'error'"
-            [nzMessage]="error"
-            [nzShowIcon]="true"
-            class="mb-lg"></nz-alert>
+<form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form">
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
   <nz-form-item>
     <nz-form-control [nzErrorTip]="'账号必须输入!' | translate">
-      <nz-input-group nzSize="large"
-                      nzPrefixIcon="user">
-        <input nz-input
-               formControlName="userAccount"
-               placeholder="用户名" />
+      <nz-input-group nzSize="large" nzPrefixIcon="user">
+        <input nz-input formControlName="userAccount" placeholder="用户名" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control nzErrorTip="'密码必须输入!' | translate">
-      <nz-input-group nzSize="large"
-                      nzPrefixIcon="lock">
-        <input nz-input
-               type="password"
-               formControlName="password"
-               placeholder="密码" />
+      <nz-input-group nzSize="large" nzPrefixIcon="lock">
+        <input nz-input type="password" formControlName="password" placeholder="密码" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-col [nzSpan]="12">
-      <label nz-checkbox
-             formControlName="remember">{{ 'app.login.remember-me' | translate }}</label>
+      <label nz-checkbox formControlName="remember">{{ 'app.login.remember-me' | translate }}</label>
     </nz-col>
-    <nz-col [nzSpan]="12"
-            class="text-right">
-      <a class="forgot"
-         (click)="msg.info('请找管理员')">{{ 'app.login.forgot-password' | translate }}</a>
+    <nz-col [nzSpan]="12" class="text-right">
+      <a class="forgot" (click)="msg.info('请找管理员')">{{ 'app.login.forgot-password' | translate }}</a>
     </nz-col>
   </nz-form-item>
   <nz-form-item>
-    <button nz-button
-            type="submit"
-            nzType="primary"
-            nzSize="large"
-            [nzLoading]="http.loading"
-            nzBlock>
+    <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="http.loading" nzBlock>
       {{ 'app.login.login' | translate }}
     </button>
   </nz-form-item>

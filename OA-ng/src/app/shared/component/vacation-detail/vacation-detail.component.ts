@@ -33,12 +33,12 @@ export class VacationDetailComponent implements OnInit, OnChanges {
    * @param {*} userId
    */
   getAnnualLeave() {
-    this.isLoading = true;
     this.leaveService
       .getAnnualLeave(this.userId)
       .pipe(pluck('data'))
       .toPromise()
       .then(res => {
+        console.log(res);
         if (res['hasErrors']) {
           return;
         }
@@ -114,9 +114,6 @@ export class VacationDetailComponent implements OnInit, OnChanges {
             },
           ],
         };
-      })
-      .finally(() => {
-        this.isLoading = false;
       });
   }
 }

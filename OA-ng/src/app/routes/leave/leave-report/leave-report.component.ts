@@ -210,6 +210,7 @@ export class LeaveReportComponent implements OnInit {
   }
 
   submit(formvalue: any) {
+    // console.log(leaveInfo);
     const leaveInfo: LeaveInfo = new LeaveInfo();
     if (this.imageList.length > 0) {
       leaveInfo.img = JSON.stringify(

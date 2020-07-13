@@ -6,7 +6,6 @@ import { LeaveProcessComponent } from './leave-process/leave-process.component';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { RouteguardService } from '../routeguard.service';
 import { MyLeaveComponent } from './my-leave/my-leave.component';
-import { LeaveSuppleComponent } from './leave-supple/leave-supple.component';
 
 const routes: Routes = [
   {
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'leave-process', component: LeaveProcessComponent, canActivate: [RouteguardService] },
   { path: 'leave-report', component: LeaveReportComponent, canActivate: [RouteguardService] },
   { path: 'my-leave', component: MyLeaveComponent, canActivate: [RouteguardService] },
-  { path: 'leave-supple', component: LeaveSuppleComponent, canActivate: [RouteguardService] },
 ];
 
 @NgModule({

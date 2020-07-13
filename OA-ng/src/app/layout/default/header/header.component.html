@@ -1,24 +1,24 @@
-<!-- <div class="alain-default__header-logo"
-     *ngIf="settings.layout.collapsed">
-  <a [routerLink]="['/']"
-     class="alain-default__header-logo-link">
-    <img class="alain-default__header-logo-expanded"
-         src="./assets/img/bitwarelog-white.png"
-         alt="{{ settings.app.name }}"
-         style="max-height:40px;" />
-
+<div class="alain-default__header-logo">
+  <a [routerLink]="['/']" class="alain-default__header-logo-link">
+    <img
+      class="alain-default__header-logo-expanded"
+      src="./assets/img/bitwarelog-white.png"
+      alt="{{ settings.app.name }}"
+      style="max-height:40px;"
+    />
+    <!-- <img class="alain-default__header-logo-collapsed"
+         src="./assets/logo.svg"
+         alt="{{settings.app.name}}"
+         style="max-height:30px;" /> -->
   </a>
-</div> -->
+</div>
 <div class="alain-default__nav-wrap">
   <ul class="alain-default__nav">
     <!-- Menu -->
     <li>
-      <div class="alain-default__nav-item"
-           (click)="toggleCollapsedSidebar()">
-        <i nz-icon
-           nzType="menu-{{ settings.layout.collapsed ? 'unfold' : 'fold' }}"></i>
+      <div class="alain-default__nav-item" (click)="toggleCollapsedSidebar()">
+        <i nz-icon nzType="menu-{{ settings.layout.collapsed ? 'unfold' : 'fold' }}"></i>
       </div>
-
     </li>
     <!-- Search Button -->
     <!--     <li class="hidden-pc" (click)="searchToggleChange()">
@@ -26,21 +26,8 @@
         <i nz-icon nzType="search"></i>
       </div>
     </li> -->
-    <li> <a [routerLink]="['/']"
-         style="margin-left: 1rem;">
-        <!-- *ngIf="!settings.layout.collapsed" -->
-        <img src="./assets/img/bitwarelog-white.png"
-             alt="{{ settings.app.name }}"
-             style="max-height:40px;" />
-        <!-- <img class="alain-default__header-logo-collapsed"
-       src="./assets/logo.svg"
-       alt="{{settings.app.name}}"
-       style="max-height:30px;" /> -->
-      </a></li>
   </ul>
-
-  <header-search class="alain-default__search"
-                 [toggleChange]="searchToggleStatus"></header-search>
+  <header-search class="alain-default__search" [toggleChange]="searchToggleStatus"></header-search>
   <ul class="alain-default__nav">
     <!-- Notify -->
     <!--    <li>
@@ -56,17 +43,17 @@
     </li> -->
     <!-- Settings -->
     <li class="hidden-mobile">
-      <div class="alain-default__nav-item"
-           nz-dropdown
-           [nzDropdownMenu]="settingsMenu"
-           nzTrigger="click"
-           nzPlacement="bottomRight">
-        <i nz-icon
-           nzType="setting"></i>
+      <div
+        class="alain-default__nav-item"
+        nz-dropdown
+        [nzDropdownMenu]="settingsMenu"
+        nzTrigger="click"
+        nzPlacement="bottomRight"
+      >
+        <i nz-icon nzType="setting"></i>
       </div>
       <nz-dropdown-menu #settingsMenu="nzDropdownMenu">
-        <div nz-menu
-             style="width:200px;">
+        <div nz-menu style="width:200px;">
           <div nz-menu-item>
             <header-fullscreen></header-fullscreen>
           </div>

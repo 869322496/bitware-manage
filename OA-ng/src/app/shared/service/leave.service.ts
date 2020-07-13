@@ -1,14 +1,13 @@
 import { Injectable, Injector, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 import { BitResult } from '@shared/entity/BitResult.entity';
 import { LeaveAudit } from '@shared/entity/LeaveAudit.enetity';
-import { LeaveInfo } from '@shared/entity/LeaveInfo.entity';
 
 @Injectable({ providedIn: 'root' })
 export class LeaveService {
   private insertLeaveUrl = 'OA/leave/insertLeave';
-  private insertLeaveSuppleUrl = 'OA/leave/insertLeaveSupple';
   private getLeaveDetailByIdUrl = 'OA/leave/getLeaveDetailById';
   private getLeaveDetailByUserIdUrl = 'OA/leave/getLeaveDetailByUserId';
   private getAuditLeaveUrl = 'OA/leave/getAuditLeave';
@@ -30,18 +29,6 @@ export class LeaveService {
    */
   insertLeave(leave: LeaveInfo): Observable<BitResult> {
     return this.http.post<BitResult>(this.insertLeaveUrl, leave, this.httpOptions);
-  }
-
-  /**
-   *
-   * 请假补录
-   * @author ludaxian
-   * @date 2020-01-17
-   * @param {LeaveInfo} leave
-   * @returns {Observable<BitResult>}
-   */
-  insertLeaveSupple(leave: LeaveInfo): Observable<BitResult> {
-    return this.http.post<BitResult>(this.insertLeaveSuppleUrl, leave, this.httpOptions);
   }
 
   /**

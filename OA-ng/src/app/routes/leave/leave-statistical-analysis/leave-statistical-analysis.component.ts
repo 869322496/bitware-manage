@@ -1,6 +1,6 @@
 import { UserInfo } from '@shared/entity/UserInfo.entity';
 import { SysService } from '@shared/service/sys.service';
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NzMessageService, NzModalService } from 'ng-zorro-antd';
@@ -34,6 +34,7 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
     private xlsx: XlsxService,
   ) {}
 
+  dateType: string = 'month';
   leaveType: string;
   leaveTypeList: SelectOption[] = [];
   leaveStatusList: SelectOption[] = [];
@@ -56,43 +57,6 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
   userList: SelectOption[] = [];
   userLeaveCountOption;
   annualLeaveDetailList = [];
-  /* 这里是请假天数统计 */
-  isDataExsit: boolean = false;
-  dateType: string = 'month';
-  /* 这里是导出配置项参数 */
-  allChecked = true;
-  indeterminate = false;
-  checkOptionsOne = [
-    { label: '请假编号', value: 'orderNo', checked: true },
-    { label: '姓名', value: 'userName', checked: true },
-    { label: '请假类型', value: 'leaveTypeName', checked: true },
-    { label: '请假标题', value: 'title', checked: true },
-    { label: '请假时间', value: 'leaveTime', checked: true },
-    { label: '请假天数', value: 'leaveDay', checked: true },
-    { label: '审核状态', value: 'statusName', checked: true },
-    { label: '年假共计', value: 'annualLeaveSum', checked: true },
-    { label: '年假剩余', value: 'restannualLeave', checked: true },
-    { label: '请假理由', value: 'reason', checked: true },
-  ];
-  /* [
-            '请假编号',
-            '姓名',
-            '请假类型',
-            '请假标题',
-            '请假时间',
-            '请假天数',
-            '审核状态',
-            '年假共计',
-            '年假剩余',
-            '请假理由',
-          ], */
-  ngOnInit(): void {
-    this.getAnnualLeave();
-    this.getLeaveList();
-    this.initSelect();
-    this.getUserLeaveCountEchartData();
-    this.getUserList();
-  }
   /**
    *
    * 获取用户列表
@@ -126,11 +90,7 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
       .getUserLeaveCountEchartData(this.dateType)
       .toPromise()
       .then(res => {
-        if (res['data'].length == 0 || res['hasErrors']) {
-          this.isDataExsit = false;
-          return;
-        }
-        this.isDataExsit = true;
+        console.log(res);
         this.userLeaveCountOption = {
           xAxis: {
             type: 'category',
@@ -148,7 +108,6 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
             },
           },
           yAxis: {
-            minInterval: 0.5,
             type: 'value',
           },
           dataset: {
@@ -171,10 +130,23 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
             },
           ],
         };
+        console.log(
+          res['data'].map(item => {
+            return { name: item['xData'] };
+          }),
+        );
       })
       .finally(() => {
         this.isEchartLoading = false;
       });
+  }
+
+  ngOnInit(): void {
+    this.getAnnualLeave();
+    this.getLeaveList();
+    this.initSelect();
+    this.getUserLeaveCountEchartData();
+    this.getUserList();
   }
 
   /**
@@ -314,74 +286,67 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
    * @author ludaxian
    * @date 2020-01-16
    */
-  exportExcel(exportTpl: TemplateRef<any>) {
-    this.modalService.create({
-      nzTitle: '导出配置项',
-      nzContent: exportTpl,
-      nzOnCancel: () => {
-        return;
-      },
-      nzOnOk: () => {
-        if (!this.indeterminate || !this.allChecked) {
-          this.msg.info('请至少选中一个配置项！');
-          return false;
+  exportExcel() {
+    let excelData: any[] = [
+      [
+        '请假编号',
+        '姓名',
+        '请假类型',
+        '请假标题',
+        '请假时间',
+        '请假天数',
+        '审核状态',
+        '年假共计',
+        '年假剩余',
+        '请假理由',
+      ],
+    ];
+    this.leaveList.forEach(item => {
+      const annualLeaveDetail = this.annualLeaveDetailList.find(detail => detail['userId'] == item.userId);
+      const getLeaveDay = data => {
+        if (data.dateType == 'ALL') {
+          if (differenceInDays(new Date(data.endTime), new Date(data.beginTime)) === 0) {
+            //同一天
+            return 1;
+          } else {
+            return differenceInDays(new Date(data.endTime), new Date(data.beginTime)) + 1;
+          }
+        } else if (['PM', 'AM'].includes(data.dateType)) {
+          return 0.5;
         }
-        let excelData: any[] = [this.checkOptionsOne.filter(item => item.checked).map(item => item['label'])];
-        let codeList = this.checkOptionsOne.filter(item => item.checked).map(item => item['value']);
-        this.leaveList.forEach(item => {
-          const annualLeaveDetail = this.annualLeaveDetailList.find(detail => detail['userId'] == item.userId);
-          const getLeaveDay = data => {
-            if (data.dateType == 'ALL') {
-              if (differenceInDays(new Date(data.endTime), new Date(data.beginTime)) === 0) {
-                //同一天
-                return 1;
-              } else {
-                return differenceInDays(new Date(data.endTime), new Date(data.beginTime)) + 1;
-              }
-            } else if (['PM', 'AM'].includes(data.dateType)) {
-              return 0.5;
-            }
-          };
+      };
 
-          const getLeaveTime = data1 => {
-            if (data1.dateType === 'ALL') {
-              return `${format(item.beginTime, 'YYYY-MM-DD')} 到 ${format(item.endTime, 'YYYY-MM-DD')}`;
-            } else {
-              return `${format(item.beginTime, 'YYYY-MM-DD')} ${item.dateType == 'AM' ? '上午' : '下午'}`;
-            }
-          };
+      const getLeaveTime = data1 => {
+        if (data1.dateType === 'ALL') {
+          return `${format(item.beginTime, 'YYYY-MM-DD')} 到 ${format(item.endTime, 'YYYY-MM-DD')}`;
+        } else {
+          return `${format(item.beginTime, 'YYYY-MM-DD')} ${item.dateType == 'AM' ? '上午' : '下午'}`;
+        }
+      };
 
-          let dataSource = [
-            { code: 'orderNo', value: item.orderNo },
-            { code: 'userName', value: item.userName },
-            { code: 'leaveTypeName', value: item.leaveTypeName },
-            { code: 'title', value: item.title },
-            { code: 'leaveTime', value: getLeaveTime(item) },
-            { code: 'leaveDay', value: getLeaveDay(item) },
-            { code: 'statusName', value: item.statusName },
-            { code: 'annualLeaveSum', value: annualLeaveDetail['annualLeaveSum'] },
-            {
-              code: 'restannualLeave',
-              value:
-                Number(annualLeaveDetail['annualLeaveSum']) - Number(annualLeaveDetail['finishLeaveSum']) > 0
-                  ? Number(annualLeaveDetail['annualLeaveSum']) - Number(annualLeaveDetail['finishLeaveSum'])
-                  : 0,
-            },
-            { code: 'reason', value: item.reason },
-          ];
-          let data = dataSource.filter(item => codeList.includes(item.code)).map(item1 => item1['value']);
-          excelData = [...excelData, data];
-        });
-
-        this.xlsx.export({
-          sheets: [
-            {
-              data: excelData,
-              name: '请假报表',
-            },
-          ],
-        });
-      },
+      let data = [
+        item.orderNo,
+        item.userName,
+        item.leaveTypeName,
+        item.title,
+        getLeaveTime(item),
+        getLeaveDay(item),
+        item.statusName,
+        annualLeaveDetail['annualLeaveSum'],
+        Number(annualLeaveDetail['annualLeaveSum']) - Number(annualLeaveDetail['finishLeaveSum']) > 0
+          ? Number(annualLeaveDetail['annualLeaveSum']) - Number(annualLeaveDetail['finishLeaveSum'])
+          : 0,
+        item.reason,
+      ];
+      excelData = [...excelData, data];
+    });
+    this.xlsx.export({
+      sheets: [
+        {
+          data: excelData,
+          name: '请假报表',
+        },
+      ],
     });
   }
   /**
@@ -411,6 +376,7 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
       .pipe(pluck('data'))
       .toPromise()
       .then(res => {
+        console.log(res);
         if (res['hasErrors']) {
           return;
         }
@@ -496,36 +462,4 @@ export class LeaveStatisticalAnalysisComponent implements OnInit {
       },
     ],
   };
-
-  /* 复选框全选逻辑 */
-  updateAllChecked(): void {
-    this.indeterminate = false;
-    if (this.allChecked) {
-      this.checkOptionsOne = this.checkOptionsOne.map(item => {
-        return {
-          ...item,
-          checked: true,
-        };
-      });
-    } else {
-      this.checkOptionsOne = this.checkOptionsOne.map(item => {
-        return {
-          ...item,
-          checked: false,
-        };
-      });
-    }
-  }
-  /* 复选框全选逻辑 */
-  updateSingleChecked(): void {
-    if (this.checkOptionsOne.every(item => !item.checked)) {
-      this.allChecked = false;
-      this.indeterminate = false;
-    } else if (this.checkOptionsOne.every(item => item.checked)) {
-      this.allChecked = true;
-      this.indeterminate = false;
-    } else {
-      this.indeterminate = true;
-    }
-  }
 }
